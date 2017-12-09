@@ -1,0 +1,16 @@
+Income Statement
+
+Revenues:
+            £-573.72  income:employer
+--------------------
+            £-573.72
+
+Expenses:
+              £73.72  expenses
+--------------------
+              £73.72
+
+Total:
+--------------------
+            £-500.00
+

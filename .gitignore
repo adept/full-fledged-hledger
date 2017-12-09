@@ -18,3 +18,5 @@ cabal.sandbox.config
 .stack-work/
 cabal.project.local
 .HTF/
+*/export/.shake/.shake.database
+*/export/.shake/.shake.lock
