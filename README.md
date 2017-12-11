@@ -10,21 +10,137 @@ and budgeting. It should be easily adaptable to other command-line accounting to
 I went through several different approaches over the course of 10 years, and in a sense this is a short story of
 how that journey went and where it led.
 
-My goals were:
+## Goals
+
+I wanted setup that would enable me to have:
 
 - Avoid spending too much time, effort and manual work on tracking expenses
 
-- Eventual consistency: even if I can't record something precisely right now, maybe I would be able to do it later
+- Eventual consistency: even if you can't record something precisely right now, maybe I would be able to do it later
 
 - Ability to refactor. I want to be able to go back and change how I am doing things, with as little effort as possible and without fear of irrevocably breaking things.
 
-Hledger is really flexible and allows you to do whatever you want. Of course quite often it is rather hard to articulate what you want, especially when you are just getting started.
-Setup described here provides a nice starting point and helps to gradually get to a point where things are just the way you want them.
+## Key principles and approaches
+
+### Version control everything
+
+Put your journal under version control - this would save you from yourself, you would be able to make sweeping edits of your journals (renaming accounts, etc) without fear of messing things up or losing everything.
+
+Put all the electronic statements that you've incorporated into your journal under version control as well. If your bank changes the format of the statements and new statements happen to be better than the old ones (more information is available, etc), you would be able to regenerate all past statements and see what was changed and convince yourself that numbers will stay the same. 
+
+If you generate any reports on the regular basis (balance sheet, income-expenses, etc) - make scripts to generate them and put them under version control. Now you can change your journal files however you like and you would be able to check changes in the reports to convince yourself that your journal changes are good and complete.
+
+### Keep source files separate and use !include a lot
+
+When you convert electronic statements, produce one .journal file per statement converted, put them under version control and !include them in your journal. Now, if your statements ever change, you would be able to re-generate corresponding .journal file and aggregate reports (like balance sheet) and see the changes that happened at every step of the way. Example use-case would be: you made a mistake collecting statements and exported same month twice, and now you have re-acquired one of the statements or manually edited it to remove duplicated rows.
+
+### Generate a lot of reports automatically after every significant change
+
+Whenever you are done reconciling your accounts (or part of them), generate a lot of reports. Have a script that does that in "one click". Keep reports under version control. This way you would be able to spot weird or out-of-place things that happened after any change to your journals.
+
+### Minimize manual entries
+
+Manual entries take time. They would probably take more time and effort than the rest of the stuff related to keeping your finances in check, combined. Think whether you want to track all those cash expenses. Do you need to?
+
+Any ATM transactions in my bank accounts are done versus `expenses:misc:cash`, and unless monthly amount there get out of check, I never bother detailing them, and I strongly suggest you do the same -- unless you handle a lot of cash.
+
+### Split your journals by year
+
+This make things faster and also allows you to reset your expenses at a reasonable interval. Hledger and ledger have helpful `equity` command to simplify the process, but you can simplify it even further with some scripting.
+
+### Refactor and change aggressively
+
+If you have an ability to easily re-generate journal files from all of your electronic statements, you can tweak CSV import rules to improve classification of your transactions or change it if current classification does not suit your need.
+
+Changing CSV import rules and re-generating .journal files from all the source statements allows you to be more confident in the result as compared to mass search and replace over report files.
+
+### Add more details over time
+
+It is realitvely easy to find yourself with a setup where you drop fresh CSV statements in a directory from time to time, run a couple of scripts, review changes in version control system, and your are done with next batch of reconciliation.
+
+Freed-up time can be used to get more statements from more sources that will provide you with a more fine-grained picture. For example, you might pay off your credit card from your current account every month, and these lump-sump expenses went into `expenses:credit card`, but now you can consider getting detailed statements from credit card provider. Now transactions that pay off your outstanding balance can go to `liabilities:credit card:balance payments` and credit card statement could be processed so that credit card spending goes from `liabilities:credit card` to various `expenses:...` accounts, and credit card balance payments go from `liabilities:credit card:balance payments` to `liabilities:credit card`.
+
+Once you have things in place to process credit card statements, you can change one CSV conversion rule for the current account that influences how credit card balance payments are processed, regenerate all current account .journals and have detailed information about credit card spendings.
+
+Same thing could be done with Amazon, Paypal, your pension account, savings and brokerage accounts, etc - you can start with treating them as black boxes or expense categories, and then with time procure statements for them and incorporate them. If everything is under version control, it would be easy to do that and check that all aggregate reports react accordingly.
+
+## What is in here and how to use it
 
 Scripts and files here assume Linux-like environment with `runhaskell` and textutils/shellutils available. I have not tested them on Mac OS or Windows.
 
-Every section of this document has a corresponding subdirectory in the repository (`01_getting_started`, `02_getting_data_in`, ...) -- each directory will build upon the previous
-one, showing gradual evolution of the setup.
+Repository contains a number of subdirectories (`01_getting_started`, `02_getting_data_in`, ...) that represent gradual evolution of the setup, starting from the smallest
+possible and gradually adding more and more features in. This way you can either choose the starting point that is more suitable for you or compare/diff various setups and see
+what exactly have been changed to add each particular feature.
+
+The bigger the number, the more features/examples are incorporated.
+
+## Directory structure
+
+At top level, there would be a number of yearly journals, one per year (`2014.journal`, `2015.journal`, etc).
+
+Each of them will `!include` a bunch of files from `./import/{statement source}/journal/` subdirectories and will also contain all manual transactions for the given year.
+
+Script `export.sh` is used to generate a bunch of reports in the `export` subdirectory, which contains [Shake](http://shakebuild.com/) script `./export/export.sh` that drives whole process.
+
+All source statements go into `./import/{statement source}/in`, then they are converted to proper CSV files and put into `./import/{statement source}/csv` and generated journal files go into `./import/{statement source}/journal`. I usually have `./import/{statement source}/convert.sh` that allows you to re-generate all files in `./journal` from the source files held in `./in`.
+
+Typical filesystem tree will look like this:
+```
+├── 2014.journal
+├── 2015.journal
+├── 2016.journal
+├── 2017.journal
+├── export
+│   ├── 2014-all.journal
+│   ├── 2014-balance-sheet.txt
+│   ├── 2014-closing.journal
+│   ├── 2014-income-expenses.txt
+│   ├── 2015-all.journal
+│   ├── 2015-balance-sheet.txt
+│   ├── 2015-closing.journal
+│   ├── 2015-income-expenses.txt
+│   ├── 2015-opening.journal
+│   ├── 2016-all.journal
+│   ├── 2016-balance-sheet.txt
+│   ├── 2016-closing.journal
+│   ├── 2016-income-expenses.txt
+│   ├── 2016-opening.journal
+│   ├── 2017-all.journal
+│   ├── 2017-balance-sheet.txt
+│   ├── 2017-closing.journal
+│   ├── 2017-income-expenses.txt
+│   ├── 2017-opening.journal
+│   └── export.hs
+├── export.sh
+└── import
+    └── lloyds
+        ├── convert.sh
+        ├── csv
+        │   ├── 12345678_20171225_0001.csv
+        │   ├── 12345678_20171225_0002.csv
+        │   ├── 99966633_20171223_1844.csv
+        │   ├── 99966633_20171224_2041.csv
+        │   ├── 99966633_20171224_2042.csv
+        │   └── 99966633_20171224_2043.csv
+        ├── in
+        │   ├── 12345678_20171225_0001.csv
+        │   ├── 12345678_20171225_0002.csv
+        │   ├── 99966633_20171223_1844.csv
+        │   ├── 99966633_20171224_2041.csv
+        │   ├── 99966633_20171224_2042.csv
+        │   └── 99966633_20171224_2043.csv
+        ├── journal
+        │   ├── 12345678_20171225_0001.journal
+        │   ├── 12345678_20171225_0002.journal
+        │   ├── 99966633_20171223_1844.journal
+        │   ├── 99966633_20171224_2041.journal
+        │   ├── 99966633_20171224_2042.journal
+        │   └── 99966633_20171224_2043.journal
+        ├── lloyds2csv.pl
+        └── lloyds.rules
+```
+
+# How to build a setup like this
 
 ## Getting started
 
@@ -95,12 +211,5 @@ You will need to modify the rules to make sure that account1 is properly set (or
 In `03_getting_full_history/` there are a couple of transfers to the savings account in the current account statements. Now that savings account statements are brought into the picture, they will contain records of these transfers as well, and if we were to include them as-is, balances for both current and savings accounts would be wrong. The trick here is to make transfers face non-existent 'transfers' account, such that line in the current account statement is converted to be a transaction from `assets:Lloyds:current` account to `transfers`, and line in savings account statement is converted to be a transaction from `transfers` to `assets:Lloyds:savings` (after which `transfers` account is flat).
 
 This requires further changes to the rules file and conversion scripts that could be seen in `04_adding_more_accounts/`. As newly-converted journals are `!include`-ed into yearly files and `./export.sh` is re-ran, you can use version control system to verify that yearly balance statements for current account are unchanged (you did put all generated reports under version control to simplify this, didn't you?).
-
-## Classifying expenses
-rules in a csv file
-TODO
-
-## More detailed expenses with additional statements
-TODO
 
 
