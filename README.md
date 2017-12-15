@@ -1,6 +1,9 @@
 # full-fledged-hledger
 
-Full-Fledged Hledger setup with multi-year files, multi-source imports and a range of auto-generated reports.
+Full-Fledged Hledger setup with multiple yearly files, multi-source CSV imports and a range of auto-generated reports.
+
+Pick one of the numbered sub-directories here as a starting point, copy it to the place of your choosing, run `export.sh`, place everything under version and start
+populating your journals. Read on for a full story.
 
 ## What is this?
 
@@ -151,11 +154,14 @@ Lets get started. Look into `01_getting_started`, where you will find a complete
 Make sure that year of your journal corresponds to the year at the top of  `./export/export.hs`.
 
 If you run `./export.sh`, a bunch of files would be generated in `./export`:
-
-- A list of all transactions for the year, `2017-all.journal`
-- Balance sheet for the end of the year: `2017-balance-sheet.journal`
-- Closing balances of all assets and liabilities accounts: `2017-closing.journal`
-- Income and expense report for the year: `2017-income-expenses.txt`
+```
+export
+├── 2017-all.journal           - a list of all transactions for the year
+├── 2017-balance-sheet.txt     - balance sheet for the end of the year
+├── 2017-closing.journal       - closing balances of all assets and liabilities accounts
+├── 2017-income-expenses.txt   - income and expense report for the year
+└── export.hs                  - Shake build script that describes how these reports are generated
+```
 
 General idea is to keep this files under version control so that whenever you want to do sweeping changes it would be easy to see what exactly was affected.
 
@@ -166,9 +172,22 @@ a combination of several of them.
 
 You would want to get CSV statements for your account for a reasonable period of time. You can start small: get statement for the last month or a calendar/fiscal year-to-date, and save somewhere
 next to your journal. I use `./import/<institution name>/in` for this purpose. For example, at some point my current account was with Lloyds and their statements
-will go into `./import/lloyds/in/{filename}.csv`.
+will go into `./import/lloyds/in/{filename}.csv`
 
-Quite often these csv files would not be directly usable with hledgers csv import facility. You might need to do some data scrubbing. I've included a sample data file and conversion scripts in `02_getting_data_in/`. If you run `./convert.sh` in `./import/lloyds`, you will get yourself a nice converted journal in `lloyds/import/journal`.
+Quite often these csv files would not be directly usable with hledgers csv import facility. You might need to do some data scrubbing. I've included a sample data file and conversion scripts in `02_getting_data_in/`. If you run `./convert.sh` in `./import/lloyds`, you will get yourself a nice converted journal in `lloyds/import/journal`:
+```
+import
+└── lloyds
+    ├── convert.sh                           - conversion script. This is what you will run
+    ├── lloyds2csv.pl                        - helper script to clean up downloaded statements
+    ├── in
+    │   └── 99966633_20171223_1844.csv       - original downloaded file
+    ├── csv
+    │   └── 99966633_20171223_1844.csv       - cleaned up file, ready to be consumed by hledger
+    ├── journal
+    │   └── 99966633_20171223_1844.journal   - generated journal
+    └── lloyds.rules                         - CSV conversion rules
+```
 
 Here is a crucial bit: instead of copying that file into your journal, lets just `!include` it there. Now you can re-run `./export.sh` and lo and behold: generated reports will now have data in them
 and if you are keeping them under version control you shoud be able to see exactly what have changed there.
@@ -178,11 +197,34 @@ You will notice that import rules put all all expenses in the 'expenses' account
 ## Getting full history of the account
 
 Now that a single statement is succesfully imported, grab all of them, as much as you can get your hands on. Lets assume that you can get 4 years worth of statements. Save them all in the same `in` directory
-as your already-converted statement, run `./convert.sh` and hey presto -- you now have full history of your main day-to-day account in a set of nice journal files in `./import/lloyds/journal`.
-These journals span 4 year, so you would need more yearly journals: lets create `2014.journal`, `2015.journal` and `2016.journal` and `!include` all newly-converted journal files in there.
+as your already-converted statement, run `./convert.sh` and hey presto -- you now have full history of your main day-to-day account in a set of nice journal files in `./import/lloyds/journal`:
+```
+import
+└── lloyds
+    ├── convert.sh
+    ├── in                                   - original yearly statements
+    │   ├── 99966633_20171223_1844.csv
+    │   ├── 99966633_20171224_2041.csv
+    │   ├── 99966633_20171224_2042.csv
+    │   └── 99966633_20171224_2043.csv
+    ├── csv                                  - cleaned up files, ready to be consumed by hledger
+    │   ├── 99966633_20171223_1844.csv
+    │   ├── 99966633_20171224_2041.csv
+    │   ├── 99966633_20171224_2042.csv
+    │   └── 99966633_20171224_2043.csv
+    ├── journal                              - generated journals
+    │   ├── 99966633_20171223_1844.journal
+    │   ├── 99966633_20171224_2041.journal
+    │   ├── 99966633_20171224_2042.journal
+    │   └── 99966633_20171224_2043.journal
+    ├── lloyds2csv.pl
+    └── lloyds.rules
+```
+
+Generated journals span 4 year, so you would need more yearly journals: lets create `2014.journal`, `2015.journal` and `2016.journal` and `!include` all newly-converted journal files in there.
 
 When these files are created, a bit of housekeeping should be taken
-care of. As a rule, people usually don't want to keep. last year
+care of. As a rule, people usually don't want to retain last year
 expenses and keep accumulating current year expenses on top of that.
 On the other hand, assets and liabilities can not be left behind and
 should be carried over into the next year. To achieve this carry-over,
@@ -198,7 +240,32 @@ you need to make sure that your yearly files look like this:
 
 File for the earlies year should not have an `!include` for opening balances, and file for current year should not have `!include` for closing balances.
 
-Now, if you edit `./export/export.hs` and change `first` year to be 2014 and re-run `./export.sh`, you will see all the "opening" and "closing" reports generated, along with balance sheets, income-expense statements and other reports for all years from 2014 to 2017.
+Note that we are `!include`ing files from `./export` - they would be auto-generated, you will not have to generate them manually.
+
+Now, if you edit `./export/export.hs` and change `first` year to be 2014 and re-run `./export.sh`, you will see all the "opening" and "closing" reports generated, along with balance sheets, income-expense statements and other reports for all years from 2014 to 2017:
+```
+export
+├── 2014-all.journal
+├── 2014-balance-sheet.txt
+├── 2014-closing.journal
+├── 2014-income-expenses.txt
+├── 2015-all.journal
+├── 2015-balance-sheet.txt
+├── 2015-closing.journal
+├── 2015-income-expenses.txt
+├── 2015-opening.journal
+├── 2016-all.journal
+├── 2016-balance-sheet.txt
+├── 2016-closing.journal
+├── 2016-income-expenses.txt
+├── 2016-opening.journal
+├── 2017-all.journal
+├── 2017-balance-sheet.txt
+├── 2017-closing.journal
+├── 2017-income-expenses.txt
+├── 2017-opening.journal
+└── export.hs
+```
 
 Remember to put them all under version control.
 
@@ -206,10 +273,70 @@ Remember to put them all under version control.
 You probably have more than one account at the same place where you have your current account. It could be current account of your significant other, or a savings account. Statement for this account
 would be in the same format, so it should be easy to grab those as well and convert them.
 
-You will need to modify the rules to make sure that account1 is properly set (or inferred from a column in the input file). You will also need to make sure that transfers between accounts are not double-counted.
+You will need to modify the rules to make sure that `account1` is properly set (or inferred from a column in the input file). Apart from that, the rest is easy -- you drop statements in `./in`, run `convert.sh` and `!include` generated journals as necessary:
+```
+import
+└── lloyds
+    ├── convert.sh
+    ├── csv
+    │   ├── 12345678_20171225_0001.csv
+    │   ├── 12345678_20171225_0002.csv
+    │   ├── 99966633_20171223_1844.csv
+    │   ├── 99966633_20171224_2041.csv
+    │   ├── 99966633_20171224_2042.csv
+    │   └── 99966633_20171224_2043.csv
+    ├── in
+    │   ├── 12345678_20171225_0001.csv
+    │   ├── 12345678_20171225_0002.csv
+    │   ├── 99966633_20171223_1844.csv
+    │   ├── 99966633_20171224_2041.csv
+    │   ├── 99966633_20171224_2042.csv
+    │   └── 99966633_20171224_2043.csv
+    ├── journal
+    │   ├── 12345678_20171225_0001.journal
+    │   ├── 12345678_20171225_0002.journal
+    │   ├── 99966633_20171223_1844.journal
+    │   ├── 99966633_20171224_2041.journal
+    │   ├── 99966633_20171224_2042.journal
+    │   └── 99966633_20171224_2043.journal
+    ├── lloyds2csv.pl
+    └── lloyds.rules
+```
 
-In `03_getting_full_history/` there are a couple of transfers to the savings account in the current account statements. Now that savings account statements are brought into the picture, they will contain records of these transfers as well, and if we were to include them as-is, balances for both current and savings accounts would be wrong. The trick here is to make transfers face non-existent 'transfers' account, such that line in the current account statement is converted to be a transaction from `assets:Lloyds:current` account to `transfers`, and line in savings account statement is converted to be a transaction from `transfers` to `assets:Lloyds:savings` (after which `transfers` account is flat).
+You migh also need to make sure that transfers between accounts are not double-counted.
 
-This requires further changes to the rules file and conversion scripts that could be seen in `04_adding_more_accounts/`. As newly-converted journals are `!include`-ed into yearly files and `./export.sh` is re-ran, you can use version control system to verify that yearly balance statements for current account are unchanged (you did put all generated reports under version control to simplify this, didn't you?).
+Current account statements that were dealt with in `03_getting_full_history/` included a couple of transfers from current to savings account. Now that savings account statements are brought into play, they will contain records of these transfers as well, and if we were to include them as-is, balances for both current and savings accounts would be wrong:
+```
+; In current account
+2017-12-02 Transfer to savings
+   assets:Lloyds:current  $-500
+   assets:Lloyds:savings
+
+; In savings account
+2017-12-02 Transfer from current
+   assets:Lloyds:savings  $500
+   assets:Lloyds:current
+```
+
+The trick here is to make transfers face non-existent 'transfers' account, such that line in the current account statement is converted to be a transaction from `assets:Lloyds:current` account to `transfers`, and line in savings account statement is converted to be a transaction from `transfers` to `assets:Lloyds:savings` (after which `transfers` account is flat):
+```
+; In current account
+2017-12-02 Transfer to savings
+   assets:Lloyds:current  $-500
+   assets:Lloyds:transfers
+
+; In savings account
+2017-12-02 Transfer from current
+   assets:Lloyds:savings  $500
+   assets:Lloyds:transfers
+```
+
+This requires further changes to the rules file and conversion scripts that could be seen in `04_adding_more_accounts/`.
+
+As newly-converted journals are `!include`-ed into yearly files and
+`./export.sh` is re-ran, you can use version control system to verify
+that yearly balance statements for current account are unchanged (you
+did put all generated reports under version control to simplify this,
+didn't you?).
 
 
