@@ -12,5 +12,11 @@ function convert() {
     hledger print --rules-file $rules -f $csv > $out
     hledger print -f $out unknown --ignore-assertions
 }
-export -f convert
-parallel convert ::: in/*.csv
+if [ -x "/usr/bin/parallel"] ; then
+    export -f convert
+    parallel convert ::: in/*.csv
+else
+    for file in in/*.csv ; do
+        convert "${file}"
+    done
+fi

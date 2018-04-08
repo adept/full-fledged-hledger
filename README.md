@@ -67,9 +67,11 @@ Once you have things in place to process credit card statements, you can change 
 
 Same thing could be done with Amazon, Paypal, your pension account, savings and brokerage accounts, etc - you can start with treating them as black boxes or expense categories, and then with time procure statements for them and incorporate them. If everything is under version control, it would be easy to do that and check that all aggregate reports react accordingly.
 
-## What is in here and how to use it
+## What is in here, what do you have to have installed and how are you supposed to use these files
 
-Scripts and files here assume Linux-like environment with `runhaskell` and textutils/shellutils available. I have not tested them on Mac OS or Windows.
+Scripts and files here assume Linux-like environment with Haskell (in particular, you will need `runhaskell` and `stack`) and textutils/shellutils available. I have not tested them on Mac OS or Windows.
+
+You will need to have `shake` build system installed (which you can get via `stack install shake`). Scripts used to convert CSV files assume that you will end up having many of them and use GNU `parallel` to run as many conversion jobs as you have CPU cores. If `parallel` is not available, scripts will process files sequentially.
 
 Repository contains a number of subdirectories (`01_getting_started`, `02_getting_data_in`, ...) that represent gradual evolution of the setup, starting from the smallest
 possible and gradually adding more and more features in. This way you can either choose the starting point that is more suitable for you or compare/diff various setups and see
