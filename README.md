@@ -13,10 +13,10 @@ I went through several different approaches over the course of 10 years, and thi
 
 Scripts and files here assume Linux-like environment with Haskell (in particular, you will need `runhaskell` and `stack`) and textutils/shellutils available. I have not tested them on Mac OS or Windows.
 
-You will need to have `shake` build system installed (which you can get via `stack install shake`). Scripts used to convert CSV files assume that you will end up having many of them and use GNU `parallel` to run as many conversion jobs as you have CPU cores. If `parallel` is not available, scripts will process files sequentially.
+You will need to have `shake` build system installed (which you can get via `stack install shake`). Scripts used to convert CSV files assume that you will end up having many files, so scripts use GNU `parallel` to run as many conversion jobs as you have CPU cores. If `parallel` is not available, scripts will process files sequentially.
 
 # Usage
 
-TL;DR: Pick one of the numbered branches of this project (`01_getting_started`, `02_getting_data_in`, ...) as a starting point, clone it to the place of your choosing, run `export.sh`, and start populating your journals. 
+TL;DR: Pick one of the numbered branches of this project ([01-getting-started](../../tree/01-getting-started), [02-getting-data-in](../../tree/02-getting-data-in), and so on) as a starting point, clone it to the place of your choosing, run `export.sh`, and start populating your journals. 
 
 Head on to the Wiki to [read the full story of how to grow you setup step by step](https://github.com/adept/full-fledged-hledger/wiki).
