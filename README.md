@@ -2,7 +2,7 @@
 
 Full-Fledged Hledger setup with multiple yearly files, multi-source CSV imports and a range of auto-generated reports. 
 
-**All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) - at least the 'Getting started' page - to get going.***
+**All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) -- at the very least read the 'Getting started' page to get going.**
 
 # What is included?
 
