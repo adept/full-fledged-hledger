@@ -1,13 +1,19 @@
 # Full-fledged Hledger
 
-Full-Fledged Hledger setup with multiple yearly files, multi-source CSV imports and a range of auto-generated reports.
+Full-Fledged Hledger setup with multiple yearly files, multi-source CSV imports and a range of auto-generated reports. 
+
+**All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) - at least the 'Getting started' page - to get going.***
 
 # What is included?
 
 A set of sample journals and helper scripts that I use together with [hledger](http://hledger.org) for tracking personal finances
 and budgeting. It should be easily adaptable to other command-line accounting tools (ledger, beancount, ...).
 
-I went through several different approaches over the course of 10 years, and this is the end result of that journey, complete with "how", "why" and lessons learned
+I went through several different approaches over the course of 10 years, and this is the end result of that journey, complete with "how", "why" and lessons learned. 
+
+My story is explained on the Wiki and illustrated by named branches in the repo, which you can mix and match. 
+
+**[CLICK HERE FOR THE WIKI](https://github.com/adept/full-fledged-hledger/wiki)**
 
 # Installation
 
