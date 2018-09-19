@@ -30,3 +30,7 @@ TL;DR: Pick one of the numbered branches of this project:
 Each numbered branch includes all the code from preceeding branches as well. Choose a starting point that suits you, clone it to the place of your choosing, run `export.sh`, and start populating your journals. 
 
 Head on to the Wiki to [read the full story of how to grow your setup step by step](https://github.com/adept/full-fledged-hledger/wiki) and decide which bits and pieces you want to adopt.
+
+# Read the wiki
+
+Did I mention that you should go and [read the wiki](https://github.com/adept/full-fledged-hledger/wiki)?
