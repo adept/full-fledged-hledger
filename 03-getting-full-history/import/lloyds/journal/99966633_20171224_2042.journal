@@ -1,0 +1,12 @@
+2015/03/31 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £553.72 = £1153.72
+    income:employer              £-553.72
+
+2015/04/07 (DEB) TRANSFER TO 12345678
+    assets:Lloyds:current           £-500 = £653.72
+    assets:Lloyds:savings            £500
+
+2015/04/08 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-3.72 = £650
+    expenses                        £3.72
+

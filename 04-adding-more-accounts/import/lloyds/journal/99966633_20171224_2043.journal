@@ -1,0 +1,12 @@
+2016/03/31 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £453.72 = £1103.72
+    income:employer              £-453.72
+
+2016/04/07 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-3.72 = £1100.00
+    expenses                        £3.72
+
+2016/04/09 (DEB) TRANSFER TO 12345678
+    assets:Lloyds:current            £-1000 = £100.0
+    assets:Lloyds:transfers           £1000
+

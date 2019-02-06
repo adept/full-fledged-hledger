@@ -1,0 +1,7 @@
+;; Opening balances
+2014/01/01 opening balances
+  assets:Lloyds:current    = £100
+  equity:opening balances
+
+!include ./import/lloyds/journal/99966633_20171224_2041.journal
+!include ./export/2014-closing.journal

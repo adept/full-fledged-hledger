@@ -1,0 +1,4 @@
+Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,100.0
+07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1100.00
+31/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,453.72,1103.72
