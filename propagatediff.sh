@@ -2,15 +2,10 @@
 set -e
 set -o pipefail
 
-storydir="${1}"
-diffdir="${2}"
+. chapters.sh
+
 startidx="${3}"
-
-: ${storydir:="./story"}
-: ${diffdir:="./diffs"}
 : ${startidx:=0}
-
-chapters=($(ls -1 "${storydir}/[0-9]*"))
 
 for c in $(seq $startidx $(( ${#chapters[@]} - 2)) ) ; do
     n=$(( $c + 1 ))
