@@ -5,5 +5,6 @@ set -o pipefail
 . chapters.sh
 
 for c in ${chapters[@]} ; do
-    (cd "$c"; [ -x ./export.sh ] && ./export.sh)
+    echo "Exporting in $c"
+    (cd "$c"; if [ -x ./export.sh ] ; then ./export.sh ; fi)
 done

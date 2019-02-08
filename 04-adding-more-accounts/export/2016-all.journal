@@ -1,6 +1,6 @@
 2016/01/01 opening balances
-    assets:Lloyds:current           £650.00 = £650.00
-    assets:Lloyds:savings           £500.00 = £500.00
+    assets:Lloyds:current           £650.00 = £650
+    assets:Lloyds:savings           £500.00 = £500
     equity:opening balances
 
 2016/03/31 (BGC) EMPLOYER INC
@@ -20,7 +20,7 @@
     assets:Lloyds:transfers       £-1000.00
 
 2016/12/31 closing balances
-    assets:Lloyds:current          £-100.00 = £0.00
-    assets:Lloyds:savings         £-1500.00 = £0.00
+    assets:Lloyds:current          £-100.00 = £0
+    assets:Lloyds:savings         £-1500.00 = £0
     equity:closing balances
 

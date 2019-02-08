@@ -1,5 +1,5 @@
 2015/01/01 opening balances
-    assets:Lloyds:current           £600.00 = £600.00
+    assets:Lloyds:current           £600.00 = £600
     equity:opening balances
 
 2015/03/31 (BGC) EMPLOYER INC
@@ -19,7 +19,7 @@
     expenses                        £3.72
 
 2015/12/31 closing balances
-    assets:Lloyds:current          £-650.00 = £0.00
-    assets:Lloyds:savings          £-500.00 = £0.00
+    assets:Lloyds:current          £-650.00 = £0
+    assets:Lloyds:savings          £-500.00 = £0
     equity:closing balances
 

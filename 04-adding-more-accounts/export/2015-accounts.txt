@@ -1,0 +1,7 @@
+assets:Lloyds:current
+assets:Lloyds:savings
+assets:Lloyds:transfers
+equity:closing balances
+equity:opening balances
+expenses
+income:employer
