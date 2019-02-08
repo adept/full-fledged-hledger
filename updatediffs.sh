@@ -11,5 +11,4 @@ for c in $(seq 1 $(( ${#chapters[@]} - 1)) ) ; do
     echo "$prev -> $curr"
     d=$(printf "%02d-to-%02d" $p $c)
     diff -X .gitignore -Naurb ${storydir}/${prev} ${storydir}/${curr} > ${diffdir}/"${d}.diff" || true
-    patdiff -html < ${diffdir}/"${d}.diff" > ${diffdir}/"${d}.html" || true
 done

@@ -1,0 +1,8 @@
+diff -X .gitignore -Naurb ././04-adding-more-accounts/export/2017-closing.journal ././05-account-registy/export/2017-closing.journal
+--- ././04-adding-more-accounts/export/2017-closing.journal	2019-02-06 23:33:49.000000000 +0000
++++ ././05-account-registy/export/2017-closing.journal	1970-01-01 01:00:00.000000000 +0100
+@@ -1,4 +0,0 @@
+-2017/12/31 closing balances
+-    assets:Lloyds:current         £-1086.93 = £0.00
+-    assets:Lloyds:savings         £-1500.00 = £0.00
+-    equity:closing balances
