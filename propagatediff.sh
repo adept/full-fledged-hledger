@@ -13,6 +13,7 @@ for c in $(seq $startidx $(( ${#chapters[@]} - 2)) ) ; do
     next=${chapters[$n]}
     
     echo "$curr -> $next"
+    git add -N ${storydir}/${curr}
     git diff ${storydir}/${curr} | patch -d ${storydir}/${next} -p2 --merge=diff3 -V never || \
         {
         sed -i -e 's#<<<<$#<<<< MINE#; s#>>>>$#>>>> OTHER#; s#||||$#|||| ANCESTOR#' \
@@ -22,5 +23,6 @@ for c in $(seq $startidx $(( ${#chapters[@]} - 2)) ) ; do
         echo "Restart with $0 $storydir $diffdir $n"
         exit 1
         }
+    git add -N ${storydir}/${next}
 done
 echo "DONE"

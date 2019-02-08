@@ -415,8 +415,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/export/2017-opening.journal ./.
 +    equity:opening balances
 +
 diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting-full-history/export/export.hs
---- ././02-getting-data-in/export/export.hs	2019-02-08 23:19:11.949222100 +0000
-+++ ././03-getting-full-history/export/export.hs	2019-02-08 23:19:11.957222234 +0000
+--- ././02-getting-data-in/export/export.hs	2019-02-08 23:34:16.060650546 +0000
++++ ././03-getting-full-history/export/export.hs	2019-02-08 23:45:05.295597889 +0000
 @@ -11,7 +11,7 @@
  --
  -- Range of years to report. You would typically want all the years you have data for.
@@ -426,6 +426,32 @@ diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting
  current = 2017
  all_years=[first..current]
  
+diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/convert.sh ././03-getting-full-history/import/lloyds/convert.sh
+--- ././02-getting-data-in/import/lloyds/convert.sh	1970-01-01 01:00:00.000000000 +0100
++++ ././03-getting-full-history/import/lloyds/convert.sh	2019-02-08 23:41:50.268315633 +0000
+@@ -0,0 +1,22 @@
++#!/bin/bash
++set -e
++
++function convert() {
++    file="$1"
++    rules="lloyds.rules"
++    out=$(basename $file)
++    csv=./csv/${out}
++    out=./journal/${out%%.csv}.journal
++    
++    ./lloyds2csv.pl < $file > $csv
++    hledger print --rules-file $rules -f $csv > $out
++    hledger print -f $out unknown --ignore-assertions
++}
++if [ -x "/usr/bin/parallel" ] ; then
++    export -f convert
++    parallel convert ::: in/*.csv
++else
++    for file in in/*.csv ; do
++        convert "${file}"
++    done
++fi
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/csv/99966633_20171224_2041.csv ././03-getting-full-history/import/lloyds/csv/99966633_20171224_2041.csv
 --- ././02-getting-data-in/import/lloyds/csv/99966633_20171224_2041.csv	1970-01-01 01:00:00.000000000 +0100
 +++ ././03-getting-full-history/import/lloyds/csv/99966633_20171224_2041.csv	2019-02-06 23:33:49.000000000 +0000

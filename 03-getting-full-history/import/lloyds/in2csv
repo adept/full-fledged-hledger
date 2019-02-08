@@ -1,0 +1,2 @@
+#!/bin/bash
+./lloyds2csv.pl < "$1"
