@@ -1,5 +1,4 @@
 assets:Lloyds:current
-equity:closing balances
 equity:opening balances
 expenses
 income:employer

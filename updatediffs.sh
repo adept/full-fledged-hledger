@@ -12,8 +12,7 @@ for c in $(seq 1 $(( ${#chapters[@]} - 1)) ) ; do
     d=$(printf "%02d-to-%02d" $p $c)
     diff -X .gitignore -Naurb \
          ${storydir}/${prev} ${storydir}/${curr} \
-        | filterdiff -x '*/export/*.txt' -x '*/export/*.journal' \
-                     -x '*/import/*/csv/*' -x '*/import/*/journal/*.journal' \
+        | ./filterdiff.sh \
           > ${diffdir}/"${d}.diff" \
         || true
 done
