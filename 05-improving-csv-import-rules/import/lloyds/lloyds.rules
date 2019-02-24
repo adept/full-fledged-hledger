@@ -15,3 +15,11 @@ EMPLOYER INC
 if
 TRANSFER
   account2   assets:Lloyds:transfers
+
+if
+WAITROSE
+  account2   expenses:groceries
+
+if
+OASIS COFFEE
+  account2   expenses:coffee

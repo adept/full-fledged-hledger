@@ -29,6 +29,8 @@ transactions      y = y++"-all.journal"
 income_expenses   y = y++"-income-expenses.txt"
 balance_sheet     y = y++"-balance-sheet.txt"
 cash_flow         y = y++"-cash-flow.txt"
+accounts          y = y++"-accounts.txt"
+unknown           y = y++"-unknown.journal"
 -- which accounts to include in opening/closing reports
 open_close_account_query = "assets|liabilities|debts"
 closing_balances  y = y++"-closing.journal"
@@ -39,9 +41,11 @@ opening_balances  y = y++"-opening.journal"
 --
 reports =
   concat [ [ transactions         (show y) | y <- all_years ]
+         , [ accounts             (show y) | y <- all_years ]
          , [ income_expenses      (show y) | y <- all_years ]
          , [ balance_sheet        (show y) | y <- all_years ]
          , [ cash_flow            (show y) | y <- all_years ]
+         , [ unknown              (show y) | y <- all_years ]
          , [ opening_balances     (show y) | y <- all_years, y/=first ]
          , [ closing_balances     (show y) | y <- all_years, y/=current ]
          ]
@@ -73,11 +77,15 @@ export_all = do
 
   (transactions "//*") %> hledger_process_year year_inputs ["print"]
 
+  (accounts "//*") %> hledger_process_year year_inputs ["accounts"]
+
   (income_expenses "//*") %> hledger_process_year year_inputs ["is","--flat"]
 
   (balance_sheet "//*") %> hledger_process_year year_inputs ["balancesheet"]
 
   (cash_flow "//*") %> hledger_process_year year_inputs ["cashflow","not:desc:(opening balances)"]
+
+  (unknown "//*") %> hledger_process_year year_inputs ["print", "unknown"]
 
   (closing_balances "//*") %> generate_closing_balances year_inputs
 
