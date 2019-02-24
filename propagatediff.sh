@@ -21,7 +21,7 @@ for c in $(seq $startidx $(( ${#chapters[@]} - 2)) ) ; do
             $(ag -l '<<<<|>>>>' ${storydir}/${next})
         echo 
         echo "Resolve conflicts in ${storydir}/${next}"
-        echo "#!/bin/bash\n$0 $storydir $diffdir $n" > continue.sh
+        (echo "#!/bin/bash"; echo "$0 $storydir $diffdir $n") > continue.sh
         chmod 0755 continue.sh
         echo "Continue with $0 $storydir $diffdir $n (I made continue.sh for you)"
         exit 1
