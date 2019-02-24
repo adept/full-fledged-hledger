@@ -45,8 +45,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/all.journal ././03-getting-full
 +!include ./export/2016-closing.journal
  !include 2017.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting-full-history/export/export.hs
---- ././02-getting-data-in/export/export.hs	2019-02-24 16:49:03.076119975 +0000
-+++ ././03-getting-full-history/export/export.hs	2019-02-24 16:50:06.533196926 +0000
+--- ././02-getting-data-in/export/export.hs	2019-02-24 17:45:40.168652642 +0000
++++ ././03-getting-full-history/export/export.hs	2019-02-24 17:45:40.180652852 +0000
 @@ -11,7 +11,7 @@
  --
  -- Range of years to report. You would typically want all the years you have data for.
@@ -80,9 +80,9 @@ diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171
 +07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1100.00
 +31/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,453.72,1103.72
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/lloyds.rules ././03-getting-full-history/import/lloyds/lloyds.rules
---- ././02-getting-data-in/import/lloyds/lloyds.rules	2019-02-06 23:33:18.000000000 +0000
-+++ ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-06 23:33:49.000000000 +0000
-@@ -14,3 +14,7 @@
+--- ././02-getting-data-in/import/lloyds/lloyds.rules	2019-02-24 21:21:20.925075840 +0000
++++ ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-24 21:21:37.045345244 +0000
+@@ -11,3 +11,7 @@
  if
  EMPLOYER INC
    account2   income:employer

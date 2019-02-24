@@ -10,8 +10,8 @@ diff -X .gitignore -Naurb ././00-empty/all.journal ././01-getting-started/all.jo
 +!include 2017.journal
 diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/export/export.hs
 --- ././00-empty/export/export.hs	1970-01-01 01:00:00.000000000 +0100
-+++ ././01-getting-started/export/export.hs	2019-02-24 16:37:10.360022027 +0000
-@@ -0,0 +1,171 @@
++++ ././01-getting-started/export/export.hs	2019-02-24 17:45:27.616433632 +0000
+@@ -0,0 +1,167 @@
 +#!/usr/bin/env stack
 +-- stack --resolver lts-13.8 runghc --package shake --package directory
 +import Development.Shake
@@ -43,7 +43,6 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +income_expenses   y = y++"-income-expenses.txt"
 +balance_sheet     y = y++"-balance-sheet.txt"
 +cash_flow         y = y++"-cash-flow.txt"
-+unknown           y = y++"-unknown.journal"
 +-- which accounts to include in opening/closing reports
 +open_close_account_query = "assets|liabilities|debts"
 +closing_balances  y = y++"-closing.journal"
@@ -57,7 +56,6 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +         , [ income_expenses      (show y) | y <- all_years ]
 +         , [ balance_sheet        (show y) | y <- all_years ]
 +         , [ cash_flow            (show y) | y <- all_years ]
-+         , [ unknown              (show y) | y <- all_years ]
 +         , [ opening_balances     (show y) | y <- all_years, y/=first ]
 +         , [ closing_balances     (show y) | y <- all_years, y/=current ]
 +         ]
@@ -92,8 +90,6 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +  (balance_sheet "//*") %> hledger_process_year year_inputs ["balancesheet"]
 +
 +  (cash_flow "//*") %> hledger_process_year year_inputs ["cashflow","not:desc:(opening balances)"]
-+
-+  (unknown "//*") %> hledger_process_year year_inputs ["print", "unknown"]
 +
 +  (closing_balances "//*") %> generate_closing_balances year_inputs
 +

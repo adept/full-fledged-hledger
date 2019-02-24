@@ -32,17 +32,9 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in2csv ././0
 -sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/' < "$1"
 +sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/; s/,12345678,/,assets:Lloyds:savings,/' < "$1"
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds.rules ././04-adding-more-accounts/import/lloyds/lloyds.rules
---- ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-06 23:33:49.000000000 +0000
-+++ ././04-adding-more-accounts/import/lloyds/lloyds.rules	2019-02-06 23:34:04.000000000 +0000
-@@ -4,7 +4,6 @@
- date-format %d/%m/%Y
- currency £
- 
--account1  assets:Lloyds:current
- account2  expenses
- 
- if
-@@ -16,5 +15,5 @@
+--- ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-24 21:21:37.045345244 +0000
++++ ././04-adding-more-accounts/import/lloyds/lloyds.rules	2019-02-24 21:22:05.561821813 +0000
+@@ -13,5 +13,5 @@
    account2   income:employer
  
  if

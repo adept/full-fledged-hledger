@@ -4,8 +4,6 @@ skip 1
 date-format %d/%m/%Y
 currency £
 
-account2  expenses
-
 if
 INTEREST
   account2   income:interest
