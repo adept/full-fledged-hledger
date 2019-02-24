@@ -1,6 +1,6 @@
 diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-data-in/2017.journal
---- ././01-getting-started/2017.journal	2019-02-06 23:33:02.000000000 +0000
-+++ ././02-getting-data-in/2017.journal	2019-02-06 23:33:18.000000000 +0000
+--- ././01-getting-started/2017.journal
++++ ././02-getting-data-in/2017.journal
 @@ -1 +1,8 @@
  ;; This journal is for the current year
 +
@@ -11,9 +11,9 @@ diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-dat
 +  
 +!include ./import/lloyds/journal/99966633_20171223_1844.journal
 diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting-data-in/export/export.hs
---- ././01-getting-started/export/export.hs	2019-02-24 17:45:27.616433632 +0000
-+++ ././02-getting-data-in/export/export.hs	2019-02-24 17:45:40.168652642 +0000
-@@ -49,7 +49,9 @@
+--- ././01-getting-started/export/export.hs
++++ ././02-getting-data-in/export/export.hs
+@@ -56,7 +56,9 @@
  -----------------------------------------
  -- Extra dependencies of the import files
  -----------------------------------------
@@ -24,7 +24,7 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  
  -----------------------------------------------
  -- Extra inputs to be fed to conversion scripts
-@@ -82,10 +84,10 @@
+@@ -90,10 +92,10 @@
    (opening_balances "//*") %> generate_opening_balances year_inputs
  
    -- Enumerate directories with auto-generated cleaned csv files
@@ -38,14 +38,14 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  -------------------------------------
  -- Implementations of the build rules
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/csv2journal ././02-getting-data-in/import/lloyds/csv2journal
---- ././01-getting-started/import/lloyds/csv2journal	1970-01-01 01:00:00.000000000 +0100
-+++ ././02-getting-data-in/import/lloyds/csv2journal	2019-02-08 23:31:08.373468499 +0000
+--- ././01-getting-started/import/lloyds/csv2journal
++++ ././02-getting-data-in/import/lloyds/csv2journal
 @@ -0,0 +1,2 @@
 +#!/bin/bash
 +hledger print --rules-file lloyds.rules -f "$1"
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/in/99966633_20171223_1844.csv ././02-getting-data-in/import/lloyds/in/99966633_20171223_1844.csv
---- ././01-getting-started/import/lloyds/in/99966633_20171223_1844.csv	1970-01-01 01:00:00.000000000 +0100
-+++ ././02-getting-data-in/import/lloyds/in/99966633_20171223_1844.csv	2019-02-06 23:33:18.000000000 +0000
+--- ././01-getting-started/import/lloyds/in/99966633_20171223_1844.csv
++++ ././02-getting-data-in/import/lloyds/in/99966633_20171223_1844.csv
 @@ -0,0 +1,5 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
 +07/04/2017,BP,'12-34-56,99966633,OASIS COFFEE ,2.76,,1086.93
@@ -53,14 +53,14 @@ diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/in/99966633_20171
 +01/04/2017,,'12-34-56,99966633,INTEREST (NET) ,,1.21,1094.93
 +31/03/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,993.72,1093.72
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/in2csv ././02-getting-data-in/import/lloyds/in2csv
---- ././01-getting-started/import/lloyds/in2csv	1970-01-01 01:00:00.000000000 +0100
-+++ ././02-getting-data-in/import/lloyds/in2csv	2019-02-24 16:32:01.650779260 +0000
+--- ././01-getting-started/import/lloyds/in2csv
++++ ././02-getting-data-in/import/lloyds/in2csv
 @@ -0,0 +1,2 @@
 +#!/bin/bash
 +sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/' < "$1"
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/lloyds.rules ././02-getting-data-in/import/lloyds/lloyds.rules
---- ././01-getting-started/import/lloyds/lloyds.rules	1970-01-01 01:00:00.000000000 +0100
-+++ ././02-getting-data-in/import/lloyds/lloyds.rules	2019-02-24 21:21:20.925075840 +0000
+--- ././01-getting-started/import/lloyds/lloyds.rules
++++ ././02-getting-data-in/import/lloyds/lloyds.rules
 @@ -0,0 +1,13 @@
 +fields date,code,sortcode,account1,description,amount-out,amount-in,balance
 +skip 1

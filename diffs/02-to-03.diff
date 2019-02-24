@@ -1,6 +1,6 @@
 diff -X .gitignore -Naurb ././02-getting-data-in/2014.journal ././03-getting-full-history/2014.journal
---- ././02-getting-data-in/2014.journal	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/2014.journal	2019-02-22 21:22:03.338166398 +0000
+--- ././02-getting-data-in/2014.journal
++++ ././03-getting-full-history/2014.journal
 @@ -0,0 +1,6 @@
 +;; Opening balances
 +2014/01/01 opening balances
@@ -9,20 +9,20 @@ diff -X .gitignore -Naurb ././02-getting-data-in/2014.journal ././03-getting-ful
 +
 +!include ./import/lloyds/journal/99966633_20171224_2041.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/2015.journal ././03-getting-full-history/2015.journal
---- ././02-getting-data-in/2015.journal	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/2015.journal	2019-02-22 21:22:06.970224966 +0000
+--- ././02-getting-data-in/2015.journal
++++ ././03-getting-full-history/2015.journal
 @@ -0,0 +1,2 @@
 +!include ./export/2015-opening.journal
 +!include ./import/lloyds/journal/99966633_20171224_2042.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/2016.journal ././03-getting-full-history/2016.journal
---- ././02-getting-data-in/2016.journal	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/2016.journal	2019-02-22 21:22:10.742285813 +0000
+--- ././02-getting-data-in/2016.journal
++++ ././03-getting-full-history/2016.journal
 @@ -0,0 +1,2 @@
 +!include ./export/2016-opening.journal
 +!include ./import/lloyds/journal/99966633_20171224_2043.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/2017.journal ././03-getting-full-history/2017.journal
---- ././02-getting-data-in/2017.journal	2019-02-06 23:33:18.000000000 +0000
-+++ ././03-getting-full-history/2017.journal	2019-02-06 23:33:49.000000000 +0000
+--- ././02-getting-data-in/2017.journal
++++ ././03-getting-full-history/2017.journal
 @@ -1,8 +1,4 @@
  ;; This journal is for the current year
  
@@ -34,8 +34,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/2017.journal ././03-getting-ful
 +!include ./export/2017-opening.journal
  !include ./import/lloyds/journal/99966633_20171223_1844.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/all.journal ././03-getting-full-history/all.journal
---- ././02-getting-data-in/all.journal	2019-02-06 23:33:02.000000000 +0000
-+++ ././03-getting-full-history/all.journal	2019-02-22 21:21:47.385909361 +0000
+--- ././02-getting-data-in/all.journal
++++ ././03-getting-full-history/all.journal
 @@ -1 +1,7 @@
 +!include 2014.journal
 +!include ./export/2014-closing.journal
@@ -45,8 +45,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/all.journal ././03-getting-full
 +!include ./export/2016-closing.journal
  !include 2017.journal
 diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting-full-history/export/export.hs
---- ././02-getting-data-in/export/export.hs	2019-02-24 17:45:40.168652642 +0000
-+++ ././03-getting-full-history/export/export.hs	2019-02-24 17:45:40.180652852 +0000
+--- ././02-getting-data-in/export/export.hs
++++ ././03-getting-full-history/export/export.hs
 @@ -11,7 +11,7 @@
  --
  -- Range of years to report. You would typically want all the years you have data for.
@@ -57,31 +57,31 @@ diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting
  all_years=[first..current]
  
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171224_2041.csv ././03-getting-full-history/import/lloyds/in/99966633_20171224_2041.csv
---- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2041.csv	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2041.csv	2019-02-06 23:33:49.000000000 +0000
+--- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2041.csv
++++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2041.csv
 @@ -0,0 +1,3 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
 +07/04/2014,DEB,'12-34-56,99966633,WAITROSE,73.72,,600
 +31/03/2014,BGC,'12-34-56,99966633,EMPLOYER INC,,573.72,673.72
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171224_2042.csv ././03-getting-full-history/import/lloyds/in/99966633_20171224_2042.csv
---- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2042.csv	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2042.csv	2019-02-06 23:33:49.000000000 +0000
+--- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2042.csv
++++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2042.csv
 @@ -0,0 +1,4 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
 +08/04/2015,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,650
 +07/04/2015,DEB,'12-34-56,99966633,TRANSFER TO 12345678,500,,653.72
 +31/03/2015,BGC,'12-34-56,99966633,EMPLOYER INC,,553.72,1153.72
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171224_2043.csv ././03-getting-full-history/import/lloyds/in/99966633_20171224_2043.csv
---- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2043.csv	1970-01-01 01:00:00.000000000 +0100
-+++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2043.csv	2019-02-06 23:33:49.000000000 +0000
+--- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2043.csv
++++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2043.csv
 @@ -0,0 +1,4 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
 +09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,100.0
 +07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1100.00
 +31/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,453.72,1103.72
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/lloyds.rules ././03-getting-full-history/import/lloyds/lloyds.rules
---- ././02-getting-data-in/import/lloyds/lloyds.rules	2019-02-24 21:21:20.925075840 +0000
-+++ ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-24 21:21:37.045345244 +0000
+--- ././02-getting-data-in/import/lloyds/lloyds.rules
++++ ././03-getting-full-history/import/lloyds/lloyds.rules
 @@ -11,3 +11,7 @@
  if
  EMPLOYER INC
