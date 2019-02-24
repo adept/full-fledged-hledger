@@ -1,5 +1,0 @@
-assets:Lloyds:current
-equity:opening balances
-expenses
-income:employer
-income:interest
