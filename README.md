@@ -42,6 +42,7 @@ TL;DR: Pick one of the numbered directories:
 * [01-getting-started](../../tree/master/01-getting-started)
 * [02-getting-data-in](../../tree/master/02-getting-data-in)
 * ... and so on
+
 Each numbered directory is self-contained and  includes all the code and source files from preceeding directory. Choose a starting point that suits you, clone it to the place of your choosing, run `export.sh`, and start populating your journals. 
 
 Head on to the Wiki to [read the full story of how to grow your setup step by step](https://github.com/adept/full-fledged-hledger/wiki) and decide which bits and pieces you want to adopt.
