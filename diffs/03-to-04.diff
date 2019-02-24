@@ -24,16 +24,13 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in/12345678_
 @@ -0,0 +1,2 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
 +09/04/2016,DEB,'12-34-56,12345678,TRANSFER FROM 99966633,,1000,1500.0
-diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds2csv.pl ././04-adding-more-accounts/import/lloyds/lloyds2csv.pl
---- ././03-getting-full-history/import/lloyds/lloyds2csv.pl	2019-02-06 23:33:18.000000000 +0000
-+++ ././04-adding-more-accounts/import/lloyds/lloyds2csv.pl	2019-02-06 23:34:04.000000000 +0000
-@@ -10,5 +10,6 @@
-   @fields=split(/,/,$_);
-   # Clean up account names
-   $fields[3] =~ s/99966633/assets:Lloyds:current/;
-+  $fields[3] =~ s/12345678/assets:Lloyds:savings/;
-   print join(",",@fields)."\n";
- }
+diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in2csv ././04-adding-more-accounts/import/lloyds/in2csv
+--- ././03-getting-full-history/import/lloyds/in2csv	2019-02-24 16:50:06.533196926 +0000
++++ ././04-adding-more-accounts/import/lloyds/in2csv	2019-02-24 16:57:26.812668669 +0000
+@@ -1,2 +1,2 @@
+ #!/bin/bash
+-sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/' < "$1"
++sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/; s/,12345678,/,assets:Lloyds:savings,/' < "$1"
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds.rules ././04-adding-more-accounts/import/lloyds/lloyds.rules
 --- ././03-getting-full-history/import/lloyds/lloyds.rules	2019-02-06 23:33:49.000000000 +0000
 +++ ././04-adding-more-accounts/import/lloyds/lloyds.rules	2019-02-06 23:34:04.000000000 +0000

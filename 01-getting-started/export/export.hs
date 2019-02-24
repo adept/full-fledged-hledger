@@ -88,7 +88,7 @@ export_all = do
   -- Enumerate directories with auto-generated cleaned csv files
   [ ] |%> in2csv
 
-  -- Enumerate directories with auto-generated journal
+  -- Enumerate directories with auto-generated journals
   [ ] |%> csv2journal
 
 -------------------------------------

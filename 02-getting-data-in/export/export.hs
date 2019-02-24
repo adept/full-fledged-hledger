@@ -52,7 +52,6 @@ reports =
 -- Extra dependencies of the import files
 -----------------------------------------
 extraDeps file
-  | "//lloyds/csv/*.csv" ?== file    = ["./lloyds2csv.pl"]
   | "//lloyds//*.journal" ?== file   = ["lloyds.rules"]
   | otherwise = []
 
@@ -89,10 +88,10 @@ export_all = do
   (opening_balances "//*") %> generate_opening_balances year_inputs
 
   -- Enumerate directories with auto-generated cleaned csv files
-  [ "//import//lloyds/csv/*.csv" ] |%> in2csv
+  [ "//import/lloyds/csv/*.csv" ] |%> in2csv
 
-  -- Enumerate directories with auto-generated journal
-  [ "//import//lloyds/journal/*.journal" ] |%> csv2journal
+  -- Enumerate directories with auto-generated journals
+  [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
 
 -------------------------------------
 -- Implementations of the build rules
