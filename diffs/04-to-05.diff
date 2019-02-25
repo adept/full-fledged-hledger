@@ -1,6 +1,6 @@
-diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-improving-csv-import-rules/export/export.hs
+diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-creating-csv-import-rules/export/export.hs
 --- ././04-adding-more-accounts/export/export.hs
-+++ ././05-improving-csv-import-rules/export/export.hs
++++ ././05-creating-csv-import-rules/export/export.hs
 @@ -29,6 +29,8 @@
  income_expenses   y = y++"-income-expenses.txt"
  balance_sheet     y = y++"-balance-sheet.txt"
@@ -39,9 +39,9 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-im
    (closing_balances "//*") %> generate_closing_balances year_inputs
  
    (opening_balances "//*") %> generate_opening_balances year_inputs
-diff -X .gitignore -Naurb ././04-adding-more-accounts/import/lloyds/lloyds.rules ././05-improving-csv-import-rules/import/lloyds/lloyds.rules
+diff -X .gitignore -Naurb ././04-adding-more-accounts/import/lloyds/lloyds.rules ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
 --- ././04-adding-more-accounts/import/lloyds/lloyds.rules
-+++ ././05-improving-csv-import-rules/import/lloyds/lloyds.rules
++++ ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
 @@ -15,3 +15,11 @@
  if
  TRANSFER

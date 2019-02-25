@@ -1,0 +1,6 @@
+assets:Lloyds:current
+assets:Lloyds:savings
+assets:Lloyds:transfers
+equity:opening balances
+expenses:coffee
+income:employer

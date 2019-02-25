@@ -1,0 +1,4 @@
+assets:Lloyds:current
+equity:opening balances
+expenses:groceries
+income:employer

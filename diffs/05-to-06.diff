@@ -1,0 +1,129 @@
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././06-maintaining-lots-of-csv-rules/export/export.hs
+--- ././05-creating-csv-import-rules/export/export.hs
++++ ././06-maintaining-lots-of-csv-rules/export/export.hs
+@@ -61,7 +61,7 @@
+ -- Extra dependencies of the import files
+ -----------------------------------------
+ extraDeps file
+-  | "//lloyds//*.journal" ?== file   = ["lloyds.rules"]
++  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "generated.rules"]
+   | otherwise = []
+ 
+ -----------------------------------------------
+@@ -105,6 +105,9 @@
+   -- Enumerate directories with auto-generated journals
+   [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
+ 
++  -- Whenever we need generated.rules, produce them from rules.psv
++  "//import//generated.rules" %> generated_rules
++
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -160,6 +163,12 @@
+   (Stdout output) <- cmd (Cwd source_dir) "./csv2journal" [makeRelative source_dir input]
+   writeFileChanged out output
+ 
++generated_rules out = do
++  let (dir, file) = splitFileName out
++  need [ dir </> "rules.psv", dir </> ".." </> "psv-to-rules.awk" ]
++  (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/generated.rules ././06-maintaining-lots-of-csv-rules/import/lloyds/generated.rules
+--- ././05-creating-csv-import-rules/import/lloyds/generated.rules
++++ ././06-maintaining-lots-of-csv-rules/import/lloyds/generated.rules
+@@ -0,0 +1,20 @@
++
++if
++INTEREST
++  account2  income:interest
++
++if
++EMPLOYER INC
++  account2  income:employer
++
++if
++WAITROSE
++  account2  expenses:groceries
++
++if
++TRANSFER
++  account2  assets:Lloyds:transfers
++
++if
++OASIS COFFEE
++  account2  expenses:coffee
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/lloyds.rules ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
+--- ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
++++ ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
+@@ -4,22 +4,4 @@
+ date-format %d/%m/%Y
+ currency £
+ 
+-if
+-INTEREST
+-  account2   income:interest
+-
+-if
+-EMPLOYER INC
+-  account2   income:employer
+-
+-if
+-TRANSFER
+-  account2   assets:Lloyds:transfers
+-
+-if
+-WAITROSE
+-  account2   expenses:groceries
+-
+-if
+-OASIS COFFEE
+-  account2   expenses:coffee
++include generated.rules
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/rules.psv ././06-maintaining-lots-of-csv-rules/import/lloyds/rules.psv
+--- ././05-creating-csv-import-rules/import/lloyds/rules.psv
++++ ././06-maintaining-lots-of-csv-rules/import/lloyds/rules.psv
+@@ -0,0 +1,5 @@
++INTEREST|income:interest
++EMPLOYER INC|income:employer
++TRANSFER|assets:Lloyds:transfers
++WAITROSE|expenses:groceries
++OASIS COFFEE|expenses:coffee
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/psv-to-rules.awk ././06-maintaining-lots-of-csv-rules/import/psv-to-rules.awk
+--- ././05-creating-csv-import-rules/import/psv-to-rules.awk
++++ ././06-maintaining-lots-of-csv-rules/import/psv-to-rules.awk
+@@ -0,0 +1,30 @@
++# Read pipe-separated file of "regex|account|comment" lines,
++# collate regexps together by (account,comment) and print result
++# as a file of hledger rules:
++#
++# if
++# regex1
++# regex2
++# ...
++# regexN
++#   account2 <account>
++#   comment  <comment>
++#
++function add_regex(account,comment,rex){
++    if(regexs[account,comment]=="") {
++        regexs[account,comment]=rex
++    } else {
++        regexs[account,comment]=regexs[account,comment] "\n" rex
++    }
++}
++/^[^# ]/{add_regex($2,$3,$1)}
++END {
++    for(key in regexs) {
++        split(key,parts,/\034/);
++        account=parts[1];
++        comment=parts[2];
++        print "\nif\n" regexs[key];
++        if (account!="") {print "  account2  " account}
++        if (comment!="") {print "  comment   " comment}        
++    }
++}
