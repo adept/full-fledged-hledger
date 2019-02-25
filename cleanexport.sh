@@ -6,5 +6,5 @@ set -o pipefail
 
 for c in ${chapters[@]} ; do
     echo "Cleaning in $c"
-    (cd "$c"; rm -f ./export/*.{journal,txt})
+    (cd "$c"; rm -f ./export/*.{journal,txt} ./import/*/journal/*.journal)
 done

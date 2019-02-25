@@ -22,7 +22,7 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-cr
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
           ]
-@@ -81,12 +85,16 @@
+@@ -73,12 +77,16 @@
  
    (transactions "//*") %> hledger_process_year year_inputs ["print"]
  
