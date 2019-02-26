@@ -36,7 +36,7 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/lloyds.rules ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
 --- ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
 +++ ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
-@@ -4,22 +4,4 @@
+@@ -4,26 +4,4 @@
  date-format %d/%m/%Y
  currency £
  
@@ -59,16 +59,21 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/lloyds.
 -if
 -OASIS COFFEE
 -  account2   expenses:coffee
+-
+-if
+-AVIVA
+-  account2   assets:pension:aviva
 +include generated.rules
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/rules.psv ././06-maintaining-lots-of-csv-rules/import/lloyds/rules.psv
 --- ././05-creating-csv-import-rules/import/lloyds/rules.psv
 +++ ././06-maintaining-lots-of-csv-rules/import/lloyds/rules.psv
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,6 @@
 +INTEREST|income:interest
 +EMPLOYER INC|income:employer
 +TRANSFER|assets:Lloyds:transfers
 +WAITROSE|expenses:groceries
 +OASIS COFFEE|expenses:coffee
++AVIVA|assets:pension:aviva
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/psv-to-rules.awk ././06-maintaining-lots-of-csv-rules/import/psv-to-rules.awk
 --- ././05-creating-csv-import-rules/import/psv-to-rules.awk
 +++ ././06-maintaining-lots-of-csv-rules/import/psv-to-rules.awk

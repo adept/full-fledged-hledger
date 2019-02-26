@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/; s/,12345678,/,assets:Lloyds:savings,/' < "$1"

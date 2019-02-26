@@ -42,7 +42,7 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-cr
 diff -X .gitignore -Naurb ././04-adding-more-accounts/import/lloyds/lloyds.rules ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
 --- ././04-adding-more-accounts/import/lloyds/lloyds.rules
 +++ ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
-@@ -15,3 +15,11 @@
+@@ -15,3 +15,15 @@
  if
  TRANSFER
    account2   assets:Lloyds:transfers
@@ -54,3 +54,7 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/import/lloyds/lloyds.rules
 +if
 +OASIS COFFEE
 +  account2   expenses:coffee
++
++if
++AVIVA
++  account2   assets:pension:aviva

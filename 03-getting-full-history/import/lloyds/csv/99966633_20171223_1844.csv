@@ -1,4 +1,5 @@
 Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+01/05/2017,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,986.93
 07/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,1086.93
 07/04/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,5.24,,1089.69
 01/04/2017,,'12-34-56,assets:Lloyds:current,INTEREST (NET) ,,1.21,1094.93

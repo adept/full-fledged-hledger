@@ -1,0 +1,112 @@
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2014.journal ././07-investments-easy-approach/2014.journal
+--- ././06-maintaining-lots-of-csv-rules/2014.journal
++++ ././07-investments-easy-approach/2014.journal
+@@ -3,4 +3,8 @@
+   assets:Lloyds:current    = £100
+   equity:opening balances
+ 
++2014/12/31 pension valuation
++  assets:pension:aviva     = £102.34
++  virtual:unrealized pnl
++  
+ !include ./import/lloyds/journal/99966633_20171224_2041.journal
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2015.journal ././07-investments-easy-approach/2015.journal
+--- ././06-maintaining-lots-of-csv-rules/2015.journal
++++ ././07-investments-easy-approach/2015.journal
+@@ -1,3 +1,8 @@
+ !include ./export/2015-opening.journal
++
++2015/12/31 pension valuation
++  assets:pension:aviva     = £204.41
++  virtual:unrealized pnl
++  
+ !include ./import/lloyds/journal/99966633_20171224_2042.journal
+ !include ./import/lloyds/journal/12345678_20171225_0001.journal
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2016.journal ././07-investments-easy-approach/2016.journal
+--- ././06-maintaining-lots-of-csv-rules/2016.journal
++++ ././07-investments-easy-approach/2016.journal
+@@ -1,3 +1,8 @@
+ !include ./export/2016-opening.journal
++
++2016/12/31 pension valuation
++  assets:pension:aviva     = £308.27
++  virtual:unrealized pnl
++  
+ !include ./import/lloyds/journal/99966633_20171224_2043.journal
+ !include ./import/lloyds/journal/12345678_20171225_0002.journal
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2017.journal ././07-investments-easy-approach/2017.journal
+--- ././06-maintaining-lots-of-csv-rules/2017.journal
++++ ././07-investments-easy-approach/2017.journal
+@@ -1,4 +1,9 @@
+ ;; This journal is for the current year
+ 
+ !include ./export/2017-opening.journal
++
++2017/06/30 pension valuation
++  assets:pension:aviva     = £411.03
++  virtual:unrealized pnl
++  
+ !include ./import/lloyds/journal/99966633_20171223_1844.journal
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
+--- ././06-maintaining-lots-of-csv-rules/export/export.hs
++++ ././07-investments-easy-approach/export/export.hs
+@@ -36,6 +36,12 @@
+ closing_balances  y = y++"-closing.journal"
+ opening_balances  y = y++"-opening.journal"
+ 
++-----------------
++-- Custom reports
++-----------------
++investment_years    = [2014..current] -- helpful if your investment period is shorter than all_years
++investments         = "investments.txt"
++
+ --
+ -- Defining the full set of reports and journals to be generated
+ --
+@@ -48,6 +54,7 @@
+          , [ unknown              (show y) | y <- all_years ]
+          , [ opening_balances     (show y) | y <- all_years, y/=first ]
+          , [ closing_balances     (show y) | y <- all_years, y/=current ]
++         , [ investments ]
+          ]
+ 
+ -----------------------------------------
+@@ -100,6 +107,8 @@
+   -- Whenever we need generated.rules, produce them from rules.psv
+   "//import//generated.rules" %> generated_rules
+ 
++  ("//" ++ investments) %> generate_investments_report year_inputs
++  
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -161,6 +170,12 @@
+   (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
+   writeFileChanged out output
+ 
++generate_investments_report year_inputs out = do
++  deps <- mapM (year_inputs . show) investment_years
++  need (concat deps)
++  (Stdout output) <- cmd "./investments.sh" 
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/investments.sh ././07-investments-easy-approach/export/investments.sh
+--- ././06-maintaining-lots-of-csv-rules/export/investments.sh
++++ ././07-investments-easy-approach/export/investments.sh
+@@ -0,0 +1,13 @@
++#!/bin/bash
++function report() {
++    asset="$1"
++    shift
++    hledger roi -f ../all.journal \
++            --investment "acct:assets:${asset} not:acct:equity" \
++            --pnl 'acct:virtual:unrealized not:acct:equity' "$@"
++}
++
++echo "Pension"
++echo
++report "pension"
++report "pension" -Y

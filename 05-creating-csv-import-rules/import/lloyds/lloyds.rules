@@ -23,3 +23,7 @@ WAITROSE
 if
 OASIS COFFEE
   account2   expenses:coffee
+
+if
+AVIVA
+  account2   assets:pension:aviva

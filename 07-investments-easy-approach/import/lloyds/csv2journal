@@ -1,0 +1,2 @@
+#!/bin/bash
+hledger print --rules-file lloyds.rules -f "$1"
