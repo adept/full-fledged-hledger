@@ -18,7 +18,7 @@ I went through several different approaches over the course of 10 years, and thi
 
 My story is explained on the Wiki and illustrated by the directories
 in the repo. You can choose the one that best suits you as a starting
-point and mix or look at the [diffs](../../tree/master/diffs) between
+point or look at the [diffs](../../tree/master/diffs) between
 different directories to mix and match features as you see fit.
 
 Evolution of the setup is described in the Wiki.
