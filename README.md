@@ -1,6 +1,6 @@
-# Full-fledged Hledger
+# Full-fledged Hledger - a tutorial
 
-Full-Fledged Hledger setup which features:
+Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 - data split into files by year
 - multi-source CSV imports
 - range of auto-generated reports
