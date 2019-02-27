@@ -1,4 +1,4 @@
-# Full-fledged Hledger - a tutorial
+# "Full-fledged Hledger" Tutorial
 
 Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 - data split into files by year
