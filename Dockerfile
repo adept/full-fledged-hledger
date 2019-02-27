@@ -1,4 +1,4 @@
-FROM haskell
+FROM haskell:latest
 
 COPY --from=dastapov/hledger:latest /usr/bin/hledger* /usr/bin/
 
