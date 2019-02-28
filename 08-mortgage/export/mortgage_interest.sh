@@ -4,6 +4,5 @@ set -e -o pipefail
 year="$1"
 dir=$(dirname $0)
 echo ";; This is an auto-generated file, do not edit"
-hledger -f "${dir}/../${year}.journal" print 'liabilities:mortgage' 'not:desc:interest' 'acct:opening' -x \
-    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today \
+hledger-interest -f "${dir}/../${year}.journal" --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today \
     | hledger print -f - -p "${year}"

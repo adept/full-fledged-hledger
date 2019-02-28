@@ -1,9 +1,9 @@
 ;; This is an auto-generated file, do not edit
-2015/03/31 0.02% interest for £-770.56 over 90 days
+2015/03/31 2% interest for £-770.62 over 90 days
     liabilities:mortgage                £-3.80
-    expenses:mortgage interest           £3.80
+    expenses:mortgage interest
 
-2015/12/31 0.02% interest for £-674.36 over 275 days
-    liabilities:mortgage               £-10.16
-    expenses:mortgage interest          £10.16
+2015/12/31 2% interest for £-678.22 over 275 days
+    liabilities:mortgage               £-10.22
+    expenses:mortgage interest
 

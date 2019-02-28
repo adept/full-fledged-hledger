@@ -3,7 +3,7 @@
     assets:Lloyds:savings           £500.00 = £500
     assets:house                   £1000.00 = £1000
     assets:pension:aviva            £204.41 = £204.41
-    liabilities:mortgage           £-684.52 = £-684.52
+    liabilities:mortgage           £-684.64 = £-684.64
     equity:opening balances
 
 2016/03/30 (BGC) EMPLOYER INC
@@ -14,9 +14,9 @@
     assets:Lloyds:current        £-100.00 = £1203.72
     liabilities:mortgage          £100.00
 
-2016/03/31 0.02% interest for £-684.52 over 91 days
+2016/03/31 2% interest for £-684.64 over 91 days
     liabilities:mortgage                £-3.40
-    expenses:mortgage interest           £3.40
+    expenses:mortgage interest
 
 2016/04/07 (BP) OASIS COFFEE
     assets:Lloyds:current          £-3.72 = £1200.00
@@ -38,7 +38,7 @@
     assets:pension:aviva       = £308.27
     virtual:unrealized pnl
 
-2016/12/31 0.02% interest for £-587.92 over 275 days
-    liabilities:mortgage                £-8.83
-    expenses:mortgage interest           £8.83
+2016/12/31 2% interest for £-591.44 over 275 days
+    liabilities:mortgage                £-8.89
+    expenses:mortgage interest
 
