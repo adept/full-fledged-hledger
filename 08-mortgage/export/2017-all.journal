@@ -1,0 +1,44 @@
+2017/01/01 opening balances
+    assets:Lloyds:current           £100.00 = £100
+    assets:Lloyds:savings          £1500.00 = £1500
+    assets:house                   £1000.00 = £1000
+    assets:pension:aviva            £308.27 = £308.27
+    liabilities:mortgage           £-596.75 = £-596.75
+    equity:opening balances
+
+2017/03/30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1093.72 = £1193.72
+    income:employer             £-1093.72
+
+2017/03/31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00 = £1093.72
+    liabilities:mortgage          £100.00
+
+2017/03/31 0.02% interest for £-596.75 over 90 days
+    liabilities:mortgage                £-2.94
+    expenses:mortgage interest           £2.94
+
+2017/04/01 INTEREST (NET)
+    assets:Lloyds:current           £1.21 = £1094.93
+    income:interest                £-1.21
+
+2017/04/07 (DEB) WAITROSE
+    assets:Lloyds:current          £-5.24 = £1089.69
+    expenses:groceries              £5.24
+
+2017/04/07 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £1086.93
+    expenses:coffee                 £2.76
+
+2017/05/01 (BP) AVIVA
+    assets:Lloyds:current        £-100.00 = £986.93
+    assets:pension:aviva          £100.00
+
+2017/06/30 pension valuation
+    assets:pension:aviva       = £411.03
+    virtual:unrealized pnl
+
+2017/12/31 0.02% interest for £-499.69 over 275 days
+    liabilities:mortgage                £-7.53
+    expenses:mortgage interest           £7.53
+

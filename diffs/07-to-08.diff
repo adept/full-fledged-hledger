@@ -1,0 +1,117 @@
+diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-mortgage/2014.journal
+--- ././07-investments-easy-approach/2014.journal
++++ ././08-mortgage/2014.journal
+@@ -1,10 +1,17 @@
+ ;; Opening balances
+ 2014/01/01 opening balances
+-  assets:Lloyds:current    = £100
++  assets:Lloyds:current    = £250
+   equity:opening balances
+ 
++2014/01/02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)
++  assets:Lloyds:current    -£150
++  expenses:mortage fees    £5
++  liabilities:mortgage
++  assets:house             £1000
++
+ 2014/12/31 pension valuation
+   assets:pension:aviva     = £102.34
+   virtual:unrealized pnl
+   
+ !include ./import/lloyds/journal/99966633_20171224_2041.journal
++!include ./export/2014-mortgage-interest.journal
+diff -X .gitignore -Naurb ././07-investments-easy-approach/2015.journal ././08-mortgage/2015.journal
+--- ././07-investments-easy-approach/2015.journal
++++ ././08-mortgage/2015.journal
+@@ -6,3 +6,4 @@
+   
+ !include ./import/lloyds/journal/99966633_20171224_2042.journal
+ !include ./import/lloyds/journal/12345678_20171225_0001.journal
++!include ./export/2015-mortgage-interest.journal
+diff -X .gitignore -Naurb ././07-investments-easy-approach/2016.journal ././08-mortgage/2016.journal
+--- ././07-investments-easy-approach/2016.journal
++++ ././08-mortgage/2016.journal
+@@ -6,3 +6,4 @@
+   
+ !include ./import/lloyds/journal/99966633_20171224_2043.journal
+ !include ./import/lloyds/journal/12345678_20171225_0002.journal
++!include ./export/2016-mortgage-interest.journal
+diff -X .gitignore -Naurb ././07-investments-easy-approach/2017.journal ././08-mortgage/2017.journal
+--- ././07-investments-easy-approach/2017.journal
++++ ././08-mortgage/2017.journal
+@@ -7,3 +7,4 @@
+   virtual:unrealized pnl
+   
+ !include ./import/lloyds/journal/99966633_20171223_1844.journal
++!include ./export/2017-mortgage-interest.journal
+diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././08-mortgage/export/export.hs
+--- ././07-investments-easy-approach/export/export.hs
++++ ././08-mortgage/export/export.hs
+@@ -41,6 +41,7 @@
+ -----------------
+ investment_years    = [2014..current] -- helpful if your investment period is shorter than all_years
+ investments         = "investments.txt"
++mortgage_interest y = y++"-mortgage-interest.journal"
+ 
+ --
+ -- Defining the full set of reports and journals to be generated
+@@ -55,6 +56,7 @@
+          , [ opening_balances     (show y) | y <- all_years, y/=first ]
+          , [ closing_balances     (show y) | y <- all_years, y/=current ]
+          , [ investments ]
++         , [ mortgage_interest    (show y) | y <- all_years ]
+          ]
+ 
+ -----------------------------------------
+@@ -109,6 +111,9 @@
+ 
+   ("//" ++ investments) %> generate_investments_report year_inputs
+   
++  -- Mortgage interest transactions
++  mortgage_interest "//*" %> generate_mortgage_interest year_inputs
++
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -177,6 +182,20 @@
+   (Stdout output) <- cmd "./investments.sh" 
+   writeFileChanged out output
+ 
++generate_mortgage_interest year_inputs out = do
++  let year = head $ split out
++  -- Output file of this rule is included in the year_inputs.
++  -- However, when this command is run, this file (obviously) does not exist, so lets touch it
++  -- so that dependency discovery will not fail, and then immediately generate it
++  () <- cmd "touch" [out]
++  deps <- year_inputs year
++  -- Avoid circular dependencies by excluding output file from the list of its own dependencies
++  need $ filter (not.((takeFileName out) `isSuffixOf`)) deps
++  need [ "./mortgage_interest.sh" ]
++  (Stdout output) <-
++    cmd "./mortgage_interest.sh" [year]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+diff -X .gitignore -Naurb ././07-investments-easy-approach/export/mortgage_interest.sh ././08-mortgage/export/mortgage_interest.sh
+--- ././07-investments-easy-approach/export/mortgage_interest.sh
++++ ././08-mortgage/export/mortgage_interest.sh
+@@ -0,0 +1,9 @@
++#!/bin/bash
++set -e -o pipefail
++[ -z "$1" ] && ( echo "usage: $0 YEAR"; exit 1; )
++year="$1"
++dir=$(dirname $0)
++echo ";; This is an auto-generated file, do not edit"
++hledger -f "${dir}/../${year}.journal" print 'liabilities:mortgage' 'not:desc:interest' 'acct:opening' -x \
++    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today \
++    | hledger print -f - -p "${year}"
+diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.psv ././08-mortgage/import/lloyds/rules.psv
+--- ././07-investments-easy-approach/import/lloyds/rules.psv
++++ ././08-mortgage/import/lloyds/rules.psv
+@@ -4,3 +4,4 @@
+ WAITROSE|expenses:groceries
+ OASIS COFFEE|expenses:coffee
+ AVIVA|assets:pension:aviva
++HSBC|liabilities:mortgage

@@ -2,9 +2,13 @@
     assets:Lloyds:current           £600.00 = £600
     equity:opening balances
 
-2015/03/31 (BGC) EMPLOYER INC
-    assets:Lloyds:current         £653.72 = £1253.72
-    income:employer              £-653.72
+2015/03/30 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £753.72 = £1353.72
+    income:employer              £-753.72
+
+2015/03/31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00 = £1253.72
+    expenses:unknown              £100.00
 
 2015/04/07 (DEB) TRANSFER TO 12345678
     assets:Lloyds:current        £-500.00 = £753.72

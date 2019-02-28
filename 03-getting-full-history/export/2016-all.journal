@@ -3,9 +3,13 @@
     assets:Lloyds:savings           £500.00 = £500
     equity:opening balances
 
-2016/03/31 (BGC) EMPLOYER INC
-    assets:Lloyds:current         £553.72 = £1203.72
-    income:employer              £-553.72
+2016/03/30 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £653.72 = £1303.72
+    income:employer              £-653.72
+
+2016/03/31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00 = £1203.72
+    expenses:unknown              £100.00
 
 2016/04/07 (BP) OASIS COFFEE
     assets:Lloyds:current          £-3.72 = £1200.00

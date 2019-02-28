@@ -2,5 +2,6 @@ assets:Lloyds:current
 assets:pension:aviva
 equity:opening balances
 expenses:groceries
+expenses:unknown
 income:employer
 virtual:unrealized pnl

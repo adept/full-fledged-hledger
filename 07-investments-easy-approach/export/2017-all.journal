@@ -4,9 +4,13 @@
     assets:pension:aviva            £308.27 = £308.27
     equity:opening balances
 
-2017/03/31 (BGC) EMPLOYER INC
-    assets:Lloyds:current         £993.72 = £1093.72
-    income:employer              £-993.72
+2017/03/30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1093.72 = £1193.72
+    income:employer             £-1093.72
+
+2017/03/31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00 = £1093.72
+    expenses:unknown              £100.00
 
 2017/04/01 INTEREST (NET)
     assets:Lloyds:current           £1.21 = £1094.93

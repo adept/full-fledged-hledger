@@ -80,13 +80,14 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -161,6 +170,12 @@
+@@ -161,6 +170,13 @@
    (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
    writeFileChanged out output
  
 +generate_investments_report year_inputs out = do
 +  deps <- mapM (year_inputs . show) investment_years
 +  need (concat deps)
++  need [ "./investments.sh" ]
 +  (Stdout output) <- cmd "./investments.sh" 
 +  writeFileChanged out output
 +

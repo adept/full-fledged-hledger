@@ -173,6 +173,7 @@ generated_rules out = do
 generate_investments_report year_inputs out = do
   deps <- mapM (year_inputs . show) investment_years
   need (concat deps)
+  need [ "./investments.sh" ]
   (Stdout output) <- cmd "./investments.sh" 
   writeFileChanged out output
 

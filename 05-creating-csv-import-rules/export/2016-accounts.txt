@@ -4,4 +4,5 @@ assets:Lloyds:transfers
 assets:pension:aviva
 equity:opening balances
 expenses:coffee
+expenses:unknown
 income:employer
