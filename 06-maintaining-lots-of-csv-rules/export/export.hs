@@ -169,7 +169,8 @@ generated_rules out = do
 -- some of the requested includes might be generated and might not exist yet.
 getIncludes file = do
   src <- liftIO $ readFile file
-  let includes = [normalisePath x | x <- lines src, Just x <- [stripPrefix "!include " x]]
+  let includes = [normalisePath x | x <- lines src, Just x <- [ stripPrefix "!include " x
+                                                              , stripPrefix "include " x]]
   return (file:includes)
 
 normalisePath x  
