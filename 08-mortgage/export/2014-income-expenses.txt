@@ -12,8 +12,8 @@ Income Statement 2014
 ----------------------------++---------
  expenses:groceries         ||  £73.72 
  expenses:mortage fees      ||   £5.00 
- expenses:mortgage interest ||  £15.62 
+ expenses:mortgage interest ||  £15.56 
 ----------------------------++---------
-                            ||  £94.34 
+                            ||  £94.28 
 ============================++=========
- Net:                       || £679.38 
+ Net:                       || £679.44 

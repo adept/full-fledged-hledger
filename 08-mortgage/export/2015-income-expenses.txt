@@ -11,8 +11,8 @@ Income Statement 2015
  Expenses                   ||         
 ----------------------------++---------
  expenses:coffee            ||   £3.72 
- expenses:mortgage interest ||  £14.02 
+ expenses:mortgage interest ||  £13.96 
 ----------------------------++---------
-                            ||  £17.74 
+                            ||  £17.68 
 ============================++=========
- Net:                       || £735.98 
+ Net:                       || £736.04 

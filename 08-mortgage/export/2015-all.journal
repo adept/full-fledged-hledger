@@ -2,7 +2,7 @@
     assets:Lloyds:current           £600.00 = £600
     assets:house                   £1000.00 = £1000
     assets:pension:aviva            £102.34 = £102.34
-    liabilities:mortgage           £-770.62 = £-770.62
+    liabilities:mortgage           £-770.56 = £-770.56
     equity:opening balances
 
 2015/03/30 (BGC) EMPLOYER INC
@@ -13,7 +13,7 @@
     assets:Lloyds:current        £-100.00 = £1253.72
     liabilities:mortgage          £100.00
 
-2015/03/31 2% interest for £-770.62 over 90 days
+2015/03/31 2% interest for £-770.56 over 90 days
     liabilities:mortgage                £-3.80
     expenses:mortgage interest
 
@@ -37,7 +37,7 @@
     assets:pension:aviva       = £204.41
     virtual:unrealized pnl
 
-2015/12/31 2% interest for £-678.22 over 275 days
-    liabilities:mortgage               £-10.22
+2015/12/31 2% interest for £-674.36 over 275 days
+    liabilities:mortgage               £-10.16
     expenses:mortgage interest
 

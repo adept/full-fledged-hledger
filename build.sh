@@ -1,4 +1,3 @@
 #!/bin/bash
-./cleanexport.sh
-./reexport.sh
+./reexport.sh --rebuild
 ./updatediffs.sh

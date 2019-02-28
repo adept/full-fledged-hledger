@@ -1,5 +1,3 @@
-storydir="${1}"
-diffdir="${2}"
 
 : ${storydir:="."}
 : ${diffdir:="./diffs"}
