@@ -9,7 +9,7 @@ Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 
 **All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) -- at the very least read the 'Getting started' page to get going.**
 
-# What is included?
+# What would you find here?
 
 A set of sample journals and helper scripts that I use together with [hledger](http://hledger.org) for tracking personal finances
 and budgeting. It should be easily adaptable to other command-line accounting tools (ledger, beancount, ...).
@@ -21,30 +21,12 @@ in the repo. You can choose the one that best suits you as a starting
 point or look at the [diffs](../../tree/master/diffs) between
 different directories to mix and match features as you see fit.
 
-Evolution of the setup is described in the Wiki.
-
 **[CLICK HERE FOR THE WIKI](https://github.com/adept/full-fledged-hledger/wiki)**
-
-# Installation
-
-Scripts and files here assume Linux-like environment with Haskell (in
-particular, you will need `runhaskell` and `stack`) and
-textutils/shellutils available. I have not tested them on Mac OS or
-Windows. I expect Mac OS to mostly work and Windows users can
-use Docker (see below).
-
-You will need to have `shake` build system installed (which you can
-get via `stack install shake`). 
-
-## Docker
-
-Windows users or those unwilling to set up `stack` can follow the tutorial with the help of docker image.
-
-After cloning the repo, run `./docker.sh`, which will mount current directory inside docker image that contains all the necessary software and start up shell there.
 
 # Usage
 
 TL;DR: Pick one of the numbered directories:
+
 * [01-getting-started](../../tree/master/01-getting-started)
 * [02-getting-data-in](../../tree/master/02-getting-data-in)
 * ... and so on
