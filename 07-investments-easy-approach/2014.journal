@@ -1,6 +1,7 @@
 ;; Opening balances
 2014/01/01 opening balances
   assets:Lloyds:current    = £100
+  assets:cash              = £150
   equity:opening balances
 
 2014/12/31 pension valuation

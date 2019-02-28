@@ -1,10 +1,11 @@
 ;; Opening balances
 2014/01/01 opening balances
-  assets:Lloyds:current    = £250
+  assets:Lloyds:current    = £100
+  assets:cash              = £150
   equity:opening balances
 
 2014/01/02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)
-  assets:Lloyds:current    -£150
+  assets:cash              -£150
   expenses:mortage fees    £5
   liabilities:mortgage
   assets:house             £1000

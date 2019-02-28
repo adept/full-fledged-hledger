@@ -1,6 +1,7 @@
 assets:Lloyds:current
 assets:Lloyds:savings
 assets:Lloyds:transfers
+assets:cash
 assets:pension:aviva
 equity:opening balances
 expenses:coffee

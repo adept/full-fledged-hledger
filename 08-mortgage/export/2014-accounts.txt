@@ -1,4 +1,5 @@
 assets:Lloyds:current
+assets:cash
 assets:house
 assets:pension:aviva
 equity:opening balances

@@ -1,6 +1,7 @@
 2017/01/01 opening balances
     assets:Lloyds:current              £100 = £100
     assets:Lloyds:savings             £1500 = £1500
+    assets:cash                        £150 = £150
     assets:pension:aviva            £308.27 = £308.27
     equity:opening balances
 

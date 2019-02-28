@@ -1,4 +1,5 @@
 assets:Lloyds:current
+assets:cash
 assets:pension:aviva
 equity:opening balances
 expenses:groceries

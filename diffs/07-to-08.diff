@@ -1,15 +1,12 @@
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-mortgage/2014.journal
 --- ././07-investments-easy-approach/2014.journal
 +++ ././08-mortgage/2014.journal
-@@ -1,10 +1,17 @@
- ;; Opening balances
- 2014/01/01 opening balances
--  assets:Lloyds:current    = £100
-+  assets:Lloyds:current    = £250
+@@ -4,8 +4,15 @@
+   assets:cash              = £150
    equity:opening balances
  
 +2014/01/02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)
-+  assets:Lloyds:current    -£150
++  assets:cash              -£150
 +  expenses:mortage fees    £5
 +  liabilities:mortgage
 +  assets:house             £1000
