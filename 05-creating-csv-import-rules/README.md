@@ -1,6 +1,6 @@
 ## What's here
 
-- Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV->journal conversion
+- Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
 
 - CSV import rules file to classify expenses
 

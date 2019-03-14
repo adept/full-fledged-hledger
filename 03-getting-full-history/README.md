@@ -1,6 +1,6 @@
 ## What's here
 
-- Several years of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV->journal conversion
+- Several years of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
 
 - Auto-generated reports:
 
