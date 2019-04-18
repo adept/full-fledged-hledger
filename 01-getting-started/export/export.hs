@@ -127,7 +127,7 @@ in2csv out = do
           _ -> map (in_dir</>) $ possibleInputs ++ (extraInputs file)
   let deps = map (source_dir </>) $ extraDeps out
   need $ (source_dir </> "in2csv"):(inputs ++ deps)
-  (Stdout output) <- cmd (Cwd source_dir) "./in2csv" (map (makeRelative source_dir) inputs)
+  (Stdout output) <- cmd (Cwd source_dir) Shell "./in2csv" (map (makeRelative source_dir) inputs)
   writeFileChanged out output
 
 -- To produce <importdir>/journal/filename.journal, look for <importdir>/csv/filename.csv and
@@ -139,7 +139,7 @@ csv2journal out = do
   let input = csv_dir </> (file -<.> "csv")
   let deps = map (source_dir </>) $ extraDeps out
   need $ (source_dir </> "csv2journal"):(input:deps)
-  (Stdout output) <- cmd (Cwd source_dir) "./csv2journal" [makeRelative source_dir input]
+  (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
   writeFileChanged out output
 
 -------------------
