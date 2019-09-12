@@ -111,3 +111,12 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/investment
 +echo
 +report "pension"
 +report "pension" -Y
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/README.md ././07-investments-easy-approach/README.md
+--- ././06-maintaining-lots-of-csv-rules/README.md
++++ ././07-investments-easy-approach/README.md
+@@ -11,3 +11,5 @@
+     - cash flow
+ 
+     - income/expenses
++
++    - return on investements (IRR && TWR)

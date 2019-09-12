@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-13.8 runghc --package shake --package directory
+-- stack --resolver lts-14.3 runghc --package shake --package directory
 import Development.Shake
 import Development.Shake.FilePath
 import Data.List

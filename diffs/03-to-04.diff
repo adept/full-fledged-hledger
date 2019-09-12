@@ -42,3 +42,14 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds.rules
 -  account2   assets:Lloyds:savings
 +TRANSFER
 +  account2   assets:Lloyds:transfers
+diff -X .gitignore -Naurb ././03-getting-full-history/README.md ././04-adding-more-accounts/README.md
+--- ././03-getting-full-history/README.md
++++ ././04-adding-more-accounts/README.md
+@@ -1,6 +1,6 @@
+ ## What's here
+ 
+-- Several years of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
++- Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
+ 
+ - Auto-generated reports:
+ 

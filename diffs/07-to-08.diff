@@ -101,8 +101,8 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/mortgage_inter
 +year="$1"
 +dir=$(dirname $0)
 +echo ";; This is an auto-generated file, do not edit"
-+hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -x \
-+    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today \
++hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -I \
++    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today -I \
 +    | hledger print -f - -p "${year}"
 diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.psv ././08-mortgage/import/lloyds/rules.psv
 --- ././07-investments-easy-approach/import/lloyds/rules.psv
@@ -112,3 +112,15 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.p
  OASIS COFFEE|expenses:coffee
  AVIVA|assets:pension:aviva
 +HSBC|liabilities:mortgage
+diff -X .gitignore -Naurb ././07-investments-easy-approach/README.md ././08-mortgage/README.md
+--- ././07-investments-easy-approach/README.md
++++ ././08-mortgage/README.md
+@@ -4,6 +4,8 @@
+ 
+ - Compact rules file to classify expenses
+ 
++- Mortgage with automatic interest and capital payments tracking
++
+ - Auto-generated reports:
+ 
+     - balance sheet

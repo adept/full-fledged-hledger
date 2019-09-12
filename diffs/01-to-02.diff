@@ -77,3 +77,19 @@ diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/lloyds.rules ././
 +if
 +EMPLOYER INC
 +  account2   income:employer
+diff -X .gitignore -Naurb ././01-getting-started/README.md ././02-getting-data-in/README.md
+--- ././01-getting-started/README.md
++++ ././02-getting-data-in/README.md
+@@ -1,3 +1,11 @@
+ ## What's here
+ 
+-Simple empty journal without any transactions
++- One year of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
++
++- Auto-generated reports:
++
++    - balance sheet
++
++    - cash flow
++
++    - income/expenses
