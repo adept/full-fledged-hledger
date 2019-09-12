@@ -1,4 +1,4 @@
-Balance Sheet 2014
+Balance Sheet 2014/12/31
 
              || 2014/12/31 
 =============++============
@@ -7,7 +7,7 @@ Balance Sheet 2014
  assets      ||    £852.34 
    Lloyds    ||    £600.00 
      current ||    £600.00 
-   cash      ||       £150 
+   cash      ||    £150.00 
    pension   ||    £102.34 
      aviva   ||    £102.34 
 -------------++------------

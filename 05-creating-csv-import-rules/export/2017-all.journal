@@ -1,9 +1,9 @@
 2017/01/01 opening balances
-    assets:Lloyds:current           £100.00 = £100
-    assets:Lloyds:savings          £1500.00 = £1500
-    assets:cash                     £150.00 = £150
-    assets:pension:aviva            £300.00 = £300
-    equity:opening balances
+    assets:Lloyds:current           £100.00 = £100.00
+    assets:Lloyds:savings          £1500.00 = £1500.00
+    assets:cash                     £150.00 = £150.00
+    assets:pension:aviva            £300.00 = £300.00
+    equity:opening balances       £-2050.00
 
 2017/03/30 (BGC) EMPLOYER INC
     assets:Lloyds:current        £1093.72 = £1193.72
