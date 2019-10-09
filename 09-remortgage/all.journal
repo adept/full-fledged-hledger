@@ -1,0 +1,7 @@
+!include 2014.journal
+!include ./export/2014-closing.journal
+!include 2015.journal
+!include ./export/2015-closing.journal
+!include 2016.journal
+!include ./export/2016-closing.journal
+!include 2017.journal

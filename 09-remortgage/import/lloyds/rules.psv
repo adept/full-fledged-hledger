@@ -1,0 +1,7 @@
+INTEREST|income:interest
+EMPLOYER INC|income:employer
+TRANSFER|assets:Lloyds:transfers
+WAITROSE|expenses:groceries
+OASIS COFFEE|expenses:coffee
+AVIVA|assets:pension:aviva
+HSBC|liabilities:mortgage
