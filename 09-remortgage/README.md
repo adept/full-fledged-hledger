@@ -4,7 +4,7 @@
 
 - Compact rules file to classify expenses
 
-- Mortgage with automatic interest and capital payments tracking
+- Mortgage with automatic interest and capital payments tracking, with one re-mortgage
 
 - Auto-generated reports:
 
