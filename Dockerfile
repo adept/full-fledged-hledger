@@ -1,6 +1,6 @@
-FROM haskell:latest
+FROM haskell:8.6.5
 
-COPY --from=dastapov/hledger:latest /usr/bin/hledger* /usr/bin/
+COPY --from=dastapov/hledger:1.16.1 /usr/bin/hledger* /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 
