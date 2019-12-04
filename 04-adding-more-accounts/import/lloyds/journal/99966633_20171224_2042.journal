@@ -3,18 +3,18 @@
     income:employer              £-753.72
 
 2015/03/31 (BGC) HSBC
-    assets:Lloyds:current           £-100 = £1253.72
-    expenses:unknown                 £100
+    assets:Lloyds:current        £-100.00 = £1253.72
+    expenses:unknown              £100.00
 
 2015/04/07 (DEB) TRANSFER TO 12345678
-    assets:Lloyds:current             £-500 = £753.72
-    assets:Lloyds:transfers            £500
+    assets:Lloyds:current          £-500.00 = £753.72
+    assets:Lloyds:transfers         £500.00
 
 2015/04/08 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-3.72 = £750
+    assets:Lloyds:current          £-3.72 = £750.00
     expenses:unknown                £3.72
 
 2015/05/01 (BP) AVIVA
-    assets:Lloyds:current           £-100 = £650
-    expenses:unknown                 £100
+    assets:Lloyds:current        £-100.00 = £650.00
+    expenses:unknown              £100.00
 

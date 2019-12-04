@@ -3,8 +3,8 @@
     income:employer             £-1093.72
 
 2017/03/31 (BGC) HSBC
-    assets:Lloyds:current           £-100 = £1093.72
-    liabilities:mortgage             £100
+    assets:Lloyds:current        £-100.00 = £1093.72
+    liabilities:mortgage          £100.00
 
 2017/04/01 INTEREST (NET)
     assets:Lloyds:current           £1.21 = £1094.93
@@ -19,6 +19,6 @@
     expenses:coffee                 £2.76
 
 2017/05/01 (BP) AVIVA
-    assets:Lloyds:current           £-100 = £986.93
-    assets:pension:aviva             £100
+    assets:Lloyds:current        £-100.00 = £986.93
+    assets:pension:aviva          £100.00
 

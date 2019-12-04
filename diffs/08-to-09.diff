@@ -19,3 +19,15 @@ diff -X .gitignore -Naurb ././08-mortgage/export/mortgage_interest.sh ././09-rem
 +    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.018 --act liabilities:mortgage -q --today -I \
 +    | hledger print -f - -p "${year}" \
 +    | hledger print -f - -b 2015-05
+diff -X .gitignore -Naurb ././08-mortgage/README.md ././09-remortgage/README.md
+--- ././08-mortgage/README.md
++++ ././09-remortgage/README.md
+@@ -4,7 +4,7 @@
+ 
+ - Compact rules file to classify expenses
+ 
+-- Mortgage with automatic interest and capital payments tracking
++- Mortgage with automatic interest and capital payments tracking, with one re-mortgage
+ 
+ - Auto-generated reports:
+ 

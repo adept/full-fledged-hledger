@@ -1,9 +1,9 @@
 ;; This is an auto-generated file, do not edit
 2014/03/31 2% interest for £-855.00 over 88 days
     liabilities:mortgage                £-4.12
-    expenses:mortgage interest
+    expenses:mortgage interest           £4.12
 
 2014/12/31 2% interest for £-759.12 over 275 days
     liabilities:mortgage               £-11.44
-    expenses:mortgage interest
+    expenses:mortgage interest          £11.44
 

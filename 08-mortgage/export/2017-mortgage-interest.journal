@@ -1,9 +1,9 @@
 ;; This is an auto-generated file, do not edit
 2017/03/31 2% interest for £-596.75 over 90 days
     liabilities:mortgage                £-2.94
-    expenses:mortgage interest
+    expenses:mortgage interest           £2.94
 
 2017/12/31 2% interest for £-499.69 over 275 days
     liabilities:mortgage                £-7.53
-    expenses:mortgage interest
+    expenses:mortgage interest           £7.53
 

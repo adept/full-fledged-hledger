@@ -3,14 +3,14 @@
     income:employer              £-773.72
 
 2014/03/31 (BGC) HSBC
-    assets:Lloyds:current           £-100 = £773.72
-    expenses:unknown                 £100
+    assets:Lloyds:current        £-100.00 = £773.72
+    expenses:unknown              £100.00
 
 2014/04/07 (DEB) WAITROSE
-    assets:Lloyds:current         £-73.72 = £700
+    assets:Lloyds:current         £-73.72 = £700.00
     expenses:unknown               £73.72
 
 2014/05/01 (BP) AVIVA
-    assets:Lloyds:current           £-100 = £600
-    expenses:unknown                 £100
+    assets:Lloyds:current        £-100.00 = £600.00
+    expenses:unknown              £100.00
 
