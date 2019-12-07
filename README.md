@@ -1,13 +1,27 @@
 # "Full-fledged Hledger" Tutorial
 
 Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
-- data split into files by year
+- ledger files split by year
 - multi-source CSV imports
 - range of auto-generated reports
-- single script to update all reports when any source file change
+- single script to update all reports when any source file changes
 - full freedom to evolve and refactor your journals as you see fit
 
 **All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) -- at the very least read the 'Getting started' page to get going.**
+
+# Wiki Table of Contents for the impatient
+
+0. [Key principles and practices](Key-principles-and-practices)
+1. [Getting started](Getting-started)
+2. [Getting data in](Getting-data-in)
+3. [Getting full history of the account](Getting-full-history-of-the-account)
+4. [Adding more accounts](Adding-more-accounts)
+5. [Creating CSV import rules](Creating-CSV-import-rules)
+6. [Maintaining CSV rules](Maintaining-CSV-rules)
+7. [Investments - easy approach](Investments-easy-approach)
+8. [Mortgages](Mortgage)
+8. [Remortgage](Remortgage)
+6. [ChangeLog](Changelog)
 
 # What would you find here?
 
