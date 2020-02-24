@@ -15,32 +15,32 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-m
    assets:pension:aviva     = £102.34
    virtual:unrealized pnl
    
- !include ./import/lloyds/journal/99966633_20171224_2041.journal
-+!include ./export/2014-mortgage-interest.journal
+ include ./import/lloyds/journal/99966633_20171224_2041.journal
++include ./export/2014-mortgage-interest.journal
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2015.journal ././08-mortgage/2015.journal
 --- ././07-investments-easy-approach/2015.journal
 +++ ././08-mortgage/2015.journal
 @@ -6,3 +6,4 @@
    
- !include ./import/lloyds/journal/99966633_20171224_2042.journal
- !include ./import/lloyds/journal/12345678_20171225_0001.journal
-+!include ./export/2015-mortgage-interest.journal
+ include ./import/lloyds/journal/99966633_20171224_2042.journal
+ include ./import/lloyds/journal/12345678_20171225_0001.journal
++include ./export/2015-mortgage-interest.journal
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2016.journal ././08-mortgage/2016.journal
 --- ././07-investments-easy-approach/2016.journal
 +++ ././08-mortgage/2016.journal
 @@ -6,3 +6,4 @@
    
- !include ./import/lloyds/journal/99966633_20171224_2043.journal
- !include ./import/lloyds/journal/12345678_20171225_0002.journal
-+!include ./export/2016-mortgage-interest.journal
+ include ./import/lloyds/journal/99966633_20171224_2043.journal
+ include ./import/lloyds/journal/12345678_20171225_0002.journal
++include ./export/2016-mortgage-interest.journal
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2017.journal ././08-mortgage/2017.journal
 --- ././07-investments-easy-approach/2017.journal
 +++ ././08-mortgage/2017.journal
 @@ -7,3 +7,4 @@
    virtual:unrealized pnl
    
- !include ./import/lloyds/journal/99966633_20171223_1844.journal
-+!include ./export/2017-mortgage-interest.journal
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
++include ./export/2017-mortgage-interest.journal
 diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././08-mortgage/export/export.hs
 --- ././07-investments-easy-approach/export/export.hs
 +++ ././08-mortgage/export/export.hs

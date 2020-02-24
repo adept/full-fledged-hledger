@@ -9,10 +9,19 @@ diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-dat
 +  assets:Lloyds:current    = £100
 +  equity:opening balances
 +  
-+!include ./import/lloyds/journal/99966633_20171223_1844.journal
++include ./import/lloyds/journal/99966633_20171223_1844.journal
 diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting-data-in/export/export.hs
 --- ././01-getting-started/export/export.hs
 +++ ././02-getting-data-in/export/export.hs
+@@ -22,7 +22,7 @@
+ 
+ --
+ -- File naming scheme
+--- It assumes that you do not have similarly-named journals anywhere among files included
++-- It assumes that you do not have similarly-named journals anywhere among files !included
+ -- from you yearly journals
+ --
+ transactions      y = y++"-all.journal"
 @@ -49,7 +49,9 @@
  -----------------------------------------
  -- Extra dependencies of the import files
@@ -24,6 +33,15 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  
  -----------------------------------------------
  -- Extra inputs to be fed to conversion scripts
+@@ -64,7 +66,7 @@
+ export_all = do
+   want reports
+ 
+-  -- Discover and cache the list of all includes for the given .journal file, recursively
++  -- Discover and cache the list of all !includes for the given .journal file, recursively
+   year_inputs <- newCache $ \year -> do
+     let file = input year
+     getIncludes file -- file itself will be included here
 @@ -82,10 +84,10 @@
    (opening_balances "//*") %> generate_opening_balances year_inputs
  
@@ -37,6 +55,15 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  
  -------------------------------------
  -- Implementations of the build rules
+@@ -146,7 +148,7 @@
+ -- Helper functions
+ -------------------
+ 
+--- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
++-- To get included files, look for '!include'. Note that we can't use "hledger files", as
+ -- some of the requested includes might be generated and might not exist yet.
+ getIncludes file = do
+   src <- liftIO $ readFile file
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/csv2journal ././02-getting-data-in/import/lloyds/csv2journal
 --- ././01-getting-started/import/lloyds/csv2journal
 +++ ././02-getting-data-in/import/lloyds/csv2journal

@@ -14,5 +14,5 @@
   assets:pension:aviva     = £102.34
   virtual:unrealized pnl
   
-!include ./import/lloyds/journal/99966633_20171224_2041.journal
-!include ./export/2014-mortgage-interest.journal
+include ./import/lloyds/journal/99966633_20171224_2041.journal
+include ./export/2014-mortgage-interest.journal

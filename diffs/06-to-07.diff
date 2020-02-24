@@ -9,44 +9,44 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2014.journal ././
 +  assets:pension:aviva     = £102.34
 +  virtual:unrealized pnl
 +  
- !include ./import/lloyds/journal/99966633_20171224_2041.journal
+ include ./import/lloyds/journal/99966633_20171224_2041.journal
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2015.journal ././07-investments-easy-approach/2015.journal
 --- ././06-maintaining-lots-of-csv-rules/2015.journal
 +++ ././07-investments-easy-approach/2015.journal
 @@ -1,3 +1,8 @@
- !include ./export/2015-opening.journal
+ include ./export/2015-opening.journal
 +
 +2015/12/31 pension valuation
 +  assets:pension:aviva     = £204.41
 +  virtual:unrealized pnl
 +  
- !include ./import/lloyds/journal/99966633_20171224_2042.journal
- !include ./import/lloyds/journal/12345678_20171225_0001.journal
+ include ./import/lloyds/journal/99966633_20171224_2042.journal
+ include ./import/lloyds/journal/12345678_20171225_0001.journal
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2016.journal ././07-investments-easy-approach/2016.journal
 --- ././06-maintaining-lots-of-csv-rules/2016.journal
 +++ ././07-investments-easy-approach/2016.journal
 @@ -1,3 +1,8 @@
- !include ./export/2016-opening.journal
+ include ./export/2016-opening.journal
 +
 +2016/12/31 pension valuation
 +  assets:pension:aviva     = £308.27
 +  virtual:unrealized pnl
 +  
- !include ./import/lloyds/journal/99966633_20171224_2043.journal
- !include ./import/lloyds/journal/12345678_20171225_0002.journal
+ include ./import/lloyds/journal/99966633_20171224_2043.journal
+ include ./import/lloyds/journal/12345678_20171225_0002.journal
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2017.journal ././07-investments-easy-approach/2017.journal
 --- ././06-maintaining-lots-of-csv-rules/2017.journal
 +++ ././07-investments-easy-approach/2017.journal
 @@ -1,4 +1,9 @@
  ;; This journal is for the current year
  
- !include ./export/2017-opening.journal
+ include ./export/2017-opening.journal
 +
 +2017/06/30 pension valuation
 +  assets:pension:aviva     = £411.03
 +  virtual:unrealized pnl
 +  
- !include ./import/lloyds/journal/99966633_20171223_1844.journal
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
 --- ././06-maintaining-lots-of-csv-rules/export/export.hs
 +++ ././07-investments-easy-approach/export/export.hs

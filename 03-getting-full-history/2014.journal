@@ -4,4 +4,4 @@
   assets:cash              = £150
   equity:opening balances
 
-!include ./import/lloyds/journal/99966633_20171224_2041.journal
+include ./import/lloyds/journal/99966633_20171224_2041.journal

@@ -1,7 +1,19 @@
 
 if
-OASIS COFFEE
-  account2  expenses:coffee
+INTEREST
+  account2  income:interest
+
+if
+HSBC
+  account2  liabilities:mortgage
+
+if
+EMPLOYER INC
+  account2  income:employer
+
+if
+WAITROSE
+  account2  expenses:groceries
 
 if
 AVIVA
@@ -12,17 +24,5 @@ TRANSFER
   account2  assets:Lloyds:transfers
 
 if
-INTEREST
-  account2  income:interest
-
-if
-WAITROSE
-  account2  expenses:groceries
-
-if
-EMPLOYER INC
-  account2  income:employer
-
-if
-HSBC
-  account2  liabilities:mortgage
+OASIS COFFEE
+  account2  expenses:coffee

@@ -1,8 +1,8 @@
-!include ./export/2015-opening.journal
+include ./export/2015-opening.journal
 
 2015/12/31 pension valuation
   assets:pension:aviva     = £204.41
   virtual:unrealized pnl
   
-!include ./import/lloyds/journal/99966633_20171224_2042.journal
-!include ./import/lloyds/journal/12345678_20171225_0001.journal
+include ./import/lloyds/journal/99966633_20171224_2042.journal
+include ./import/lloyds/journal/12345678_20171225_0001.journal

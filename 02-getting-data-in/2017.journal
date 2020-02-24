@@ -5,4 +5,4 @@
   assets:Lloyds:current    = £100
   equity:opening balances
   
-!include ./import/lloyds/journal/99966633_20171223_1844.journal
+include ./import/lloyds/journal/99966633_20171223_1844.journal
