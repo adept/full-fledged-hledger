@@ -11,17 +11,17 @@ Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 
 # Wiki Table of Contents for the impatient
 
-0. [Key principles and practices](Key-principles-and-practices)
-1. [Getting started](Getting-started)
-2. [Getting data in](Getting-data-in)
-3. [Getting full history of the account](Getting-full-history-of-the-account)
-4. [Adding more accounts](Adding-more-accounts)
-5. [Creating CSV import rules](Creating-CSV-import-rules)
-6. [Maintaining CSV rules](Maintaining-CSV-rules)
-7. [Investments - easy approach](Investments-easy-approach)
-8. [Mortgages](Mortgage)
-8. [Remortgage](Remortgage)
-6. [ChangeLog](Changelog)
+0. [Key principles and practices](https://github.com/adept/full-fledged-hledger/wiki/Key-principles-and-practices)
+1. [Getting started](https://github.com/adept/full-fledged-hledger/wiki/Getting-started)
+2. [Getting data in](https://github.com/adept/full-fledged-hledger/wiki/Getting-data-in)
+3. [Getting full history of the account](https://github.com/adept/full-fledged-hledger/wiki/Getting-full-history-of-the-account)
+4. [Adding more accounts](https://github.com/adept/full-fledged-hledger/wiki/Adding-more-accounts)
+5. [Creating CSV import rules](https://github.com/adept/full-fledged-hledger/wiki/Creating-CSV-import-rules)
+6. [Maintaining CSV rules](https://github.com/adept/full-fledged-hledger/wiki/Maintaining-CSV-rules)
+7. [Investments - easy approach](https://github.com/adept/full-fledged-hledger/wiki/Investments-easy-approach)
+8. [Mortgages](https://github.com/adept/full-fledged-hledger/wiki/Mortgage)
+8. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
+6. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
 
