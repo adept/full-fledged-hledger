@@ -3,8 +3,8 @@
     assets:Lloyds:savings          £1500.00 = £1500.00
     assets:house                   £1000.00 = £1000.00
     assets:pension:aviva            £308.27 = £308.27
-    liabilities:mortgage           £-585.19 = £-585.19
-    equity:opening balances       £-2323.08
+    liabilities:mortgage           £-595.53 = £-595.53
+    equity:opening balances       £-2312.74
 
 2017/03/30 (BGC) EMPLOYER INC
     assets:Lloyds:current        £1093.72 = £1193.72
@@ -14,9 +14,9 @@
     assets:Lloyds:current        £-100.00 = £1093.72
     liabilities:mortgage          £100.00
 
-2017/03/31 1.8% interest for £-585.19 over 90 days
-    liabilities:mortgage                £-2.60
-    expenses:mortgage interest           £2.60
+2017/03/31 1.8% interest for £-595.53 over 90 days
+    liabilities:mortgage                £-2.64
+    expenses:mortgage interest           £2.64
 
 2017/04/01 INTEREST (NET)
     assets:Lloyds:current           £1.21 = £1094.93
@@ -38,7 +38,7 @@
     assets:pension:aviva       = £411.03
     virtual:unrealized pnl
 
-2017/12/31 1.8% interest for £-487.79 over 275 days
-    liabilities:mortgage                £-6.62
-    expenses:mortgage interest           £6.62
+2017/12/31 1.8% interest for £-498.17 over 275 days
+    liabilities:mortgage                £-6.76
+    expenses:mortgage interest           £6.76
 

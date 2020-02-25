@@ -11,8 +11,8 @@ Income Statement 2016
  Expenses                   ||         
 ----------------------------++---------
  expenses:coffee            ||   £3.72 
- expenses:mortgage interest ||  £10.83 
+ expenses:mortgage interest ||  £11.01 
 ----------------------------++---------
-                            ||  £14.55 
+                            ||  £14.73 
 ============================++=========
- Net:                       || £639.17 
+ Net:                       || £638.99 
