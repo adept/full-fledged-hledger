@@ -22,7 +22,7 @@ input y = printf "../%s.journal" y
 
 --
 -- File naming scheme
--- It assumes that you do not have similarly-named journals anywhere among files !included
+-- It assumes that you do not have similarly-named journals anywhere among files included
 -- from you yearly journals
 --
 transactions      y = y++"-all.journal"
@@ -77,7 +77,7 @@ main =
 export_all = do
   want reports
 
-  -- Discover and cache the list of all !includes for the given .journal file, recursively
+  -- Discover and cache the list of all includes for the given .journal file, recursively
   year_inputs <- newCache $ \year -> do
     let file = input year
     getIncludes file -- file itself will be included here
@@ -181,7 +181,7 @@ generate_investments_report year_inputs out = do
 -- Helper functions
 -------------------
 
--- To get included files, look for '!include'. Note that we can't use "hledger files", as
+-- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
 -- some of the requested includes might be generated and might not exist yet.
 getIncludes file = do
   src <- liftIO $ readFile file
