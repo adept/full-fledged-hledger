@@ -3,7 +3,7 @@ assets:Lloyds:savings
 assets:Lloyds:transfers
 assets:house
 assets:pension:aviva
-equity:opening balances
+equity:opening/closing balances
 expenses:coffee
 expenses:mortgage interest
 income:employer

@@ -2,7 +2,7 @@ assets:Lloyds:current
 assets:Lloyds:savings
 assets:house
 assets:pension:aviva
-equity:opening balances
+equity:opening/closing balances
 expenses:coffee
 expenses:groceries
 expenses:mortgage interest

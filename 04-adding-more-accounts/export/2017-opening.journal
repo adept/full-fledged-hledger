@@ -1,6 +1,6 @@
-2017/01/01 opening balances
-    assets:Lloyds:current           £100.00 = £100.00
-    assets:Lloyds:savings          £1500.00 = £1500.00
-    assets:cash                     £150.00 = £150.00
-    equity:opening balances       £-1750.00
+2017-01-01 opening balances
+    assets:Lloyds:current                   £100.00 = £100.00
+    assets:Lloyds:savings                  £1500.00 = £1500.00
+    assets:cash                             £150.00 = £150.00
+    equity:opening/closing balances
 

@@ -2,7 +2,7 @@ assets:Lloyds:current
 assets:Lloyds:savings
 assets:cash
 assets:pension:aviva
-equity:opening balances
+equity:opening/closing balances
 expenses:coffee
 expenses:groceries
 expenses:unknown
