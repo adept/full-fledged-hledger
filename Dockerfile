@@ -5,7 +5,7 @@ COPY --from=dastapov/hledger:1.17 /usr/bin/hledger* /usr/bin/
 COPY ./01-getting-started/export/export.hs /tmp
 
 # Precompile all packages needed for export.hs
-RUN /tmp/export.hs -v && rm -r /tmp/export.hs /root/.stack/indices && chmod -R g+rX,o+rX /root /root/.stack/
+RUN /tmp/export.hs -v && rm -r /tmp/export.hs /root/.stack/indices/Hackage/00-index.tar /root/.stack/indices/Hackage/00-index.tar.gz && chmod -R g+rX,o+rX /root /root/.stack/
 
 RUN apt-get update && apt-get install --yes patchutils && rm -rf /var/lib/apt/lists
 
