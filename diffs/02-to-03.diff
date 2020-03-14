@@ -48,14 +48,14 @@ diff -X .gitignore -Naurb ././02-getting-data-in/all.journal ././03-getting-full
 diff -X .gitignore -Naurb ././02-getting-data-in/export/export.hs ././03-getting-full-history/export/export.hs
 --- ././02-getting-data-in/export/export.hs
 +++ ././03-getting-full-history/export/export.hs
-@@ -11,7 +11,7 @@
+@@ -16,7 +16,7 @@
+ --    typically want all the years  you have data for.
+ -- 2. Location of your journal files (path, relative to your export directory)
  --
- -- Range of years to report. You would typically want all the years you have data for.
- --
--first   = 2017 :: Int
-+first   = 2014 :: Int
- current = 2017
- all_years=[first..current]
+-defaultFirstYear = 2017 :: Int
++defaultFirstYear = 2014 :: Int
+ defaultCurrentYear = 2017
+ defaultBaseDir   = ".."
  
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171224_2041.csv ././03-getting-full-history/import/lloyds/in/99966633_20171224_2041.csv
 --- ././02-getting-data-in/import/lloyds/in/99966633_20171224_2041.csv

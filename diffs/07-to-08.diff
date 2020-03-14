@@ -44,25 +44,25 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2017.journal ././08-m
 diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././08-mortgage/export/export.hs
 --- ././07-investments-easy-approach/export/export.hs
 +++ ././08-mortgage/export/export.hs
-@@ -41,6 +41,7 @@
+@@ -46,6 +46,7 @@
  -----------------
- investment_years    = [2014..current] -- helpful if your investment period is shorter than all_years
- investments         = "investments.txt"
+ investment_years current = [2014..current] -- helpful if your investment period is shorter than all_years
+ investments              = "investments.txt"
 +mortgage_interest y = y++"-mortgage-interest.journal"
  
  --
  -- Defining the full set of reports and journals to be generated
-@@ -55,6 +56,7 @@
+@@ -60,6 +61,7 @@
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
           , [ investments ]
 +         , [ mortgage_interest    (show y) | y <- all_years ]
           ]
+   where
+     all_years=[first..current]
+@@ -139,6 +141,9 @@
  
- -----------------------------------------
-@@ -109,6 +111,9 @@
- 
-   ("//" ++ investments) %> generate_investments_report year_inputs
+   ("//" ++ investments) %> generate_investments_report current year_inputs
    
 +  -- Mortgage interest transactions
 +  mortgage_interest "//*" %> generate_mortgage_interest year_inputs
@@ -70,7 +70,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -177,6 +182,20 @@
+@@ -207,6 +212,20 @@
    (Stdout output) <- cmd "./investments.sh" 
    writeFileChanged out output
  

@@ -50,42 +50,42 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2017.journal ././
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
 --- ././06-maintaining-lots-of-csv-rules/export/export.hs
 +++ ././07-investments-easy-approach/export/export.hs
-@@ -36,6 +36,12 @@
+@@ -41,6 +41,12 @@
  closing_balances  y = y++"-closing.journal"
  opening_balances  y = y++"-opening.journal"
  
 +-----------------
 +-- Custom reports
 +-----------------
-+investment_years    = [2014..current] -- helpful if your investment period is shorter than all_years
-+investments         = "investments.txt"
++investment_years current = [2014..current] -- helpful if your investment period is shorter than all_years
++investments              = "investments.txt"
 +
  --
  -- Defining the full set of reports and journals to be generated
  --
-@@ -48,6 +54,7 @@
+@@ -53,6 +59,7 @@
           , [ unknown              (show y) | y <- all_years ]
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
 +         , [ investments ]
           ]
- 
- -----------------------------------------
-@@ -100,6 +107,8 @@
+   where
+     all_years=[first..current]
+@@ -130,6 +137,8 @@
    -- Whenever we need generated.rules, produce them from rules.psv
    "//import//generated.rules" %> generated_rules
  
-+  ("//" ++ investments) %> generate_investments_report year_inputs
++  ("//" ++ investments) %> generate_investments_report current year_inputs
 +  
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -161,6 +170,13 @@
+@@ -191,6 +200,13 @@
    (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
    writeFileChanged out output
  
-+generate_investments_report year_inputs out = do
-+  deps <- mapM (year_inputs . show) investment_years
++generate_investments_report current year_inputs out = do
++  deps <- mapM (year_inputs . show) (investment_years current)
 +  need (concat deps)
 +  need [ "./investments.sh" ]
 +  (Stdout output) <- cmd "./investments.sh" 

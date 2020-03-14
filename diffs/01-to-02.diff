@@ -13,7 +13,7 @@ diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-dat
 diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting-data-in/export/export.hs
 --- ././01-getting-started/export/export.hs
 +++ ././02-getting-data-in/export/export.hs
-@@ -49,7 +49,9 @@
+@@ -56,7 +56,9 @@
  -----------------------------------------
  -- Extra dependencies of the import files
  -----------------------------------------
@@ -24,8 +24,8 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  
  -----------------------------------------------
  -- Extra inputs to be fed to conversion scripts
-@@ -82,10 +84,10 @@
-   (opening_balances "//*") %> generate_opening_balances year_inputs
+@@ -112,10 +114,10 @@
+   (opening_balances "//*") %> generate_opening_balances base year_inputs
  
    -- Enumerate directories with auto-generated cleaned csv files
 -  [ ] |%> in2csv

@@ -2,26 +2,31 @@
 -- stack --resolver lts-14.16 runghc --package shake --package directory
 import Development.Shake
 import Development.Shake.FilePath
+import Development.Shake.Util
 import Data.List
 import Text.Printf
 import Control.Monad
+import System.Console.GetOpt
 import System.IO
 import System.Directory as D
 
 --
--- Range of years to report. You would typically want all the years you have data for.
+-- Hardcoded defaults, overridable via commandline options:
+-- 1. Range of years to produce reports for. You would
+--    typically want all the years  you have data for.
+-- 2. Location of your journal files (path, relative to your export directory)
 --
-first   = 2017 :: Int
-current = 2017
-all_years=[first..current]
+defaultFirstYear = 2017 :: Int
+defaultCurrentYear = 2017
+defaultBaseDir   = ".."
 
 --
 -- Input file naming scheme
 --
-input y = printf "../%s.journal" y
+input base year = base </> (year ++ ".journal")
 
 --
--- File naming scheme
+-- Output file naming scheme.
 -- It assumes that you do not have similarly-named journals anywhere among files included
 -- from you yearly journals
 --
@@ -37,7 +42,7 @@ opening_balances  y = y++"-opening.journal"
 --
 -- Defining the full set of reports and journals to be generated
 --
-reports =
+reports first current =
   concat [ [ transactions         (show y) | y <- all_years ]
          , [ income_expenses      (show y) | y <- all_years ]
          , [ balance_sheet        (show y) | y <- all_years ]
@@ -45,6 +50,8 @@ reports =
          , [ opening_balances     (show y) | y <- all_years, y/=first ]
          , [ closing_balances     (show y) | y <- all_years, y/=current ]
          ]
+  where
+    all_years=[first..current]
 
 -----------------------------------------
 -- Extra dependencies of the import files
@@ -56,30 +63,53 @@ extraDeps file = []
 -----------------------------------------------
 extraInputs file = []
 
-main =
-  shakeArgs shakeOptions
-  export_all
+--
+-- Command line flags
+--
+data Flags =
+  Flags { firstYear   :: Int
+        , currentYear :: Int
+        , baseDir     :: String
+        } deriving Eq
+
+setFirstYear y flags   = flags{firstYear = read y}
+setCurrentYear y flags = flags{currentYear = read y}
+setBaseDir d flags     = flags{baseDir = d}
+
+flags =
+  [ Option "" ["first"] (ReqArg (Right . setFirstYear) "YEAR") ("Override current year. Defaults to " ++ show defaultFirstYear)
+  , Option "" ["current"] (ReqArg (Right . setCurrentYear) "YEAR") ("Override current year. Defaults to " ++ show defaultCurrentYear)
+  , Option "" ["base"] (ReqArg (Right . setBaseDir) "DIR") ("Override the relative location of journal files. Defaults to " ++ defaultBaseDir)
+  ]
+
+main = do
+  let defaults = Flags { firstYear = defaultFirstYear, currentYear = defaultCurrentYear, baseDir = defaultBaseDir }
+  shakeArgsAccumulate shakeOptions flags defaults export_all
 
 -- Build rules
-export_all = do
-  want reports
+export_all flags targets = return $ Just $ do
+  let first = firstYear flags
+      current = currentYear flags
+      base = baseDir flags
+      
+  if null targets then want (reports first current) else want targets
 
   -- Discover and cache the list of all includes for the given .journal file, recursively
   year_inputs <- newCache $ \year -> do
-    let file = input year
-    getIncludes file -- file itself will be included here
+    let file = input base year
+    getIncludes base file -- file itself will be included here
 
-  (transactions "//*") %> hledger_process_year year_inputs ["print"]
+  (transactions "//*") %> hledger_process_year base year_inputs ["print"]
 
-  (income_expenses "//*") %> hledger_process_year year_inputs ["is","--flat"]
+  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat"]
 
-  (balance_sheet "//*") %> hledger_process_year year_inputs ["balancesheet"]
+  (balance_sheet "//*") %> hledger_process_year base year_inputs ["balancesheet"]
 
-  (cash_flow "//*") %> hledger_process_year year_inputs ["cashflow","not:desc:(opening balances)"]
+  (cash_flow "//*") %> hledger_process_year base year_inputs ["cashflow","not:desc:(opening balances)"]
 
-  (closing_balances "//*") %> generate_closing_balances year_inputs
+  (closing_balances "//*") %> generate_closing_balances base year_inputs
 
-  (opening_balances "//*") %> generate_opening_balances year_inputs
+  (opening_balances "//*") %> generate_opening_balances base year_inputs
 
   -- Enumerate directories with auto-generated cleaned csv files
   [ ] |%> in2csv
@@ -93,26 +123,26 @@ export_all = do
 
 -- Run hledger command on a given yearly file. Year is extracted from output file name.
 -- To generate '2017-balances', we will process '2017.journal'
-hledger_process_year year_inputs args out = do
+hledger_process_year base year_inputs args out = do
   let year = head $ split out
   deps <- year_inputs year
   need deps
-  (Stdout output) <- cmd "hledger" ("-f" : input year : args)
+  (Stdout output) <- cmd "hledger" ("-f" : input base year : args)
   writeFileChanged out output
 
-generate_opening_balances year_inputs out = do
+generate_opening_balances base year_inputs out = do
   let year = head $ split out
   let prev_year = show ((read year)-1)
   deps <- year_inputs prev_year
   need deps
   (Stdout output) <-
     cmd "hledger"
-    ["-f",input prev_year,"equity",open_close_account_query,"-e",year,"--opening"]
+    ["-f",input base prev_year,"equity",open_close_account_query,"-e",year,"--opening"]
   writeFileChanged out output
 
-generate_closing_balances year_inputs out = do
+generate_closing_balances base year_inputs out = do
   let year = head $ split out
-  hledger_process_year year_inputs ["equity",open_close_account_query,"-e",show (1+(read year)),"-I","--closing"] out
+  hledger_process_year base year_inputs ["equity",open_close_account_query,"-e",show (1+(read year)),"-I","--closing"] out
 
 -- To produce <importdir>/csv/filename.csv, look for <importdir>/in/filename.csv and
 -- process it with <importdir>/in2csv
@@ -148,16 +178,16 @@ csv2journal out = do
 
 -- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
 -- some of the requested includes might be generated and might not exist yet.
-getIncludes file = do
+getIncludes base file = do
   src <- liftIO $ readFile file
-  let includes = [normalisePath x | x <- lines src, Just x <- [ stripPrefix "!include " x
-                                                              , stripPrefix "include " x]]
+  let includes = [normalisePath base x | x <- lines src, Just x <- [ stripPrefix "!include " x
+                                                                   , stripPrefix "include " x]]
   return (file:includes)
 
-normalisePath x  
+normalisePath base x  
   | "/" `isPrefixOf` x = x
   | "./export/" `isPrefixOf` x, Just y <- stripPrefix "./export/" x = y
-  | otherwise = "../" ++ x 
+  | otherwise = base </> x 
 
 split s = takeWhile (/="") $ unfoldr (Just . head . lex) $ takeFileName s
 
