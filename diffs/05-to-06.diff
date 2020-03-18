@@ -48,9 +48,9 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/lloyds/lloyds.rules ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
 --- ././05-creating-csv-import-rules/import/lloyds/lloyds.rules
 +++ ././06-maintaining-lots-of-csv-rules/import/lloyds/lloyds.rules
-@@ -4,26 +4,4 @@
- date-format %d/%m/%Y
- currency £
+@@ -5,26 +5,4 @@
+ currency1 £
+ account2  expenses:unknown
  
 -if
 -INTEREST

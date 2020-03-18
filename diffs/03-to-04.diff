@@ -45,7 +45,7 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in2csv ././0
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds.rules ././04-adding-more-accounts/import/lloyds/lloyds.rules
 --- ././03-getting-full-history/import/lloyds/lloyds.rules
 +++ ././04-adding-more-accounts/import/lloyds/lloyds.rules
-@@ -13,5 +13,5 @@
+@@ -14,5 +14,5 @@
    account2   income:employer
  
  if

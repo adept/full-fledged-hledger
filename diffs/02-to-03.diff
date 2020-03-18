@@ -100,7 +100,7 @@ diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/lloyds.rules ././03-getting-full-history/import/lloyds/lloyds.rules
 --- ././02-getting-data-in/import/lloyds/lloyds.rules
 +++ ././03-getting-full-history/import/lloyds/lloyds.rules
-@@ -11,3 +11,7 @@
+@@ -12,3 +12,7 @@
  if
  EMPLOYER INC
    account2   income:employer

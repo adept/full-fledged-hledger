@@ -79,12 +79,13 @@ diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/in2csv ././02-get
 diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/lloyds.rules ././02-getting-data-in/import/lloyds/lloyds.rules
 --- ././01-getting-started/import/lloyds/lloyds.rules
 +++ ././02-getting-data-in/import/lloyds/lloyds.rules
-@@ -0,0 +1,13 @@
-+fields date,code,sortcode,account1,description,amount-out,amount-in,balance
+@@ -0,0 +1,14 @@
++fields date,code,sortcode,account1,description,amount1-out,amount1-in,balance1
 +skip 1
 +
 +date-format %d/%m/%Y
-+currency £
++currency1 £
++account2  expenses:unknown
 +
 +if
 +INTEREST
