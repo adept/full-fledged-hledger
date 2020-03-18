@@ -47,6 +47,15 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2017.journal ././
 +  virtual:unrealized pnl
 +  
  include ./import/lloyds/journal/99966633_20171223_1844.journal
+diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/README.md ././07-investments-easy-approach/README.md
+--- ././06-maintaining-lots-of-csv-rules/README.md
++++ ././07-investments-easy-approach/README.md
+@@ -11,3 +11,5 @@
+     - cash flow
+ 
+     - income/expenses
++
++    - return on investements (IRR && TWR)
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
 --- ././06-maintaining-lots-of-csv-rules/export/export.hs
 +++ ././07-investments-easy-approach/export/export.hs
@@ -111,12 +120,3 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/investment
 +echo
 +report "pension"
 +report "pension" -Y
-diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/README.md ././07-investments-easy-approach/README.md
---- ././06-maintaining-lots-of-csv-rules/README.md
-+++ ././07-investments-easy-approach/README.md
-@@ -11,3 +11,5 @@
-     - cash flow
- 
-     - income/expenses
-+
-+    - return on investements (IRR && TWR)

@@ -10,6 +10,22 @@ diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-dat
 +  equity:opening balances
 +  
 +include ./import/lloyds/journal/99966633_20171223_1844.journal
+diff -X .gitignore -Naurb ././01-getting-started/README.md ././02-getting-data-in/README.md
+--- ././01-getting-started/README.md
++++ ././02-getting-data-in/README.md
+@@ -1,3 +1,11 @@
+ ## What's here
+ 
+-Simple empty journal without any transactions
++- One year of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
++
++- Auto-generated reports:
++
++    - balance sheet
++
++    - cash flow
++
++    - income/expenses
 diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting-data-in/export/export.hs
 --- ././01-getting-started/export/export.hs
 +++ ././02-getting-data-in/export/export.hs
@@ -77,19 +93,3 @@ diff -X .gitignore -Naurb ././01-getting-started/import/lloyds/lloyds.rules ././
 +if
 +EMPLOYER INC
 +  account2   income:employer
-diff -X .gitignore -Naurb ././01-getting-started/README.md ././02-getting-data-in/README.md
---- ././01-getting-started/README.md
-+++ ././02-getting-data-in/README.md
-@@ -1,3 +1,11 @@
- ## What's here
- 
--Simple empty journal without any transactions
-+- One year of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
-+
-+- Auto-generated reports:
-+
-+    - balance sheet
-+
-+    - cash flow
-+
-+    - income/expenses

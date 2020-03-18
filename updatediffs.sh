@@ -4,6 +4,8 @@ set -o pipefail
 
 . chapters.sh
 
+export LC_ALL=C.UTF-8
+
 for c in $(seq 1 $(( ${#chapters[@]} - 1)) ) ; do
     p=$(( $c - 1 ))
     curr=${chapters[$c]}

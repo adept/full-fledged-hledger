@@ -1,3 +1,15 @@
+diff -X .gitignore -Naurb ././04-adding-more-accounts/README.md ././05-creating-csv-import-rules/README.md
+--- ././04-adding-more-accounts/README.md
++++ ././05-creating-csv-import-rules/README.md
+@@ -2,6 +2,8 @@
+ 
+ - Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
+ 
++- CSV import rules file to classify expenses
++
+ - Auto-generated reports:
+ 
+     - balance sheet
 diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-creating-csv-import-rules/export/export.hs
 --- ././04-adding-more-accounts/export/export.hs
 +++ ././05-creating-csv-import-rules/export/export.hs
@@ -58,15 +70,3 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/import/lloyds/lloyds.rules
 +if
 +AVIVA
 +  account2   assets:pension:aviva
-diff -X .gitignore -Naurb ././04-adding-more-accounts/README.md ././05-creating-csv-import-rules/README.md
---- ././04-adding-more-accounts/README.md
-+++ ././05-creating-csv-import-rules/README.md
-@@ -2,6 +2,8 @@
- 
- - Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
- 
-+- CSV import rules file to classify expenses
-+
- - Auto-generated reports:
- 
-     - balance sheet

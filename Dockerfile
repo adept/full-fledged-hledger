@@ -7,7 +7,7 @@ COPY ./01-getting-started/export/export.hs /tmp
 # Precompile all packages needed for export.hs
 RUN /tmp/export.hs -v && rm -r /tmp/export.hs /root/.stack/indices/Hackage/00-index.tar /root/.stack/indices/Hackage/00-index.tar.gz && chmod -R g+rX,o+rX /root /root/.stack/
 
-RUN apt-get update && apt-get install --yes patchutils && rm -rf /var/lib/apt/lists
+RUN apt-get update && apt-get install --yes patchutils gawk && rm -rf /var/lib/apt/lists
 
 # This is where the data dir would be mounted to
 RUN mkdir full-fledged-hledger

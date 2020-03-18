@@ -3,6 +3,13 @@ diff -X .gitignore -Naurb ././00-empty/2017.journal ././01-getting-started/2017.
 +++ ././01-getting-started/2017.journal
 @@ -0,0 +1 @@
 +;; This journal is for the current year
+diff -X .gitignore -Naurb ././00-empty/README.md ././01-getting-started/README.md
+--- ././00-empty/README.md
++++ ././01-getting-started/README.md
+@@ -0,0 +1,3 @@
++## What's here
++
++Simple empty journal without any transactions
 diff -X .gitignore -Naurb ././00-empty/all.journal ././01-getting-started/all.journal
 --- ././00-empty/all.journal
 +++ ././01-getting-started/all.journal
@@ -220,10 +227,3 @@ diff -X .gitignore -Naurb ././00-empty/export.sh ././01-getting-started/export.s
 @@ -0,0 +1,2 @@
 +#!/bin/bash
 +$(dirname $0)/export/export.hs -C $(dirname $0)/export -j --color "$@"
-diff -X .gitignore -Naurb ././00-empty/README.md ././01-getting-started/README.md
---- ././00-empty/README.md
-+++ ././01-getting-started/README.md
-@@ -0,0 +1,3 @@
-+## What's here
-+
-+Simple empty journal without any transactions

@@ -41,6 +41,18 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2017.journal ././08-m
    
  include ./import/lloyds/journal/99966633_20171223_1844.journal
 +include ./export/2017-mortgage-interest.journal
+diff -X .gitignore -Naurb ././07-investments-easy-approach/README.md ././08-mortgage/README.md
+--- ././07-investments-easy-approach/README.md
++++ ././08-mortgage/README.md
+@@ -4,6 +4,8 @@
+ 
+ - Compact rules file to classify expenses
+ 
++- Mortgage with automatic interest and capital payments tracking
++
+ - Auto-generated reports:
+ 
+     - balance sheet
 diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././08-mortgage/export/export.hs
 --- ././07-investments-easy-approach/export/export.hs
 +++ ././08-mortgage/export/export.hs
@@ -112,15 +124,3 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.p
  OASIS COFFEE|expenses:coffee
  AVIVA|assets:pension:aviva
 +HSBC|liabilities:mortgage
-diff -X .gitignore -Naurb ././07-investments-easy-approach/README.md ././08-mortgage/README.md
---- ././07-investments-easy-approach/README.md
-+++ ././08-mortgage/README.md
-@@ -4,6 +4,8 @@
- 
- - Compact rules file to classify expenses
- 
-+- Mortgage with automatic interest and capital payments tracking
-+
- - Auto-generated reports:
- 
-     - balance sheet

@@ -1,3 +1,15 @@
+diff -X .gitignore -Naurb ././05-creating-csv-import-rules/README.md ././06-maintaining-lots-of-csv-rules/README.md
+--- ././05-creating-csv-import-rules/README.md
++++ ././06-maintaining-lots-of-csv-rules/README.md
+@@ -2,7 +2,7 @@
+ 
+ - Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
+ 
+-- CSV import rules file to classify expenses
++- Compact rules file to classify expenses
+ 
+ - Auto-generated reports:
+ 
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././06-maintaining-lots-of-csv-rules/export/export.hs
 --- ././05-creating-csv-import-rules/export/export.hs
 +++ ././06-maintaining-lots-of-csv-rules/export/export.hs
@@ -108,15 +120,3 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/import/psv-to-rules.a
 +        if (comment!="") {print "  comment   " comment}        
 +    }
 +}
-diff -X .gitignore -Naurb ././05-creating-csv-import-rules/README.md ././06-maintaining-lots-of-csv-rules/README.md
---- ././05-creating-csv-import-rules/README.md
-+++ ././06-maintaining-lots-of-csv-rules/README.md
-@@ -2,7 +2,7 @@
- 
- - Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
- 
--- CSV import rules file to classify expenses
-+- Compact rules file to classify expenses
- 
- - Auto-generated reports:
- 

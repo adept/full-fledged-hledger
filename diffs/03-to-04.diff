@@ -12,6 +12,17 @@ diff -X .gitignore -Naurb ././03-getting-full-history/2016.journal ././04-adding
  include ./export/2016-opening.journal
  include ./import/lloyds/journal/99966633_20171224_2043.journal
 +include ./import/lloyds/journal/12345678_20171225_0002.journal
+diff -X .gitignore -Naurb ././03-getting-full-history/README.md ././04-adding-more-accounts/README.md
+--- ././03-getting-full-history/README.md
++++ ././04-adding-more-accounts/README.md
+@@ -1,6 +1,6 @@
+ ## What's here
+ 
+-- Several years of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
++- Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
+ 
+ - Auto-generated reports:
+ 
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in/12345678_20171225_0001.csv ././04-adding-more-accounts/import/lloyds/in/12345678_20171225_0001.csv
 --- ././03-getting-full-history/import/lloyds/in/12345678_20171225_0001.csv
 +++ ././04-adding-more-accounts/import/lloyds/in/12345678_20171225_0001.csv
@@ -42,14 +53,3 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/lloyds.rules
 -  account2   assets:Lloyds:savings
 +TRANSFER
 +  account2   assets:Lloyds:transfers
-diff -X .gitignore -Naurb ././03-getting-full-history/README.md ././04-adding-more-accounts/README.md
---- ././03-getting-full-history/README.md
-+++ ././04-adding-more-accounts/README.md
-@@ -1,6 +1,6 @@
- ## What's here
- 
--- Several years of transactions from the single bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
-+- Several years of transactions from several bank account, imported from CSV files, with automatic data scrubbing and CSV-to-journal conversion
- 
- - Auto-generated reports:
- 

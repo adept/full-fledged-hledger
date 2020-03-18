@@ -1,15 +1,3 @@
-diff -X .gitignore -Naurb ././08-mortgage/export/mortgage_interest.sh ././09-remortgage/export/mortgage_interest.sh
---- ././08-mortgage/export/mortgage_interest.sh
-+++ ././09-remortgage/export/mortgage_interest.sh
-@@ -4,6 +4,7 @@
- year="$1"
- dir=$(dirname $0)
- echo ";; This is an auto-generated file, do not edit"
-+# 2% till 2015-05, 1.8% after 2015-05
- hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -I \
--    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today -I \
-+    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual-schedule='[(2000-01-01,0.02),(2015-05-01,0.018)]' --act liabilities:mortgage -q --today -I \
-     | hledger print -f - -p "${year}"
 diff -X .gitignore -Naurb ././08-mortgage/README.md ././09-remortgage/README.md
 --- ././08-mortgage/README.md
 +++ ././09-remortgage/README.md
@@ -22,3 +10,15 @@ diff -X .gitignore -Naurb ././08-mortgage/README.md ././09-remortgage/README.md
  
  - Auto-generated reports:
  
+diff -X .gitignore -Naurb ././08-mortgage/export/mortgage_interest.sh ././09-remortgage/export/mortgage_interest.sh
+--- ././08-mortgage/export/mortgage_interest.sh
++++ ././09-remortgage/export/mortgage_interest.sh
+@@ -4,6 +4,7 @@
+ year="$1"
+ dir=$(dirname $0)
+ echo ";; This is an auto-generated file, do not edit"
++# 2% till 2015-05, 1.8% after 2015-05
+ hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -I \
+-    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today -I \
++    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual-schedule='[(2000-01-01,0.02),(2015-05-01,0.018)]' --act liabilities:mortgage -q --today -I \
+     | hledger print -f - -p "${year}"
