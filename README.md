@@ -21,6 +21,7 @@ Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 7. [Investments - easy approach](https://github.com/adept/full-fledged-hledger/wiki/Investments-easy-approach)
 8. [Mortgages](https://github.com/adept/full-fledged-hledger/wiki/Mortgage)
 8. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
+8. [Foreign currency](https://github.com/adept/full-fledged-hledger/wiki/Foreign-currency)
 6. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
