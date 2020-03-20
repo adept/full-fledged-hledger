@@ -1,0 +1,53 @@
+diff -X .gitignore -Naurb ././09-remortgage/export/export.hs ././10-other-currencies/export/export.hs
+--- ././09-remortgage/export/export.hs
++++ ././10-other-currencies/export/export.hs
+@@ -118,7 +118,7 @@
+ 
+   (accounts "//*") %> hledger_process_year base year_inputs ["accounts"]
+ 
+-  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat"]
++  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat","--cost"]
+ 
+   (balance_sheet "//*") %> hledger_process_year base year_inputs ["balancesheet"]
+ 
+diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/in/99966633_20171224_2043.csv ././10-other-currencies/import/lloyds/in/99966633_20171224_2043.csv
+--- ././09-remortgage/import/lloyds/in/99966633_20171224_2043.csv
++++ ././10-other-currencies/import/lloyds/in/99966633_20171224_2043.csv
+@@ -2,5 +2,7 @@
+ 01/05/2016,BP,'12-34-56,99966633,AVIVA,100,,100
+ 09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,200.0
+ 07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1200.00
+-31/03/2016,BGC,'12-34-56,99966633,HSBC,100,,1203.72
+-30/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,653.72,1303.72
++05/04/2016,FOREIGN CCY $6.40,'12-34-56,99966633,WIKIMEDIA,5,,1203.72
++02/04/2016,FOREIGN CCY $7.68,'12-34-56,99966633,HLEDGER,6,,1208.72
++31/03/2016,BGC,'12-34-56,99966633,HSBC,100,,1214.72
++30/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,664.72,1314.72
+diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/in2csv ././10-other-currencies/import/lloyds/in2csv
+--- ././09-remortgage/import/lloyds/in2csv
++++ ././10-other-currencies/import/lloyds/in2csv
+@@ -1,2 +1,2 @@
+ #!/bin/bash
+-sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/; s/,12345678,/,assets:Lloyds:savings,/' < "$1"
++sed -e 's/  +/ /g; s/,99966633,/,assets:Lloyds:current,/; s/,12345678,/,assets:Lloyds:savings,/; s/FOREIGN CCY \([^,]*\),[^,]*/FOREIGN CCY,\1/' < "$1"
+diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/lloyds.rules ././10-other-currencies/import/lloyds/lloyds.rules
+--- ././09-remortgage/import/lloyds/lloyds.rules
++++ ././10-other-currencies/import/lloyds/lloyds.rules
+@@ -5,4 +5,8 @@
+ currency1 £
+ account2  expenses:unknown
+ 
++if
++FOREIGN CCY
++  amount2  %sortcode @@ £%amount1-out
++
+ include generated.rules
+diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/rules.psv ././10-other-currencies/import/lloyds/rules.psv
+--- ././09-remortgage/import/lloyds/rules.psv
++++ ././10-other-currencies/import/lloyds/rules.psv
+@@ -5,3 +5,5 @@
+ OASIS COFFEE|expenses:coffee
+ AVIVA|assets:pension:aviva
+ HSBC|liabilities:mortgage
++WIKIMEDIA|expenses:donations
++HLEDGER|expenses:donations

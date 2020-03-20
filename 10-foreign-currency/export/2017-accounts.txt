@@ -1,0 +1,12 @@
+assets:Lloyds:current
+assets:Lloyds:savings
+assets:house
+assets:pension:aviva
+equity:opening/closing balances
+expenses:coffee
+expenses:groceries
+expenses:mortgage interest
+income:employer
+income:interest
+liabilities:mortgage
+virtual:unrealized pnl
