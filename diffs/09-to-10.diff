@@ -13,14 +13,14 @@ diff -X .gitignore -Naurb ././09-remortgage/README.md ././10-foreign-currency/RE
 diff -X .gitignore -Naurb ././09-remortgage/export/export.hs ././10-foreign-currency/export/export.hs
 --- ././09-remortgage/export/export.hs
 +++ ././10-foreign-currency/export/export.hs
-@@ -118,7 +118,7 @@
+@@ -124,7 +124,7 @@
  
-   (accounts "//*") %> hledger_process_year base year_inputs ["accounts"]
+   (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
  
--  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat"]
-+  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat","--cost"]
+-  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat"]
++  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--cost"]
  
-   (balance_sheet "//*") %> hledger_process_year base year_inputs ["balancesheet"]
+   (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet"]
  
 diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/in/99966633_20171224_2043.csv ././10-foreign-currency/import/lloyds/in/99966633_20171224_2043.csv
 --- ././09-remortgage/import/lloyds/in/99966633_20171224_2043.csv

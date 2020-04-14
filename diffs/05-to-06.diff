@@ -13,7 +13,7 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/README.md ././06-main
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././06-maintaining-lots-of-csv-rules/export/export.hs
 --- ././05-creating-csv-import-rules/export/export.hs
 +++ ././06-maintaining-lots-of-csv-rules/export/export.hs
-@@ -61,7 +61,7 @@
+@@ -62,7 +62,7 @@
  -- Extra dependencies of the import files
  -----------------------------------------
  extraDeps file
@@ -22,7 +22,7 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././
    | otherwise = []
  
  -----------------------------------------------
-@@ -127,6 +127,9 @@
+@@ -133,6 +133,9 @@
    -- Enumerate directories with auto-generated journals
    [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
  
@@ -32,7 +32,7 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -182,6 +185,12 @@
+@@ -188,6 +191,12 @@
    (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
    writeFileChanged out output
  

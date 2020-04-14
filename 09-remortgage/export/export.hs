@@ -15,11 +15,14 @@ import System.Directory as D
 -- 1. Range of years to produce reports for. You would
 --    typically want all the years  you have data for.
 -- 2. Location of your journal files (path, relative to your export directory)
+-- 3. Name of the hledger binary
+-- 4. Which accounts to include into opening/closing balances
 --
-defaultFirstYear = 2014 :: Int
-defaultCurrentYear = 2017
-defaultBaseDir   = ".."
-
+defaultFirstYear     = 2014 :: Int
+defaultCurrentYear   = 2017
+defaultBaseDir       = ".."
+defaultHledgerBinary = "hledger"
+defaultEquityQuery   = "assets|liabilities|debts"
 --
 -- Input file naming scheme
 --
@@ -36,8 +39,6 @@ balance_sheet     y = y++"-balance-sheet.txt"
 cash_flow         y = y++"-cash-flow.txt"
 accounts          y = y++"-accounts.txt"
 unknown           y = y++"-unknown.journal"
--- which accounts to include in opening/closing reports
-open_close_account_query = "assets|liabilities|debts"
 closing_balances  y = y++"-closing.journal"
 opening_balances  y = y++"-opening.journal"
 
@@ -82,53 +83,58 @@ extraInputs file = []
 -- Command line flags
 --
 data Flags =
-  Flags { firstYear   :: Int
-        , currentYear :: Int
-        , baseDir     :: String
+  Flags { firstYear     :: Int
+        , currentYear   :: Int
+        , baseDir       :: String
+        , hledgerBinary :: String
+        , equityQuery   :: String
         } deriving Eq
 
 setFirstYear y flags   = flags{firstYear = read y}
 setCurrentYear y flags = flags{currentYear = read y}
 setBaseDir d flags     = flags{baseDir = d}
+setBinary b flags      = flags{hledgerBinary = b}
+setEquityQuery q flags = flags{equityQuery = q}
 
 flags =
   [ Option "" ["first"] (ReqArg (Right . setFirstYear) "YEAR") ("Override current year. Defaults to " ++ show defaultFirstYear)
   , Option "" ["current"] (ReqArg (Right . setCurrentYear) "YEAR") ("Override current year. Defaults to " ++ show defaultCurrentYear)
-  , Option "" ["base"] (ReqArg (Right . setBaseDir) "DIR") ("Override the relative location of journal files. Defaults to " ++ defaultBaseDir)
+  , Option "" ["base"] (ReqArg (Right . setBaseDir) "DIR") ("Override the relative location of journal files. Defaults to " ++ show defaultBaseDir)
+  , Option "" ["hledger"] (ReqArg (Right . setBinary) "PATH") ("Use this hledger executable. Defaults to " ++ show defaultHledgerBinary)
+  , Option "" ["equity"] (ReqArg (Right . setEquityQuery) "QUERY") ("Use this query string to generate opening-closing balances. Defaults to " ++ show defaultEquityQuery)
   ]
 
 main = do
-  let defaults = Flags { firstYear = defaultFirstYear, currentYear = defaultCurrentYear, baseDir = defaultBaseDir }
+  let defaults = Flags { firstYear = defaultFirstYear, currentYear = defaultCurrentYear, baseDir = defaultBaseDir, hledgerBinary = defaultHledgerBinary, equityQuery = defaultEquityQuery }
   shakeArgsAccumulate shakeOptions flags defaults export_all
 
 -- Build rules
 export_all flags targets = return $ Just $ do
   let first = firstYear flags
       current = currentYear flags
-      base = baseDir flags
       
   if null targets then want (reports first current) else want targets
 
   -- Discover and cache the list of all includes for the given .journal file, recursively
   year_inputs <- newCache $ \year -> do
-    let file = input base year
-    getIncludes base file -- file itself will be included here
+    let file = input (baseDir flags) year
+    getIncludes (baseDir flags) file -- file itself will be included here
 
-  (transactions "//*") %> hledger_process_year base year_inputs ["print"]
+  (transactions "//*") %> hledger_process_year flags year_inputs ["print"]
 
-  (accounts "//*") %> hledger_process_year base year_inputs ["accounts"]
+  (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
 
-  (income_expenses "//*") %> hledger_process_year base year_inputs ["is","--flat"]
+  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat"]
 
-  (balance_sheet "//*") %> hledger_process_year base year_inputs ["balancesheet"]
+  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet"]
 
-  (cash_flow "//*") %> hledger_process_year base year_inputs ["cashflow","not:desc:(opening balances)"]
+  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)"]
 
-  (unknown "//*") %> hledger_process_year base year_inputs ["print", "unknown"]
+  (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
 
-  (closing_balances "//*") %> generate_closing_balances base year_inputs
+  (closing_balances "//*") %> generate_closing_balances flags year_inputs
 
-  (opening_balances "//*") %> generate_opening_balances base year_inputs
+  (opening_balances "//*") %> generate_opening_balances flags year_inputs
 
   -- Enumerate directories with auto-generated cleaned csv files
   [ "//import/lloyds/csv/*.csv" ] |%> in2csv
@@ -150,26 +156,26 @@ export_all flags targets = return $ Just $ do
 
 -- Run hledger command on a given yearly file. Year is extracted from output file name.
 -- To generate '2017-balances', we will process '2017.journal'
-hledger_process_year base year_inputs args out = do
+hledger_process_year flags year_inputs args out = do
   let year = head $ split out
   deps <- year_inputs year
   need deps
-  (Stdout output) <- cmd "hledger" ("-f" : input base year : args)
+  (Stdout output) <- cmd (hledgerBinary flags) ("-f" : input (baseDir flags) year : args)
   writeFileChanged out output
 
-generate_opening_balances base year_inputs out = do
+generate_opening_balances flags year_inputs out = do
   let year = head $ split out
   let prev_year = show ((read year)-1)
   deps <- year_inputs prev_year
   need deps
   (Stdout output) <-
-    cmd "hledger"
-    ["-f",input base prev_year,"equity",open_close_account_query,"-e",year,"--opening"]
+    cmd (hledgerBinary flags)
+    ["-f",input (baseDir flags) prev_year,"equity",equityQuery flags,"-e",year,"--opening"]
   writeFileChanged out output
 
-generate_closing_balances base year_inputs out = do
+generate_closing_balances flags year_inputs out = do
   let year = head $ split out
-  hledger_process_year base year_inputs ["equity",open_close_account_query,"-e",show (1+(read year)),"-I","--closing"] out
+  hledger_process_year flags year_inputs ["equity",equityQuery flags,"-e",show (1+(read year)),"-I","--closing"] out
 
 -- To produce <importdir>/csv/filename.csv, look for <importdir>/in/filename.csv and
 -- process it with <importdir>/in2csv

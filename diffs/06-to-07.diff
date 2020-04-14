@@ -59,7 +59,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/README.md ././07-
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
 --- ././06-maintaining-lots-of-csv-rules/export/export.hs
 +++ ././07-investments-easy-approach/export/export.hs
-@@ -41,6 +41,12 @@
+@@ -42,6 +42,12 @@
  closing_balances  y = y++"-closing.journal"
  opening_balances  y = y++"-opening.journal"
  
@@ -72,7 +72,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
  --
  -- Defining the full set of reports and journals to be generated
  --
-@@ -53,6 +59,7 @@
+@@ -54,6 +60,7 @@
           , [ unknown              (show y) | y <- all_years ]
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
@@ -80,7 +80,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
           ]
    where
      all_years=[first..current]
-@@ -130,6 +137,8 @@
+@@ -136,6 +143,8 @@
    -- Whenever we need generated.rules, produce them from rules.psv
    "//import//generated.rules" %> generated_rules
  
@@ -89,7 +89,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -191,6 +200,13 @@
+@@ -197,6 +206,13 @@
    (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
    writeFileChanged out output
  
