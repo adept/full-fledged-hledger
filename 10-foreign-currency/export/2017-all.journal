@@ -8,11 +8,11 @@
 
 2017-03-30 (BGC) EMPLOYER INC
     assets:Lloyds:current        £1093.72 = £1193.72
-    income:employer             £-1093.72
+    income:employer
 
 2017-03-31 (BGC) HSBC
     assets:Lloyds:current        £-100.00 = £1093.72
-    liabilities:mortgage          £100.00
+    liabilities:mortgage
 
 2017-03-31 1.8% interest for £-595.53 over 90 days
     liabilities:mortgage                £-2.64
@@ -20,19 +20,19 @@
 
 2017-04-01 INTEREST (NET)
     assets:Lloyds:current           £1.21 = £1094.93
-    income:interest                £-1.21
+    income:interest
 
 2017-04-07 (DEB) WAITROSE
     assets:Lloyds:current          £-5.24 = £1089.69
-    expenses:groceries              £5.24
+    expenses:groceries
 
 2017-04-07 (BP) OASIS COFFEE
     assets:Lloyds:current          £-2.76 = £1086.93
-    expenses:coffee                 £2.76
+    expenses:coffee
 
 2017-05-01 (BP) AVIVA
     assets:Lloyds:current        £-100.00 = £986.93
-    assets:pension:aviva          £100.00
+    assets:pension:aviva
 
 2017-06-30 pension valuation
     assets:pension:aviva       = £411.03
