@@ -2,7 +2,7 @@ FROM haskell:8.8.3
 
 ENV RESOLVER lts-15.4
 
-COPY --from=dastapov/hledger:1.17.1.1 /usr/bin/hledger* /usr/bin/
+COPY --from=dastapov/hledger:1.18 /usr/bin/hledger* /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 
@@ -11,7 +11,7 @@ RUN stack --resolver $RESOLVER --system-ghc script --package shake --package dir
     && rm -r /tmp/export.hs \
     && chmod -R g+wrX,o+wrX /root \
     && apt-get update \
-    && apt-get install --yes patchutils gawk sudo \
+    && apt-get install --yes patchutils gawk \
     && rm -rf /var/lib/apt/lists
 
 RUN adduser --system --ingroup root hledger
