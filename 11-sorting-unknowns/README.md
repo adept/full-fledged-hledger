@@ -17,3 +17,5 @@
     - income/expenses
 
     - return on investements (IRR && TWR)
+
+- Script (resolve.sh) to sort out uncategorized transactions
