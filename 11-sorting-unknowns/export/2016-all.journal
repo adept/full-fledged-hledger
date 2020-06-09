@@ -1,0 +1,52 @@
+2016-01-01 opening balances
+    assets:Lloyds:current                   £650.00 = £650.00
+    assets:Lloyds:savings                   £500.00 = £500.00
+    assets:house                           £1000.00 = £1000.00
+    assets:pension:aviva                    £204.41 = £204.41
+    liabilities:mortgage                   £-684.52 = £-684.52
+    equity:opening/closing balances
+
+2016-03-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £664.72 = £1314.72
+    income:employer
+
+2016-03-31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00 = £1214.72
+    liabilities:mortgage
+
+2016-03-31 1.8% interest for £-684.52 over 91 days
+    liabilities:mortgage                £-3.06
+    expenses:mortgage interest           £3.06
+
+2016-04-02 (FOREIGN CCY) HLEDGER
+    assets:Lloyds:current          £-6.00 = £1208.72
+    expenses:donations        $7.68 @@ £6
+
+2016-04-05 (FOREIGN CCY) WIKIMEDIA
+    assets:Lloyds:current          £-5.00 = £1203.72
+    expenses:donations        $6.40 @@ £5
+
+2016-04-07 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-3.72 = £1200.00
+    expenses:coffee
+
+2016-04-09 (DEB) TRANSFER TO 12345678
+    assets:Lloyds:current         £-1000.00 = £200.00
+    assets:Lloyds:transfers
+
+2016-04-09 (DEB) TRANSFER FROM 99966633
+    assets:Lloyds:savings          £1000.00 = £1500.00
+    assets:Lloyds:transfers
+
+2016-05-01 (BP) AVIVA
+    assets:Lloyds:current        £-100.00 = £100.00
+    assets:pension:aviva
+
+2016-12-31 pension valuation
+    assets:pension:aviva       = £308.27
+    virtual:unrealized pnl
+
+2016-12-31 1.8% interest for £-587.58 over 275 days
+    liabilities:mortgage                £-7.95
+    expenses:mortgage interest           £7.95
+

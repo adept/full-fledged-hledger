@@ -1,0 +1,9 @@
+include ./export/2016-opening.journal
+
+2016/12/31 pension valuation
+  assets:pension:aviva     = £308.27
+  virtual:unrealized pnl
+  
+include ./import/lloyds/journal/99966633_20171224_2043.journal
+include ./import/lloyds/journal/12345678_20171225_0002.journal
+include ./export/2016-mortgage-interest.journal

@@ -11,8 +11,10 @@ RUN stack --resolver $RESOLVER --system-ghc script --package shake --package dir
     && rm -r /tmp/export.hs \
     && chmod -R g+wrX,o+wrX /root \
     && apt-get update \
-    && apt-get install --yes patchutils gawk \
-    && rm -rf /var/lib/apt/lists
+    && apt-get install --yes patchutils gawk csvtool ripgrep \
+    && rm -rf /var/lib/apt/lists \
+    && cd /usr/bin/ \
+    && curl -L https://github.com/lotabout/skim/releases/download/v0.8.1/skim-v0.8.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
 
 RUN adduser --system --ingroup root hledger
 

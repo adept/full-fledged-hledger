@@ -22,6 +22,7 @@ Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
 8. [Mortgages](https://github.com/adept/full-fledged-hledger/wiki/Mortgage)
 8. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
 8. [Foreign currency](https://github.com/adept/full-fledged-hledger/wiki/Foreign-currency)
+8. [Sorting `expenses:unknown`](https://github.com/adept/full-fledged-hledger/wiki/Sorting-unknowns)
 6. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
