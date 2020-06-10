@@ -56,3 +56,9 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 # Read the wiki
 
 Did I mention that you should go and [read the wiki](https://github.com/adept/full-fledged-hledger/wiki)?
+
+# Awk, and Shake, and csvtools, and shell scripts, ...?!
+
+There is [docker image](https://hub.docker.com/r/dastapov/full-fledged-hledger) that includes all the dependencies and tools. Just clone this repo, run `./docker.sh` and you should be all set.
+
+Also, check out [hledger-flow](https://github.com/apauley/hledger-flow) - it might suit you better, as all the automation code is contained in a single binary.
