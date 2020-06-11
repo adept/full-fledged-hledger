@@ -1,3 +1,12 @@
+diff -X .gitignore -Naurb ././10-foreign-currency/README.md ././11-sorting-unknowns/README.md
+--- ././10-foreign-currency/README.md
++++ ././11-sorting-unknowns/README.md
+@@ -17,3 +17,5 @@
+     - income/expenses
+ 
+     - return on investements (IRR && TWR)
++
++- Script (resolve.sh) to sort out uncategorized transactions
 diff -X .gitignore -Naurb ././10-foreign-currency/import/lloyds/in/99966633_20171223_1844.csv ././11-sorting-unknowns/import/lloyds/in/99966633_20171223_1844.csv
 --- ././10-foreign-currency/import/lloyds/in/99966633_20171223_1844.csv
 +++ ././11-sorting-unknowns/import/lloyds/in/99966633_20171223_1844.csv
@@ -20,7 +29,7 @@ diff -X .gitignore -Naurb ././10-foreign-currency/import/lloyds/rules.psv ././11
 diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unknowns/resolve.sh
 --- ././10-foreign-currency/resolve.sh
 +++ ././11-sorting-unknowns/resolve.sh
-@@ -0,0 +1,51 @@
+@@ -0,0 +1,52 @@
 +#!/bin/bash
 +set -e -o pipefail
 +
@@ -57,7 +66,8 @@ diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unkn
 +    # This step allow us to fine-tune it, by seeing what it matches in real time
 +    regexp=$(sk --header="Fine-tune regexp. Searching in ${dir}/*.rules and ${dir}/csv" \
 +                --cmd-query="${description}" --print-cmd --ansi -i \
-+                -c "rg -i -I --color=always --line-number \"{}\" $(ls ${dir}/*.rules | grep -v generated.rules) ${dir}/csv" | head -n1)
++                --bind 'ctrl-d:delete-char' \
++                -c "rg -i --color=always --line-number \"{}\" $(ls ${dir}/*.rules | grep -v generated.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
 +
 +    # Now lets choose account
 +    account=$(cat /tmp/accounts.txt | sort -u | sk --header="Choose account")

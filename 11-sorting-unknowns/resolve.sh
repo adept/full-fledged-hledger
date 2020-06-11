@@ -34,7 +34,8 @@ while true ; do
     # This step allow us to fine-tune it, by seeing what it matches in real time
     regexp=$(sk --header="Fine-tune regexp. Searching in ${dir}/*.rules and ${dir}/csv" \
                 --cmd-query="${description}" --print-cmd --ansi -i \
-                -c "rg -i --no-filename --color=always --line-number \"{}\" $(ls ${dir}/*.rules | grep -v generated.rules) ${dir}/csv" | head -n1)
+                --bind 'ctrl-d:delete-char' \
+                -c "rg -i --color=always --line-number \"{}\" $(ls ${dir}/*.rules | grep -v generated.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
 
     # Now lets choose account
     account=$(cat /tmp/accounts.txt | sort -u | sk --header="Choose account")
