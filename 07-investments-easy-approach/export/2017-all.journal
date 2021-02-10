@@ -30,6 +30,6 @@
     assets:pension:aviva
 
 2017-06-30 pension valuation
-    assets:pension:aviva       = £411.03
+    assets:pension:aviva                   = £411.03
     virtual:unrealized pnl
 

@@ -1,8 +1,8 @@
-FROM haskell:8.8.3
+FROM haskell:8.8.4
 
-ENV RESOLVER lts-15.4
+ENV RESOLVER lts-16.12
 
-COPY --from=dastapov/hledger:1.18 /usr/bin/hledger* /usr/bin/
+COPY --from=dastapov/hledger:1.20.4 /usr/bin/hledger* /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 

@@ -35,7 +35,7 @@
     assets:pension:aviva
 
 2017-06-30 pension valuation
-    assets:pension:aviva       = £411.03
+    assets:pension:aviva                   = £411.03
     virtual:unrealized pnl
 
 2017-12-31 1.8% interest for £-498.17 over 275 days

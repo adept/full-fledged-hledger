@@ -20,7 +20,7 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +++ ././01-getting-started/export/export.hs
 @@ -0,0 +1,208 @@
 +#!/usr/bin/env stack
-+-- stack --resolver lts-15.4 script --package shake --package directory
++-- stack --resolver lts-16.12 script --package shake --package directory
 +import Development.Shake
 +import Development.Shake.FilePath
 +import Development.Shake.Util

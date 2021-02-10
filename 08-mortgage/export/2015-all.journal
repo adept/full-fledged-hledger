@@ -22,19 +22,19 @@
     assets:Lloyds:transfers
 
 2015-04-07 (DEB) TRANSFER FROM 99966633
-    assets:Lloyds:savings           £500.00 = £500.00
+    assets:Lloyds:savings           £500.00 = £500
     assets:Lloyds:transfers
 
 2015-04-08 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-3.72 = £750.00
+    assets:Lloyds:current          £-3.72 = £750
     expenses:coffee
 
 2015-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £650.00
+    assets:Lloyds:current        £-100.00 = £650
     assets:pension:aviva
 
 2015-12-31 pension valuation
-    assets:pension:aviva       = £204.41
+    assets:pension:aviva                   = £204.41
     virtual:unrealized pnl
 
 2015-12-31 2% interest for £-674.36 over 275 days
