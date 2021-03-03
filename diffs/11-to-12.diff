@@ -1,0 +1,80 @@
+diff -X .gitignore -Naurb ././11-sorting-unknowns/2017.journal ././12-file-specific-rules/2017.journal
+--- ././11-sorting-unknowns/2017.journal
++++ ././12-file-specific-rules/2017.journal
+@@ -7,4 +7,5 @@
+   virtual:unrealized pnl
+   
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
++include ./import/lloyds/journal/12345678_20171225_0003.journal
+ include ./export/2017-mortgage-interest.journal
+diff -X .gitignore -Naurb ././11-sorting-unknowns/export/export.hs ././12-file-specific-rules/export/export.hs
+--- ././11-sorting-unknowns/export/export.hs
++++ ././12-file-specific-rules/export/export.hs
+@@ -71,7 +71,10 @@
+ -- Extra dependencies of the import files
+ -----------------------------------------
+ extraDeps file
+-  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "generated.rules"]
++  | "//lloyds//*.journal" ?== file =
++      let basename = takeBaseName file
++      in
++        ["./rules/" ++ basename ++ ".rules", "lloyds.rules", "generated.rules"]
+   | otherwise = []
+ 
+ -----------------------------------------------
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/csv2journal ././12-file-specific-rules/import/lloyds/csv2journal
+--- ././11-sorting-unknowns/import/lloyds/csv2journal
++++ ././12-file-specific-rules/import/lloyds/csv2journal
+@@ -1,2 +1,2 @@
+ #!/bin/bash
+-hledger print --rules-file lloyds.rules -f "$1"
++hledger print --rules-file "./rules/$(basename "$1" .csv).rules" -f "$1"
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/in/12345678_20171225_0003.csv ././12-file-specific-rules/import/lloyds/in/12345678_20171225_0003.csv
+--- ././11-sorting-unknowns/import/lloyds/in/12345678_20171225_0003.csv
++++ ././12-file-specific-rules/import/lloyds/in/12345678_20171225_0003.csv
+@@ -0,0 +1,2 @@
++Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
++10/04/2017,DEB,'12-34-56,12345678,CHECK #0001523,,100,1600.0
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0001.rules ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0001.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0001.rules
++++ ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0001.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0002.rules ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0002.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0002.rules
++++ ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0002.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0003.rules ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0003.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0003.rules
++++ ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0003.rules
+@@ -0,0 +1,9 @@
++# include the general CSV conversion rules which are applicable to all lloyds CSVs
++# put the include statement at the top of the file, so that the rules that
++# you write below take precedence over the general rules
++include ../lloyds.rules
++
++# optionally add file-specific rules and any other rules which you want applied only to this csv
++if
++10/04/2017,DEB,'12-34-56,assets:Lloyds:savings,CHECK #0001523,,100,1600.0
++  account2 income:tutoring
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/99966633_20171223_1844.rules ././12-file-specific-rules/import/lloyds/rules/99966633_20171223_1844.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/99966633_20171223_1844.rules
++++ ././12-file-specific-rules/import/lloyds/rules/99966633_20171223_1844.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2041.rules ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2041.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2041.rules
++++ ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2041.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2042.rules ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2042.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2042.rules
++++ ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2042.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
+diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2043.rules ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2043.rules
+--- ././11-sorting-unknowns/import/lloyds/rules/99966633_20171224_2043.rules
++++ ././12-file-specific-rules/import/lloyds/rules/99966633_20171224_2043.rules
+@@ -0,0 +1 @@
++include ../lloyds.rules
