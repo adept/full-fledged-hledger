@@ -1,6 +1,6 @@
 2015-01-01 opening balances
     assets:Lloyds:current                   £600.00 = £600.00
-    assets:cash                             £150.00 = £150
+    assets:cash                             £150.00 = £150.00
     equity:opening/closing balances
 
 2015-03-30 (BGC) EMPLOYER INC
@@ -16,14 +16,14 @@
     assets:Lloyds:transfers
 
 2015-04-07 (DEB) TRANSFER FROM 99966633
-    assets:Lloyds:savings           £500.00 = £500
+    assets:Lloyds:savings           £500.00 = £500.00
     assets:Lloyds:transfers
 
 2015-04-08 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-3.72 = £750
+    assets:Lloyds:current          £-3.72 = £750.00
     expenses:unknown
 
 2015-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £650
+    assets:Lloyds:current        £-100.00 = £650.00
     expenses:unknown
 

@@ -23,15 +23,15 @@
     expenses:coffee
 
 2016-04-09 (DEB) TRANSFER TO 12345678
-    assets:Lloyds:current         £-1000.00 = £200.0
+    assets:Lloyds:current         £-1000.00 = £200.00
     assets:Lloyds:transfers
 
 2016-04-09 (DEB) TRANSFER FROM 99966633
-    assets:Lloyds:savings          £1000.00 = £1500.0
+    assets:Lloyds:savings          £1000.00 = £1500.00
     assets:Lloyds:transfers
 
 2016-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £100
+    assets:Lloyds:current        £-100.00 = £100.00
     assets:pension:aviva
 
 2016-12-31 pension valuation

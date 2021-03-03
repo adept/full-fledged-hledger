@@ -5,7 +5,7 @@ Balance Sheet 2014-12-31
  Assets                ||            
 -----------------------++------------
  assets:Lloyds:current ||    £600.00 
- assets:cash           ||       £150 
+ assets:cash           ||    £150.00 
  assets:pension:aviva  ||    £102.34 
 -----------------------++------------
                        ||    £852.34 
