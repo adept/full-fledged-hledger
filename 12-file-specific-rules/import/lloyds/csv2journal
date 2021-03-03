@@ -1,2 +1,2 @@
 #!/bin/bash
-hledger print --rules-file ./rules/$(basename "$1" .csv)".rules" -f "$1"
+hledger print --rules-file "./rules/$(basename "$1" .csv).rules" -f "$1"
