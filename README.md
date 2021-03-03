@@ -34,10 +34,11 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 6. [Maintaining CSV rules](https://github.com/adept/full-fledged-hledger/wiki/Maintaining-CSV-rules)
 7. [Investments - easy approach](https://github.com/adept/full-fledged-hledger/wiki/Investments-easy-approach)
 8. [Mortgages](https://github.com/adept/full-fledged-hledger/wiki/Mortgage)
-8. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
-8. [Foreign currency](https://github.com/adept/full-fledged-hledger/wiki/Foreign-currency)
-8. [Sorting `expenses:unknown`](https://github.com/adept/full-fledged-hledger/wiki/Sorting-unknowns)
-6. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
+9. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
+10. [Foreign currency](https://github.com/adept/full-fledged-hledger/wiki/Foreign-currency)
+11. [Sorting `expenses:unknown`](https://github.com/adept/full-fledged-hledger/wiki/Sorting-unknowns)
+12. [Hyperspecific rules](https://github.com/adept/full-fledged-hledger/wiki/Hyperspecific-rules)
+13. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
 
