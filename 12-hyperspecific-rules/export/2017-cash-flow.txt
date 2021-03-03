@@ -1,0 +1,11 @@
+Cashflow Statement 2017
+
+                       ||     2017 
+=======================++==========
+ Cash flows            ||          
+-----------------------++----------
+ assets:Lloyds:current ||  £870.00 
+ assets:Lloyds:savings ||  £100.00 
+ assets:pension:aviva  ||  £102.76 
+-----------------------++----------
+                       || £1072.76 
