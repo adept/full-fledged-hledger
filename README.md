@@ -37,7 +37,7 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 9. [Remortgage](https://github.com/adept/full-fledged-hledger/wiki/Remortgage)
 10. [Foreign currency](https://github.com/adept/full-fledged-hledger/wiki/Foreign-currency)
 11. [Sorting `expenses:unknown`](https://github.com/adept/full-fledged-hledger/wiki/Sorting-unknowns)
-12. [Hyperspecific rules](https://github.com/adept/full-fledged-hledger/wiki/Hyperspecific-rules)
+12. [File-specific rules](https://github.com/adept/full-fledged-hledger/wiki/File-specific-rules)
 13. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
