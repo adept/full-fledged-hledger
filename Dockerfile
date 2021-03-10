@@ -1,6 +1,6 @@
 FROM haskell:8.8.4
 
-ENV RESOLVER lts-16.12
+ENV RESOLVER lts-16.31
 
 COPY --from=dastapov/hledger:1.20.4 /usr/bin/hledger* /usr/bin/
 

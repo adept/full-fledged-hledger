@@ -49,12 +49,12 @@ diff -X .gitignore -Naurb ././11-sorting-unknowns/import/lloyds/rules/12345678_2
 --- ././11-sorting-unknowns/import/lloyds/rules/12345678_20171225_0003.rules
 +++ ././12-file-specific-rules/import/lloyds/rules/12345678_20171225_0003.rules
 @@ -0,0 +1,9 @@
-+# include the general CSV conversion rules which are applicable to all lloyds CSVs
-+# put the include statement at the top of the file, so that the rules that
++# include the general CSV conversion rules which are applicable to all Lloyds CSVs.
++# Put the include statement at the top of the file, so that the rules that
 +# you write below take precedence over the general rules
 +include ../lloyds.rules
 +
-+# optionally add file-specific rules and any other rules which you want applied only to this csv
++# Optionally, add hyper-specific rules and any other rules which you want applied only to this CSV
 +if
 +10/04/2017,DEB,'12-34-56,assets:Lloyds:savings,CHECK #0001523,,100,1600.0
 +  account2 income:tutoring
