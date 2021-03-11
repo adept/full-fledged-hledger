@@ -8,10 +8,10 @@ COPY ./01-getting-started/export/export.hs /tmp
 
 # Precompile all packages needed for export.hs
 RUN stack --resolver $RESOLVER --system-ghc script --package shake --package directory /tmp/export.hs -- -v \
-    && rm -r /tmp/export.hs \
+    && rm -r /tmp/export.* \
     && chmod -R g+wrX,o+wrX /root \
     && apt-get update \
-    && apt-get install --yes patchutils gawk csvtool ripgrep \
+    && apt-get install --yes patchutils gawk csvtool ripgrep parallel \
     && rm -rf /var/lib/apt/lists \
     && cd /usr/bin/ \
     && curl -L https://github.com/lotabout/skim/releases/download/v0.8.1/skim-v0.8.1-x86_64-unknown-linux-gnu.tar.gz | tar xz

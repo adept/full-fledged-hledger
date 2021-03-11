@@ -4,7 +4,13 @@ set -o pipefail
 
 . chapters.sh
 
-for c in ${chapters[@]} ; do
+function do_one() {
+    c="$1"
+    shift
     echo "Exporting in $c"
     (cd "$c"; if [ -x ./export.sh ] ; then ./export.sh "$@"; fi)
-done
+}
+export -f do_one
+
+parallel -k do_one {} "$@" ::: ${chapters[@]} 
+
