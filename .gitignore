@@ -21,3 +21,4 @@ cabal.project.local
 .shake*
 */export/.shake/.shake.database
 */export/.shake/.shake.lock
+*/export/export
