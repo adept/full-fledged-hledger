@@ -20,7 +20,7 @@ RUN adduser --system --ingroup root hledger
 
 # This is where the data dir would be mounted to
 RUN mkdir full-fledged-hledger
-VOLUME full-fledged-hledger
+VOLUME /full-fledged-hledger
 
 ENV STACK_ROOT /root/.stack
 RUN echo "allow-different-user: true" >> /root/.stack/config.yaml
