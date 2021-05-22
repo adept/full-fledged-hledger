@@ -40,11 +40,11 @@ diff -X .gitignore -Naurb ././04-adding-more-accounts/export/export.hs ././05-cr
  
 +  (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
 +
-   (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat"]
+   (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--no-elide"]
  
-   (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet"]
+   (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet","--no-elide"]
  
-   (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)"]
+   (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)","--no-elide"]
  
 +  (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
 +

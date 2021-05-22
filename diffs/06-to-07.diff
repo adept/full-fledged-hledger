@@ -85,7 +85,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
    "//import//generated.rules" %> generated_rules
  
 +  ("//" ++ investments) %> generate_investments_report current year_inputs
-+  
++
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
@@ -97,7 +97,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
 +  deps <- mapM (year_inputs . show) (investment_years current)
 +  need (concat deps)
 +  need [ "./investments.sh" ]
-+  (Stdout output) <- cmd "./investments.sh" 
++  (Stdout output) <- cmd "./investments.sh"
 +  writeFileChanged out output
 +
  -------------------

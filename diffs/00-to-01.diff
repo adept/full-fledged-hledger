@@ -118,7 +118,7 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +export_all flags targets = return $ Just $ do
 +  let first = firstYear flags
 +      current = currentYear flags
-+      
++
 +  if null targets then want (reports first current) else want targets
 +
 +  -- Discover and cache the list of all includes for the given .journal file, recursively
@@ -128,11 +128,11 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +
 +  (transactions "//*") %> hledger_process_year flags year_inputs ["print"]
 +
-+  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat"]
++  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--no-elide"]
 +
-+  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet"]
++  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet","--no-elide"]
 +
-+  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)"]
++  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)","--no-elide"]
 +
 +  (closing_balances "//*") %> generate_closing_balances flags year_inputs
 +
@@ -211,10 +211,10 @@ diff -X .gitignore -Naurb ././00-empty/export/export.hs ././01-getting-started/e
 +                                                                   , stripPrefix "include " x]]
 +  return (file:includes)
 +
-+normalisePath base x  
++normalisePath base x
 +  | "/" `isPrefixOf` x = x
 +  | "./export/" `isPrefixOf` x, Just y <- stripPrefix "./export/" x = y
-+  | otherwise = base </> x 
++  | otherwise = base </> x
 +
 +split s = takeWhile (/="") $ unfoldr (Just . head . lex) $ takeFileName s
 +

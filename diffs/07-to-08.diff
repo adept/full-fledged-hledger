@@ -75,7 +75,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
 @@ -145,6 +147,9 @@
  
    ("//" ++ investments) %> generate_investments_report current year_inputs
-   
+ 
 +  -- Mortgage interest transactions
 +  mortgage_interest "//*" %> generate_mortgage_interest year_inputs
 +
@@ -83,7 +83,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  -- Implementations of the build rules
  -------------------------------------
 @@ -213,6 +218,20 @@
-   (Stdout output) <- cmd "./investments.sh" 
+   (Stdout output) <- cmd "./investments.sh"
    writeFileChanged out output
  
 +generate_mortgage_interest year_inputs out = do
