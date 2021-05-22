@@ -115,7 +115,7 @@ main = do
 export_all flags targets = return $ Just $ do
   let first = firstYear flags
       current = currentYear flags
-      
+
   if null targets then want (reports first current) else want targets
 
   -- Discover and cache the list of all includes for the given .journal file, recursively
@@ -127,11 +127,11 @@ export_all flags targets = return $ Just $ do
 
   (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
 
-  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--cost"]
+  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--no-elide","--cost"]
 
-  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet"]
+  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet","--no-elide"]
 
-  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)"]
+  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)","--no-elide"]
 
   (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
 
@@ -149,7 +149,7 @@ export_all flags targets = return $ Just $ do
   "//import//generated.rules" %> generated_rules
 
   ("//" ++ investments) %> generate_investments_report current year_inputs
-  
+
   -- Mortgage interest transactions
   mortgage_interest "//*" %> generate_mortgage_interest year_inputs
 
@@ -218,7 +218,7 @@ generate_investments_report current year_inputs out = do
   deps <- mapM (year_inputs . show) (investment_years current)
   need (concat deps)
   need [ "./investments.sh" ]
-  (Stdout output) <- cmd "./investments.sh" 
+  (Stdout output) <- cmd "./investments.sh"
   writeFileChanged out output
 
 generate_mortgage_interest year_inputs out = do
@@ -247,10 +247,10 @@ getIncludes base file = do
                                                                    , stripPrefix "include " x]]
   return (file:includes)
 
-normalisePath base x  
+normalisePath base x
   | "/" `isPrefixOf` x = x
   | "./export/" `isPrefixOf` x, Just y <- stripPrefix "./export/" x = y
-  | otherwise = base </> x 
+  | otherwise = base </> x
 
 split s = takeWhile (/="") $ unfoldr (Just . head . lex) $ takeFileName s
 
