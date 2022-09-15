@@ -9,4 +9,4 @@ if
 FOREIGN CCY
   amount2  %sortcode @@ £%amount1-out
 
-include generated.rules
+include rules.psv

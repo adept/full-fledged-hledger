@@ -74,7 +74,7 @@ extraDeps file
   | "//lloyds//*.journal" ?== file =
       let basename = takeBaseName file
       in
-        ["./rules/" ++ basename ++ ".rules", "lloyds.rules", "generated.rules"]
+        ["./rules/" ++ basename ++ ".rules", "lloyds.rules", "rules.psv"]
   | otherwise = []
 
 -----------------------------------------------
@@ -145,9 +145,6 @@ export_all flags targets = return $ Just $ do
   -- Enumerate directories with auto-generated journals
   [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
 
-  -- Whenever we need generated.rules, produce them from rules.psv
-  "//import//generated.rules" %> generated_rules
-
   ("//" ++ investments) %> generate_investments_report current year_inputs
 
   -- Mortgage interest transactions
@@ -208,12 +205,9 @@ csv2journal out = do
   (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
   writeFileChanged out output
 
-generated_rules out = do
-  let (dir, file) = splitFileName out
-  need [ dir </> "rules.psv", dir </> ".." </> "psv-to-rules.awk" ]
-  (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
-  writeFileChanged out output
-
+-------------------
+-- Helper functions
+-------------------
 generate_investments_report current year_inputs out = do
   deps <- mapM (year_inputs . show) (investment_years current)
   need (concat deps)

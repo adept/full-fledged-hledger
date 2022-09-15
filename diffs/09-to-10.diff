@@ -53,13 +53,13 @@ diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/lloyds.rules ././10-fo
 +FOREIGN CCY
 +  amount2  %sortcode @@ £%amount1-out
 +
- include generated.rules
+ include rules.psv
 diff -X .gitignore -Naurb ././09-remortgage/import/lloyds/rules.psv ././10-foreign-currency/import/lloyds/rules.psv
 --- ././09-remortgage/import/lloyds/rules.psv
 +++ ././10-foreign-currency/import/lloyds/rules.psv
-@@ -5,3 +5,5 @@
- OASIS COFFEE|expenses:coffee
- AVIVA|assets:pension:aviva
- HSBC|liabilities:mortgage
-+WIKIMEDIA|expenses:donations
-+HLEDGER|expenses:donations
+@@ -6,3 +6,5 @@
+ OASIS COFFEE|expenses:coffee|
+ AVIVA|assets:pension:aviva|
+ HSBC|liabilities:mortgage|
++WIKIMEDIA|expenses:donations|
++HLEDGER|expenses:donations|

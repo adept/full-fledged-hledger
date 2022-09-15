@@ -72,7 +72,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
           ]
    where
      all_years=[first..current]
-@@ -145,6 +147,9 @@
+@@ -142,6 +144,9 @@
  
    ("//" ++ investments) %> generate_investments_report current year_inputs
  
@@ -82,7 +82,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -213,6 +218,20 @@
+@@ -207,6 +212,20 @@
    (Stdout output) <- cmd "./investments.sh"
    writeFileChanged out output
  
@@ -119,8 +119,8 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/mortgage_inter
 diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.psv ././08-mortgage/import/lloyds/rules.psv
 --- ././07-investments-easy-approach/import/lloyds/rules.psv
 +++ ././08-mortgage/import/lloyds/rules.psv
-@@ -4,3 +4,4 @@
- WAITROSE|expenses:groceries
- OASIS COFFEE|expenses:coffee
- AVIVA|assets:pension:aviva
-+HSBC|liabilities:mortgage
+@@ -5,3 +5,4 @@
+ WAITROSE|expenses:groceries|
+ OASIS COFFEE|expenses:coffee|
+ AVIVA|assets:pension:aviva|
++HSBC|liabilities:mortgage|

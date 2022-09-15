@@ -1,11 +1,12 @@
-INTEREST|income:interest
-EMPLOYER INC|income:employer
-TRANSFER|assets:Lloyds:transfers
-WAITROSE|expenses:groceries
-OASIS COFFEE|expenses:coffee
-AVIVA|assets:pension:aviva
-HSBC|liabilities:mortgage
-WIKIMEDIA|expenses:donations
-HLEDGER|expenses:donations
+if|account2|comment
+INTEREST|income:interest|
+EMPLOYER INC|income:employer|
+TRANSFER|assets:Lloyds:transfers|
+WAITROSE|expenses:groceries|
+OASIS COFFEE|expenses:coffee|
+AVIVA|assets:pension:aviva|
+HSBC|liabilities:mortgage|
+WIKIMEDIA|expenses:donations|
+HLEDGER|expenses:donations|
 COSTA COFFEE|expenses:coffee|Regular place was closed
 TESCO GROCERIES|expenses:groceries|

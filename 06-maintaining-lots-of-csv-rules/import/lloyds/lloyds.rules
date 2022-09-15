@@ -5,4 +5,4 @@ date-format %d/%m/%Y
 currency1 £
 account2  expenses:unknown
 
-include generated.rules
+include rules.psv

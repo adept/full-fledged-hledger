@@ -14,11 +14,11 @@ diff -X .gitignore -Naurb ././11-sorting-unknowns/export/export.hs ././12-file-s
  -- Extra dependencies of the import files
  -----------------------------------------
  extraDeps file
--  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "generated.rules"]
+-  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "rules.psv"]
 +  | "//lloyds//*.journal" ?== file =
 +      let basename = takeBaseName file
 +      in
-+        ["./rules/" ++ basename ++ ".rules", "lloyds.rules", "generated.rules"]
++        ["./rules/" ++ basename ++ ".rules", "lloyds.rules", "rules.psv"]
    | otherwise = []
  
  -----------------------------------------------

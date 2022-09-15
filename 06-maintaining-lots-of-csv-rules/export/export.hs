@@ -62,7 +62,7 @@ reports first current =
 -- Extra dependencies of the import files
 -----------------------------------------
 extraDeps file
-  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "generated.rules"]
+  | "//lloyds//*.journal" ?== file   = ["lloyds.rules", "rules.psv"]
   | otherwise = []
 
 -----------------------------------------------
@@ -133,9 +133,6 @@ export_all flags targets = return $ Just $ do
   -- Enumerate directories with auto-generated journals
   [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
 
-  -- Whenever we need generated.rules, produce them from rules.psv
-  "//import//generated.rules" %> generated_rules
-
 -------------------------------------
 -- Implementations of the build rules
 -------------------------------------
@@ -189,12 +186,6 @@ csv2journal out = do
   let deps = map (source_dir </>) $ extraDeps out
   need $ (source_dir </> "csv2journal"):(input:deps)
   (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
-  writeFileChanged out output
-
-generated_rules out = do
-  let (dir, file) = splitFileName out
-  need [ dir </> "rules.psv", dir </> ".." </> "psv-to-rules.awk" ]
-  (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
   writeFileChanged out output
 
 -------------------

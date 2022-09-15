@@ -20,10 +20,10 @@ diff -X .gitignore -Naurb ././10-foreign-currency/import/lloyds/in/99966633_2017
 diff -X .gitignore -Naurb ././10-foreign-currency/import/lloyds/rules.psv ././11-sorting-unknowns/import/lloyds/rules.psv
 --- ././10-foreign-currency/import/lloyds/rules.psv
 +++ ././11-sorting-unknowns/import/lloyds/rules.psv
-@@ -7,3 +7,5 @@
- HSBC|liabilities:mortgage
- WIKIMEDIA|expenses:donations
- HLEDGER|expenses:donations
+@@ -8,3 +8,5 @@
+ HSBC|liabilities:mortgage|
+ WIKIMEDIA|expenses:donations|
+ HLEDGER|expenses:donations|
 +COSTA COFFEE|expenses:coffee|Regular place was closed
 +TESCO GROCERIES|expenses:groceries|
 diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unknowns/resolve.sh
@@ -67,7 +67,7 @@ diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unkn
 +    regexp=$(sk --header="Fine-tune regexp. Searching in ${dir}/*.rules and ${dir}/csv" \
 +                --cmd-query="${description}" --print-cmd --ansi -i \
 +                --bind 'ctrl-d:delete-char' \
-+                -c "rg -i --color=always --line-number \"{}\" $(ls ${dir}/*.rules | grep -v generated.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
++                -c "rg -i --color=always --line-number \"{}\" $(ls ${dir}/*.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
 +
 +    # Now lets choose account
 +    account=$(cat /tmp/accounts.txt | sort -u | sk --header="Choose account")

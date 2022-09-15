@@ -80,19 +80,21 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
           ]
    where
      all_years=[first..current]
-@@ -136,6 +143,8 @@
-   -- Whenever we need generated.rules, produce them from rules.psv
-   "//import//generated.rules" %> generated_rules
+@@ -133,6 +140,8 @@
+   -- Enumerate directories with auto-generated journals
+   [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
  
 +  ("//" ++ investments) %> generate_investments_report current year_inputs
 +
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -197,6 +206,13 @@
-   (Stdout output) <- cmd (Cwd dir) "awk" ["-F", "|", "-f", "../psv-to-rules.awk", "rules.psv"]
+@@ -189,6 +198,16 @@
    writeFileChanged out output
  
+ -------------------
++-- Helper functions
++-------------------
 +generate_investments_report current year_inputs out = do
 +  deps <- mapM (year_inputs . show) (investment_years current)
 +  need (concat deps)
@@ -100,9 +102,10 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
 +  (Stdout output) <- cmd "./investments.sh"
 +  writeFileChanged out output
 +
- -------------------
++-------------------
  -- Helper functions
  -------------------
+ 
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/investments.sh ././07-investments-easy-approach/export/investments.sh
 --- ././06-maintaining-lots-of-csv-rules/export/investments.sh
 +++ ././07-investments-easy-approach/export/investments.sh
