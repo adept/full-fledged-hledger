@@ -6,7 +6,7 @@ diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-dat
 +
 +;; Opening balances
 +2017/01/01 opening balances
-+  assets:Lloyds:current    = £100
++  assets:Lloyds:current    = £100.00
 +  equity:opening balances
 +  
 +include ./import/lloyds/journal/99966633_20171223_1844.journal

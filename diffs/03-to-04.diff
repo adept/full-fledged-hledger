@@ -28,13 +28,13 @@ diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in/12345678_
 +++ ././04-adding-more-accounts/import/lloyds/in/12345678_20171225_0001.csv
 @@ -0,0 +1,2 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-+07/04/2015,DEB,'12-34-56,12345678,TRANSFER FROM 99966633,,500,500
++07/04/2015,DEB,'12-34-56,12345678,TRANSFER FROM 99966633,,500,500.00
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in/12345678_20171225_0002.csv ././04-adding-more-accounts/import/lloyds/in/12345678_20171225_0002.csv
 --- ././03-getting-full-history/import/lloyds/in/12345678_20171225_0002.csv
 +++ ././04-adding-more-accounts/import/lloyds/in/12345678_20171225_0002.csv
 @@ -0,0 +1,2 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-+09/04/2016,DEB,'12-34-56,12345678,TRANSFER FROM 99966633,,1000,1500.0
++09/04/2016,DEB,'12-34-56,12345678,TRANSFER FROM 99966633,,1000,1500.00
 diff -X .gitignore -Naurb ././03-getting-full-history/import/lloyds/in2csv ././04-adding-more-accounts/import/lloyds/in2csv
 --- ././03-getting-full-history/import/lloyds/in2csv
 +++ ././04-adding-more-accounts/import/lloyds/in2csv

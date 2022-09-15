@@ -5,6 +5,5 @@ Cashflow Statement 2014
  Cash flows            ||         
 -----------------------++---------
  assets:Lloyds:current || £500.00 
- assets:pension:aviva  || £102.34 
 -----------------------++---------
-                       || £602.34 
+                       || £500.00 

@@ -2,7 +2,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2014.journal ././
 --- ././06-maintaining-lots-of-csv-rules/2014.journal
 +++ ././07-investments-easy-approach/2014.journal
 @@ -4,4 +4,8 @@
-   assets:cash              = £150
+   assets:cash              = £150.00
    equity:opening balances
  
 +2014/12/31 pension valuation

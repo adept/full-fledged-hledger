@@ -6,6 +6,5 @@ Cashflow Statement 2015
 -----------------------++---------
  assets:Lloyds:current ||  £50.00 
  assets:Lloyds:savings || £500.00 
- assets:pension:aviva  || £102.07 
 -----------------------++---------
-                       || £652.07 
+                       || £550.00 

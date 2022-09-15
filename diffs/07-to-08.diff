@@ -2,7 +2,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-m
 --- ././07-investments-easy-approach/2014.journal
 +++ ././08-mortgage/2014.journal
 @@ -4,8 +4,15 @@
-   assets:cash              = £150
+   assets:cash              = £150.00
    equity:opening balances
  
 +2014/01/02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)

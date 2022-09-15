@@ -31,7 +31,7 @@
     expenses:coffee
 
 2017-04-10 (DEB) CHECK #0001523
-    assets:Lloyds:savings         £100.00 = £1600.00
+    assets:Lloyds:savings         £100.00 = £1600.0
     income:tutoring
 
 2017-05-01 (BP) AVIVA
@@ -39,11 +39,11 @@
     assets:pension:aviva
 
 2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
-    assets:Lloyds:current          £-2.43 = £984.50
+    assets:Lloyds:current          £-2.43 = £984.5
     expenses:coffee
 
 2017-05-05 (BP) TESCO GROCERIES
-    assets:Lloyds:current         £-14.50 = £970.00
+    assets:Lloyds:current         £-14.50 = £970.0
     expenses:groceries
 
 2017-06-30 pension valuation

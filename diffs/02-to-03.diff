@@ -4,8 +4,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/2014.journal ././03-getting-ful
 @@ -0,0 +1,7 @@
 +;; Opening balances
 +2014/01/01 opening balances
-+  assets:Lloyds:current    = £100
-+  assets:cash              = £150
++  assets:Lloyds:current    = £100.00
++  assets:cash              = £150.00
 +  equity:opening balances
 +
 +include ./import/lloyds/journal/99966633_20171224_2041.journal
@@ -29,7 +29,7 @@ diff -X .gitignore -Naurb ././02-getting-data-in/2017.journal ././03-getting-ful
  
 -;; Opening balances
 -2017/01/01 opening balances
--  assets:Lloyds:current    = £100
+-  assets:Lloyds:current    = £100.00
 -  equity:opening balances
 -  
 +include ./export/2017-opening.journal
@@ -73,8 +73,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171
 +++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2041.csv
 @@ -0,0 +1,5 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-+01/05/2014,BP,'12-34-56,99966633,AVIVA,100,,600
-+07/04/2014,DEB,'12-34-56,99966633,WAITROSE,73.72,,700
++01/05/2014,BP,'12-34-56,99966633,AVIVA,100,,600.00
++07/04/2014,DEB,'12-34-56,99966633,WAITROSE,73.72,,700.00
 +31/03/2014,BGC,'12-34-56,99966633,HSBC,100,,773.72
 +30/03/2014,BGC,'12-34-56,99966633,EMPLOYER INC,,773.72,873.72
 diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171224_2042.csv ././03-getting-full-history/import/lloyds/in/99966633_20171224_2042.csv
@@ -82,8 +82,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171
 +++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2042.csv
 @@ -0,0 +1,6 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-+01/05/2015,BP,'12-34-56,99966633,AVIVA,100,,650
-+08/04/2015,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,750
++01/05/2015,BP,'12-34-56,99966633,AVIVA,100,,650.00
++08/04/2015,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,750.00
 +07/04/2015,DEB,'12-34-56,99966633,TRANSFER TO 12345678,500,,753.72
 +31/03/2015,BGC,'12-34-56,99966633,HSBC,100,,1253.72
 +30/03/2015,BGC,'12-34-56,99966633,EMPLOYER INC,,753.72,1353.72
@@ -92,8 +92,8 @@ diff -X .gitignore -Naurb ././02-getting-data-in/import/lloyds/in/99966633_20171
 +++ ././03-getting-full-history/import/lloyds/in/99966633_20171224_2043.csv
 @@ -0,0 +1,6 @@
 +Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-+01/05/2016,BP,'12-34-56,99966633,AVIVA,100,,100
-+09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,200.0
++01/05/2016,BP,'12-34-56,99966633,AVIVA,100,,100.00
++09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,200.00
 +07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1200.00
 +31/03/2016,BGC,'12-34-56,99966633,HSBC,100,,1203.72
 +30/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,653.72,1303.72
