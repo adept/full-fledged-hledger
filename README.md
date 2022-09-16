@@ -1,6 +1,6 @@
 # "Full-fledged Hledger" Tutorial
 
-Full-Fledged Hledger is a tutorial on how to setup up hledger to get:
+Full-Fledged Hledger is a tutorial on how to setup up [hledger](https://github.com/simonmichael/hledger) to get:
 - ledger files split by year
 - multi-source CSV imports
 - range of auto-generated reports
