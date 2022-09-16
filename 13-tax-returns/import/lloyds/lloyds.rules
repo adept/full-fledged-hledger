@@ -1,0 +1,12 @@
+fields date,code,sortcode,account1,description,amount1-out,amount1-in,balance1
+skip 1
+
+date-format %d/%m/%Y
+currency1 £
+account2  expenses:unknown
+
+if
+FOREIGN CCY
+  amount2  %sortcode @@ £%amount1-out
+
+include rules.psv

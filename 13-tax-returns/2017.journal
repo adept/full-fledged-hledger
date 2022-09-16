@@ -1,0 +1,17 @@
+;; This journal is for the current year
+
+include ./export/2017-opening.journal
+
+2017/06/30 pension valuation
+  assets:pension:aviva     = £411.03
+  virtual:unrealized pnl
+
+2017/04/05 2016/2017 Tax return, P60
+   (p60:gross pay)             £26789
+   (p60:tax paid)              -£2681.27
+   (p60:national insurance)    -£1184.02
+
+
+include ./import/lloyds/journal/99966633_20171223_1844.journal
+include ./import/lloyds/journal/12345678_20171225_0003.journal
+include ./export/2017-mortgage-interest.journal

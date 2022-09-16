@@ -1,0 +1,158 @@
+diff -X .gitignore -Naurb ././12-file-specific-rules/2017.journal ././13-tax-returns/2017.journal
+--- ././12-file-specific-rules/2017.journal
++++ ././13-tax-returns/2017.journal
+@@ -6,6 +6,12 @@
+   assets:pension:aviva     = £411.03
+   virtual:unrealized pnl
+   
++2017/04/05 2016/2017 Tax return, P60
++   (p60:gross pay)             £26789
++   (p60:tax paid)              -£2681.27
++   (p60:national insurance)    -£1184.02
++
++
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
+ include ./import/lloyds/journal/12345678_20171225_0003.journal
+ include ./export/2017-mortgage-interest.journal
+diff -X .gitignore -Naurb ././12-file-specific-rules/export/export.hs ././13-tax-returns/export/export.hs
+--- ././12-file-specific-rules/export/export.hs
++++ ././13-tax-returns/export/export.hs
+@@ -48,6 +48,7 @@
+ investment_years current = [2014..current] -- helpful if your investment period is shorter than all_years
+ investments              = "investments.txt"
+ mortgage_interest y = y++"-mortgage-interest.journal"
++tax_return y = printf "%d-%d-tax.txt" (y-1) y
+ 
+ --
+ -- Defining the full set of reports and journals to be generated
+@@ -63,6 +64,7 @@
+          , [ closing_balances     (show y) | y <- all_years, y/=current ]
+          , [ investments ]
+          , [ mortgage_interest    (show y) | y <- all_years ]
++         , [ tax_return                 y  | y <- [2017..current] ]
+          ]
+   where
+     all_years=[first..current]
+@@ -150,6 +152,9 @@
+   -- Mortgage interest transactions
+   mortgage_interest "//*" %> generate_mortgage_interest year_inputs
+ 
++  -- Tax year report
++  "*-tax.txt" %> generate_tax_return year_inputs
++
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -229,6 +234,17 @@
+     cmd "./mortgage_interest.sh" [year]
+   writeFileChanged out output
+ 
++generate_tax_return year_inputs out = do
++  let [from_y,"-",to_y,"-","tax",".","txt"] = split out
++  deps <- year_inputs from_y
++  need deps
++  need [closing_balances from_y]
++  deps <- year_inputs to_y
++  need deps
++  need [ "./tax_return.sh" ]
++  (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+diff -X .gitignore -Naurb ././12-file-specific-rules/export/tax_return.sh ././13-tax-returns/export/tax_return.sh
+--- ././12-file-specific-rules/export/tax_return.sh
++++ ././13-tax-returns/export/tax_return.sh
+@@ -0,0 +1,29 @@
++#!/bin/bash
++year="$1"
++year2="$2"
++
++dir=$(dirname $0)
++
++function gen_input(){
++    echo "include ${dir}/../${year}.journal"
++    echo "include ${dir}/${year}-closing.journal"
++    echo "include ${dir}/../${year2}.journal"
++}
++
++echo "INCOME TOTALS"
++echo "============="
++
++gen_input | hledger balance -f - --tree \
++    "income" "not:income:employer" \
++    -b $year-04-06 -e $year2-04-06 # end date is not inclusive
++echo
++
++echo "PAYSLIPS CHECK"
++echo "=============="
++
++gen_input | hledger balance -f - --tree \
++                    'income:employer' 'p60:gross pay' \
++                    'p60:tax paid' 'p60:national' \
++    -b $year-04-06 -e $year2-04-06 # end date is not inclusive
++echo
++
+diff -X .gitignore -Naurb ././12-file-specific-rules/import/lloyds/in/99966633_20171223_1844.csv ././13-tax-returns/import/lloyds/in/99966633_20171223_1844.csv
+--- ././12-file-specific-rules/import/lloyds/in/99966633_20171223_1844.csv
++++ ././13-tax-returns/import/lloyds/in/99966633_20171223_1844.csv
+@@ -1,9 +1,20 @@
+ Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+-05/05/2017,BP,'12-34-56,99966633,TESCO GROCERIES,14.5,,970.0
+-03/05/2017,BP,'12-34-56,99966633,COSTA COFFEE,2.43,,984.5
+-01/05/2017,BP,'12-34-56,99966633,AVIVA,100,,986.93
+-07/04/2017,BP,'12-34-56,99966633,OASIS COFFEE ,2.76,,1086.93
+-07/04/2017,DEB,'12-34-56,99966633,WAITROSE,5.24,,1089.69
+-01/04/2017,,'12-34-56,99966633,INTEREST (NET) ,,1.21,1094.93
+-31/03/2017,BGC,'12-34-56,99966633,HSBC,100,,1093.72
+-30/03/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1093.72,1193.72
++30/01/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,24269.29
++28/02/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,26179.59
++30/03/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,28089.89
++31/03/2017,BGC,'12-34-56,99966633,HSBC,100,,27989.89
++01/04/2017,,'12-34-56,99966633,INTEREST (NET) ,,1.21,27991.10
++07/04/2017,BP,'12-34-56,99966633,OASIS COFFEE ,2.76,,27988.34
++07/04/2017,DEB,'12-34-56,99966633,WAITROSE,5.24,,27983.10
++30/04/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,29893.40
++01/05/2017,BP,'12-34-56,99966633,AVIVA,100,,29793.40
++03/05/2017,BP,'12-34-56,99966633,COSTA COFFEE,2.43,,29790.97
++05/05/2017,BP,'12-34-56,99966633,TESCO GROCERIES,14.5,,29776.47
++30/05/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,31686.77
++30/06/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,33597.07
++30/07/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,35507.37
++30/08/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,37417.67
++30/09/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,39327.97
++30/10/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,41238.27
++30/11/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,43148.57
++30/12/2017,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.41,45058.98
+diff -X .gitignore -Naurb ././12-file-specific-rules/import/lloyds/in/99966633_20171224_2043.csv ././13-tax-returns/import/lloyds/in/99966633_20171224_2043.csv
+--- ././12-file-specific-rules/import/lloyds/in/99966633_20171224_2043.csv
++++ ././13-tax-returns/import/lloyds/in/99966633_20171224_2043.csv
+@@ -1,8 +1,19 @@
+ Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+-01/05/2016,BP,'12-34-56,99966633,AVIVA,100,,100.00
+-09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,200.00
+-07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,1200.00
+-05/04/2016,FOREIGN CCY $6.40,'12-34-56,99966633,WIKIMEDIA,5,,1203.72
+-02/04/2016,FOREIGN CCY $7.68,'12-34-56,99966633,HLEDGER,6,,1208.72
+-31/03/2016,BGC,'12-34-56,99966633,HSBC,100,,1214.72
+-30/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,664.72,1314.72
++30/01/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,2560.30
++28/02/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,4470.60
++30/03/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,6380.90
++31/03/2016,BGC,'12-34-56,99966633,HSBC,100,,6280.90
++02/04/2016,FOREIGN CCY $7.68,'12-34-56,99966633,HLEDGER,6,,6274.90
++05/04/2016,FOREIGN CCY $6.40,'12-34-56,99966633,WIKIMEDIA,5,,6269.90
++07/04/2016,BP,'12-34-56,99966633,OASIS COFFEE ,3.72,,6266.18
++09/04/2016,DEB,'12-34-56,99966633,TRANSFER TO 12345678,1000,,5266.18
++30/04/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,7176.48
++01/05/2016,BP,'12-34-56,99966633,AVIVA,100,,7076.48
++30/05/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,8986.78
++30/06/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,10897.08
++30/07/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,12807.38
++30/08/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,14717.68
++30/09/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,16627.98
++30/10/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,18538.28
++30/11/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.30,20448.58
++30/12/2016,BGC,'12-34-56,99966633,EMPLOYER INC,,1910.41,22358.99
