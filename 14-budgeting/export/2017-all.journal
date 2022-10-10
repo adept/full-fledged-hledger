@@ -1,0 +1,141 @@
+2017-01-01 opening balances
+    assets:Lloyds:current                 £22358.99 = £22358.99
+    assets:Lloyds:savings                  £1500.00 = £1500.00
+    assets:house                           £1000.00 = £1000.00
+    assets:pension:aviva                    £915.02 = £915.02
+    liabilities:mortgage                   £-595.53 = £-595.53
+    equity:opening/closing balances
+
+2017-01-01 Budget available money
+    [budget:mortage]                £100.00
+    [budget:groceries]              £300.00
+    [budget:travel]                £2000.00
+    [budget:emergency fund]       £19363.46
+    [budget:pension]                £915.02
+    [budget:available]
+
+2017-01-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-01-31 Budget income
+    [budget:mortage]                £100.00
+    [budget:groceries]               £30.00
+    [budget:travel]                 £500.00
+    [budget:misc]                   £100.00
+    [budget:emergency fund]        £1180.30
+    [budget:available]
+
+2017-02-28 Budget income
+    [budget:mortage]                £100.00
+    [budget:groceries]                    0
+    [budget:travel]                 £100.00
+    [budget:misc]                    £50.00
+    [budget:emergency fund]        £1660.30
+    [budget:available]
+
+2017-02-28 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-03-30 Budget income
+    [budget:mortage]                £100.00
+    [budget:groceries]               £50.00
+    [budget:travel]                 £100.00
+    [budget:misc]                    £50.00
+    [budget:emergency fund]        £1610.30
+    [budget:available]
+
+2017-03-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-03-31 (BGC) HSBC
+    assets:Lloyds:current        £-100.00
+    liabilities:mortgage
+
+2017-03-31 1.8% interest for £-595.53 over 90 days
+    liabilities:mortgage                £-2.64
+    expenses:mortgage interest           £2.64
+
+2017-04-01 INTEREST (NET)
+    assets:Lloyds:current           £1.21
+    income:interest
+
+2017-04-05 2016/2017 Tax return, P60
+    (p60:gross pay)                £26789.00
+    (p60:tax paid)                 £-2681.27
+    (p60:national insurance)       £-1184.02
+
+2017-04-07 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76
+    expenses:coffee
+
+2017-04-07 (DEB) WAITROSE
+    assets:Lloyds:current          £-5.24
+    expenses:groceries
+
+2017-04-10 (DEB) CHECK #0001523
+    assets:Lloyds:savings         £100.00
+    income:tutoring
+
+2017-04-30 Budget income
+    [budget:emergency fund]        £1910.30
+    [budget:available]
+
+2017-04-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-05-01 (BP) AVIVA
+    assets:Lloyds:current        £-100.00
+    assets:pension:aviva
+
+2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
+    assets:Lloyds:current          £-2.43
+    expenses:coffee
+
+2017-05-05 (BP) TESCO GROCERIES
+    assets:Lloyds:current         £-14.50
+    expenses:groceries
+
+2017-05-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-06-30 pension valuation
+    assets:pension:aviva           £411.03
+    virtual:unrealized pnl
+
+2017-06-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-07-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-08-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-09-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-10-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-11-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.30
+    income:employer
+
+2017-12-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1910.41
+    income:employer
+
+2017-12-31 1.8% interest for £-498.17 over 275 days
+    liabilities:mortgage                £-6.76
+    expenses:mortgage interest           £6.76
+
