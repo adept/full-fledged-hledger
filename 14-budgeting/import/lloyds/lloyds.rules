@@ -1,4 +1,4 @@
-fields date,code,sortcode,account1,description,amount1-out,amount1-in
+fields date,code,sortcode,account1,description,amount1-out,amount1-in,balance1
 skip 1
 
 date-format %d/%m/%Y

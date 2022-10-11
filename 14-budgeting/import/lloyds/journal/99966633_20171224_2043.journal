@@ -1,72 +1,72 @@
 2016-01-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £2560.30
     income:employer
 
 2016-02-28 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £4470.60
     income:employer
 
 2016-03-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £6380.90
     income:employer
 
 2016-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00
+    assets:Lloyds:current        £-100.00 = £6280.90
     liabilities:mortgage
 
 2016-04-02 (FOREIGN CCY) HLEDGER
-    assets:Lloyds:current          £-6.00
+    assets:Lloyds:current          £-6.00 = £6274.90
     expenses:donations        $7.68 @@ £6
 
 2016-04-05 (FOREIGN CCY) WIKIMEDIA
-    assets:Lloyds:current          £-5.00
+    assets:Lloyds:current          £-5.00 = £6269.90
     expenses:donations        $6.40 @@ £5
 
 2016-04-07 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-3.72
+    assets:Lloyds:current          £-3.72 = £6266.18
     expenses:coffee
 
 2016-04-09 (DEB) TRANSFER TO 12345678
-    assets:Lloyds:current         £-1000.00
+    assets:Lloyds:current         £-1000.00 = £5266.18
     assets:Lloyds:transfers
 
 2016-04-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £7176.48
     income:employer
 
 2016-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00
+    assets:Lloyds:current        £-100.00 = £7076.48
     assets:pension:aviva
 
 2016-05-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £8986.78
     income:employer
 
 2016-06-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £10897.08
     income:employer
 
 2016-07-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £12807.38
     income:employer
 
 2016-08-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £14717.68
     income:employer
 
 2016-09-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £16627.98
     income:employer
 
 2016-10-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £18538.28
     income:employer
 
 2016-11-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £20448.58
     income:employer
 
 2016-12-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.41
+    assets:Lloyds:current        £1910.41 = £22358.99
     income:employer
 

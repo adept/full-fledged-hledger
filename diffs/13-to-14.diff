@@ -1,0 +1,148 @@
+diff -X .gitignore -Naurb ././13-tax-returns/2017.journal ././14-budgeting/2017.journal
+--- ././13-tax-returns/2017.journal
++++ ././14-budgeting/2017.journal
+@@ -2,6 +2,43 @@
+ 
+ include ./export/2017-opening.journal
+ 
++; budget available money
++2017/01/01 Budget available money
++  [budget:mortage]           £100
++  [budget:groceries]         £300
++  [budget:travel]           £2000
++  [budget:emergency fund]  £19363.46
++  [budget:pension]           £308.27
++  [budget:available]
++
++2017/01/31 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]          £30
++  [budget:travel]            £500
++  [budget:misc]              £100
++  [budget:emergency fund]   £1180.30
++  [budget:available]
++
++2017/02/28 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]           £0
++  [budget:travel]            £100
++  [budget:misc]               £50
++  [budget:emergency fund]   £1660.30
++  [budget:available]
++
++2017/03/30 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]          £50
++  [budget:travel]            £100
++  [budget:misc]               £50
++  [budget:emergency fund]   £1610.30
++  [budget:available]
++
++2017/04/30 Budget income
++  [budget:emergency fund]   £1910.30
++  [budget:available]
++
+ 2017/06/30 pension valuation
+   assets:pension:aviva     = £411.03
+   virtual:unrealized pnl
+diff -X .gitignore -Naurb ././13-tax-returns/budget.journal ././14-budgeting/budget.journal
+--- ././13-tax-returns/budget.journal
++++ ././14-budgeting/budget.journal
+@@ -0,0 +1,35 @@
++; accounts which are included in the budget
++; the sum of the balances is the money available to budget
++; transfers between budgeted accounts is transparent to the budget
++= assets:Lloyds:current
++  [assets:Lloyds:current]       *-1
++  [budget:available]             *1
++
++= assets:pension:aviva
++  [assets:pension:aviva]        *-1
++  [budget:available]             *1
++
++= liabilities:mortgage
++  [liabilities:mortage]         *-1
++  [budget:available]             *1
++
++; expenses get deducted from the allocated budget
++= expenses:coffee
++  [budget:misc]                 *-1
++  [budget:available]             *1
++
++= expenses:groceries
++  [budget:groceries]            *-1
++  [budget:available]             *1
++
++= expenses:mortgage interest
++  [budget:mortage]              *-1
++  [budget:available]             *1
++
++= expenses:unknown
++  [budget:unknown]              *-1
++  [budget:available]             *1
++
++= virtual:unrealized pnl
++  [budget:pension]              *-1
++  [budget:available]             *1
+\ No newline at end of file
+diff -X .gitignore -Naurb ././13-tax-returns/export/budget.sh ././14-budgeting/export/budget.sh
+--- ././13-tax-returns/export/budget.sh
++++ ././14-budgeting/export/budget.sh
+@@ -0,0 +1,14 @@
++#!/bin/bash
++year="$1"
++
++dir=$(dirname $0)
++
++function gen_input(){
++    echo "include ${dir}/../budget.journal"
++    
++    # make sure that all postings are fully expanded to avoid
++    # "Balance assignments may not be used on accounts affected by auto posting rules"
++    hledger print -f "${dir}/../${year}.journal" -x
++}
++
++gen_input | hledger balance -f - balance -I --auto --tree -H -p monthly budget not:equity:opening
+diff -X .gitignore -Naurb ././13-tax-returns/export/export.hs ././14-budgeting/export/export.hs
+--- ././13-tax-returns/export/export.hs
++++ ././14-budgeting/export/export.hs
+@@ -39,6 +39,7 @@
+ cash_flow         y = y++"-cash-flow.txt"
+ accounts          y = y++"-accounts.txt"
+ unknown           y = y++"-unknown.journal"
++budget_balances   y = y++"-budget-balances.txt"
+ closing_balances  y = y++"-closing.journal"
+ opening_balances  y = y++"-opening.journal"
+ 
+@@ -60,6 +61,7 @@
+          , [ balance_sheet        (show y) | y <- all_years ]
+          , [ cash_flow            (show y) | y <- all_years ]
+          , [ unknown              (show y) | y <- all_years ]
++         , [ budget_balances      (show y) | y <- [current] ]
+          , [ opening_balances     (show y) | y <- all_years, y/=first ]
+          , [ closing_balances     (show y) | y <- all_years, y/=current ]
+          , [ investments ]
+@@ -137,6 +139,8 @@
+ 
+   (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
+ 
++  (budget_balances "//*") %> generate_budget_balances flags year_inputs
++
+   (closing_balances "//*") %> generate_closing_balances flags year_inputs
+ 
+   (opening_balances "//*") %> generate_opening_balances flags year_inputs
+@@ -245,6 +249,14 @@
+   (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
+   writeFileChanged out output
+ 
++generate_budget_balances flags year_inputs out = do
++  let year = head $ split out
++  deps <- year_inputs year
++  need deps
++  need [ "./budget.sh" ]
++  (Stdout output) <- cmd "./budget.sh" [year]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------

@@ -2,7 +2,7 @@
     assets:Lloyds:current                 £22358.99 = £22358.99
     assets:Lloyds:savings                  £1500.00 = £1500.00
     assets:house                           £1000.00 = £1000.00
-    assets:pension:aviva                    £915.02 = £915.02
+    assets:pension:aviva                    £308.27 = £308.27
     liabilities:mortgage                   £-595.53 = £-595.53
     equity:opening/closing balances
 
@@ -11,11 +11,11 @@
     [budget:groceries]              £300.00
     [budget:travel]                £2000.00
     [budget:emergency fund]       £19363.46
-    [budget:pension]                £915.02
+    [budget:pension]                £308.27
     [budget:available]
 
 2017-01-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £24269.29
     income:employer
 
 2017-01-31 Budget income
@@ -35,7 +35,7 @@
     [budget:available]
 
 2017-02-28 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £26179.59
     income:employer
 
 2017-03-30 Budget income
@@ -47,11 +47,11 @@
     [budget:available]
 
 2017-03-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £28089.89
     income:employer
 
 2017-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00
+    assets:Lloyds:current        £-100.00 = £27989.89
     liabilities:mortgage
 
 2017-03-31 1.8% interest for £-595.53 over 90 days
@@ -59,7 +59,7 @@
     expenses:mortgage interest           £2.64
 
 2017-04-01 INTEREST (NET)
-    assets:Lloyds:current           £1.21
+    assets:Lloyds:current           £1.21 = £27991.10
     income:interest
 
 2017-04-05 2016/2017 Tax return, P60
@@ -68,15 +68,15 @@
     (p60:national insurance)       £-1184.02
 
 2017-04-07 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-2.76
+    assets:Lloyds:current          £-2.76 = £27988.34
     expenses:coffee
 
 2017-04-07 (DEB) WAITROSE
-    assets:Lloyds:current          £-5.24
+    assets:Lloyds:current          £-5.24 = £27983.10
     expenses:groceries
 
 2017-04-10 (DEB) CHECK #0001523
-    assets:Lloyds:savings         £100.00
+    assets:Lloyds:savings         £100.00 = £1600.0
     income:tutoring
 
 2017-04-30 Budget income
@@ -84,55 +84,55 @@
     [budget:available]
 
 2017-04-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £29893.40
     income:employer
 
 2017-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00
+    assets:Lloyds:current        £-100.00 = £29793.40
     assets:pension:aviva
 
 2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
-    assets:Lloyds:current          £-2.43
+    assets:Lloyds:current          £-2.43 = £29790.97
     expenses:coffee
 
 2017-05-05 (BP) TESCO GROCERIES
-    assets:Lloyds:current         £-14.50
+    assets:Lloyds:current         £-14.50 = £29776.47
     expenses:groceries
 
 2017-05-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £31686.77
     income:employer
 
 2017-06-30 pension valuation
-    assets:pension:aviva           £411.03
+    assets:pension:aviva                   = £411.03
     virtual:unrealized pnl
 
 2017-06-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £33597.07
     income:employer
 
 2017-07-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £35507.37
     income:employer
 
 2017-08-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £37417.67
     income:employer
 
 2017-09-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £39327.97
     income:employer
 
 2017-10-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £41238.27
     income:employer
 
 2017-11-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30
+    assets:Lloyds:current        £1910.30 = £43148.57
     income:employer
 
 2017-12-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.41
+    assets:Lloyds:current        £1910.41 = £45058.98
     income:employer
 
 2017-12-31 1.8% interest for £-498.17 over 275 days

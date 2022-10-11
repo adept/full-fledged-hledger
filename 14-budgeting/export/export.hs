@@ -186,10 +186,6 @@ generate_closing_balances flags year_inputs out = do
   let year = head $ split out
   hledger_process_year flags year_inputs ["equity",equityQuery flags,"-e",show (1+(read year)),"-I","--closing"] out
 
-generate_budget_balances flags year_inputs out = do
-  let year = head $ split out
-  hledger_process_year flags year_inputs ["balance","--auto","--tree","-H","-p","monthly",year,"budget"] out
-
 -- To produce <importdir>/csv/filename.csv, look for <importdir>/in/filename.csv and
 -- process it with <importdir>/in2csv
 in2csv out = do
@@ -251,6 +247,14 @@ generate_tax_return year_inputs out = do
   need deps
   need [ "./tax_return.sh" ]
   (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
+  writeFileChanged out output
+
+generate_budget_balances flags year_inputs out = do
+  let year = head $ split out
+  deps <- year_inputs year
+  need deps
+  need [ "./budget.sh" ]
+  (Stdout output) <- cmd "./budget.sh" [year]
   writeFileChanged out output
 
 -------------------
