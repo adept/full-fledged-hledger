@@ -1,0 +1,54 @@
+;; This journal is for the current year
+
+include budget.hledger
+include ./export/2017-opening.journal
+
+; budget available money
+2017/01/01 Budget available money
+  [budget:mortage]           £100
+  [budget:groceries]         £300
+  [budget:travel]           £2000
+  [budget:emergency fund]  £19363.46
+  [budget:pension]           £915.02
+  [budget:available]
+
+2017/01/31 Budget income
+  [budget:mortage]           £100
+  [budget:groceries]          £30
+  [budget:travel]            £500
+  [budget:misc]              £100
+  [budget:emergency fund]   £1180.30
+  [budget:available]
+
+2017/02/28 Budget income
+  [budget:mortage]           £100
+  [budget:groceries]           £0
+  [budget:travel]            £100
+  [budget:misc]               £50
+  [budget:emergency fund]   £1660.30
+  [budget:available]
+
+2017/03/30 Budget income
+  [budget:mortage]           £100
+  [budget:groceries]          £50
+  [budget:travel]            £100
+  [budget:misc]               £50
+  [budget:emergency fund]   £1610.30
+  [budget:available]
+
+2017/04/30 Budget income
+  [budget:emergency fund]   £1910.30
+  [budget:available]
+
+2017/06/30 pension valuation
+  assets:pension:aviva     £411.03
+  virtual:unrealized pnl
+
+2017/04/05 2016/2017 Tax return, P60
+   (p60:gross pay)             £26789
+   (p60:tax paid)              -£2681.27
+   (p60:national insurance)    -£1184.02
+
+include ./import/lloyds/journal/99966633_20171223_1844.journal
+include ./import/lloyds/journal/12345678_20171225_0003.journal
+include ./export/2017-mortgage-interest.journal

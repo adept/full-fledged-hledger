@@ -1,0 +1,6 @@
+Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+01/05/2015,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,650.00
+08/04/2015,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,3.72,,750.00
+07/04/2015,DEB,'12-34-56,assets:Lloyds:current,TRANSFER TO 12345678,500,,753.72
+31/03/2015,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,1253.72
+30/03/2015,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,753.72,1353.72

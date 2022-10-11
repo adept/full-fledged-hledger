@@ -1,0 +1,35 @@
+; accounts which are included in the budget
+; the sum of the balances is the money available to budget
+; transfers between budgeted accounts is transparent to the budget
+= assets:Lloyds:current
+  [assets:Lloyds:current]       *-1
+  [budget:available]             *1
+
+= assets:pension:aviva
+  [assets:pension:aviva]        *-1
+  [budget:available]             *1
+
+= liabilities:mortgage
+  [liabilities:mortage]         *-1
+  [budget:available]             *1
+
+; expenses get deducted from the allocated budget
+= expenses:coffee
+  [budget:misc]                 *-1
+  [budget:available]             *1
+
+= expenses:groceries
+  [budget:groceries]            *-1
+  [budget:available]             *1
+
+= expenses:mortgage interest
+  [budget:mortage]              *-1
+  [budget:available]             *1
+
+= expenses:unknown
+  [budget:unknown]              *-1
+  [budget:available]             *1
+
+= virtual:unrealized pnl
+  [budget:pension]              *-1
+  [budget:available]             *1
