@@ -145,12 +145,12 @@ generate_opening_balances flags year_inputs out = do
   need deps
   (Stdout output) <-
     cmd (hledgerBinary flags)
-    ["-f",input (baseDir flags) prev_year,"close",equityQuery flags,"-e",year,"--open"]
+    ["-f",input (baseDir flags) prev_year,"equity",equityQuery flags,"-e",year,"--opening"]
   writeFileChanged out output
 
 generate_closing_balances flags year_inputs out = do
   let year = head $ split out
-  hledger_process_year flags year_inputs ["close",equityQuery flags,"-e",show (1+(read year)),"-I"] out
+  hledger_process_year flags year_inputs ["equity",equityQuery flags,"-e",show (1+(read year)),"-I","--closing"] out
 
 -- To produce <importdir>/csv/filename.csv, look for <importdir>/in/filename.csv and
 -- process it with <importdir>/in2csv
