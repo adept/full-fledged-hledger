@@ -22,3 +22,4 @@ cabal.project.local
 */export/.shake/.shake.database
 */export/.shake/.shake.lock
 */export/export
+*.matching_rules

@@ -2,7 +2,7 @@ FROM haskell:8.10.4
 
 ENV RESOLVER lts-18.5
 
-COPY --from=dastapov/hledger:1.29.2 /usr/bin/hledger* /usr/bin/
+COPY --from=dastapov/hledger:1.31 /usr/bin/hledger* /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 
@@ -12,7 +12,7 @@ RUN stack --resolver $RESOLVER --system-ghc script --package shake --package dir
     && rm -rf /root/.stack/pantry \
     && chmod -R g+wrX,o+wrX /root \
     && apt-get update \
-    && apt-get install --yes patchutils gawk csvtool ripgrep parallel \
+    && apt-get install --yes patchutils gawk csvtool ripgrep parallel python3 \
     && rm -rf /var/lib/apt/lists \
     && cd /usr/bin/ \
     && curl -L https://github.com/lotabout/skim/releases/download/v0.8.1/skim-v0.8.1-x86_64-unknown-linux-gnu.tar.gz | tar xz

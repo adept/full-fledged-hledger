@@ -1,0 +1,264 @@
+diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-budgeting/2017.journal
+--- ././14-speeding-up/2017.journal
++++ ././15-budgeting/2017.journal
+@@ -2,6 +2,43 @@
+ 
+ include ./export/2017-opening.journal
+ 
++; budget available money
++2017/01/01 Budget available money
++  [budget:mortage]           £100
++  [budget:groceries]         £300
++  [budget:travel]           £2000
++  [budget:emergency fund]  £19363.46
++  [budget:pension]           £308.27
++  [budget:available]
++
++2017/01/31 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]          £30
++  [budget:travel]            £500
++  [budget:misc]              £100
++  [budget:emergency fund]   £1180.30
++  [budget:available]
++
++2017/02/28 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]           £0
++  [budget:travel]            £100
++  [budget:misc]               £50
++  [budget:emergency fund]   £1660.30
++  [budget:available]
++
++2017/03/30 Budget income
++  [budget:mortage]           £100
++  [budget:groceries]          £50
++  [budget:travel]            £100
++  [budget:misc]               £50
++  [budget:emergency fund]   £1610.30
++  [budget:available]
++
++2017/04/30 Budget income
++  [budget:emergency fund]   £1910.30
++  [budget:available]
++
+ 2017/06/30 pension valuation
+   assets:pension:aviva     = £411.03
+   virtual:unrealized pnl
+diff -X .gitignore -Naurb ././14-speeding-up/budget.journal ././15-budgeting/budget.journal
+--- ././14-speeding-up/budget.journal
++++ ././15-budgeting/budget.journal
+@@ -0,0 +1,35 @@
++; accounts which are included in the budget
++; the sum of the balances is the money available to budget
++; transfers between budgeted accounts is transparent to the budget
++= assets:Lloyds:current
++  [assets:Lloyds:current]       *-1
++  [budget:available]             *1
++
++= assets:pension:aviva
++  [assets:pension:aviva]        *-1
++  [budget:available]             *1
++
++= liabilities:mortgage
++  [liabilities:mortage]         *-1
++  [budget:available]             *1
++
++; expenses get deducted from the allocated budget
++= expenses:coffee
++  [budget:misc]                 *-1
++  [budget:available]             *1
++
++= expenses:groceries
++  [budget:groceries]            *-1
++  [budget:available]             *1
++
++= expenses:mortgage interest
++  [budget:mortage]              *-1
++  [budget:available]             *1
++
++= expenses:unknown
++  [budget:unknown]              *-1
++  [budget:available]             *1
++
++= virtual:unrealized pnl
++  [budget:pension]              *-1
++  [budget:available]             *1
+\ No newline at end of file
+diff -X .gitignore -Naurb ././14-speeding-up/export/budget.sh ././15-budgeting/export/budget.sh
+--- ././14-speeding-up/export/budget.sh
++++ ././15-budgeting/export/budget.sh
+@@ -0,0 +1,14 @@
++#!/bin/bash
++year="$1"
++
++dir=$(dirname $0)
++
++function gen_input(){
++    echo "include ${dir}/../budget.journal"
++
++    # make sure that all postings are fully expanded to avoid
++    # "Balance assignments may not be used on accounts affected by auto posting rules"
++    hledger print -f "${dir}/../${year}.journal" -x
++}
++
++gen_input | hledger balance -f - balance -I --auto --tree -H -p monthly budget not:equity:opening
+diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-budgeting/export/export.hs
+--- ././14-speeding-up/export/export.hs
++++ ././15-budgeting/export/export.hs
+@@ -39,6 +39,7 @@
+ cash_flow         y = y++"-cash-flow.txt"
+ accounts          y = y++"-accounts.txt"
+ unknown           y = y++"-unknown.journal"
++budget_balances   y = y++"-budget-balances.txt"
+ closing_balances  y = y++"-closing.journal"
+ opening_balances  y = y++"-opening.journal"
+ 
+@@ -60,6 +61,7 @@
+          , [ balance_sheet        (show y) | y <- all_years ]
+          , [ cash_flow            (show y) | y <- all_years ]
+          , [ unknown              (show y) | y <- all_years ]
++         , [ budget_balances      (show y) | y <- [current] ]
+          , [ opening_balances     (show y) | y <- all_years, y/=first ]
+          , [ closing_balances     (show y) | y <- all_years, y/=current ]
+          , [ investments ]
+@@ -118,8 +120,6 @@
+   let first = firstYear flags
+       current = currentYear flags
+ 
+-  absoluteBaseDir <- liftIO $ makeAbsolute (baseDir flags)
+-      
+   if null targets then want (reports first current) else want targets
+ 
+   -- Discover and cache the list of all includes for the given .journal file, recursively
+@@ -139,6 +139,8 @@
+ 
+   (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
+ 
++  (budget_balances "//*") %> generate_budget_balances flags year_inputs
++
+   (closing_balances "//*") %> generate_closing_balances flags year_inputs
+ 
+   (opening_balances "//*") %> generate_opening_balances flags year_inputs
+@@ -157,8 +159,6 @@
+   -- Tax year report
+   "*-tax.txt" %> generate_tax_return year_inputs
+ 
+-  "//import//*.matching_rules" %> generate_matching_rules absoluteBaseDir
+-
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -202,18 +202,6 @@
+   (Stdout output) <- cmd (Cwd source_dir) Shell "./in2csv" (map (makeRelative source_dir) inputs)
+   writeFileChanged out output
+ 
+--- produce <importdir>/csv/filename.matching_rules out of <importdir>/csv/filename.csv and <importdir>/rules.psv
+-generate_matching_rules base_dir out = do
+-  let (csv_dir, file) = splitFileName out
+-  let source_dir = parentOf "csv" csv_dir
+-  let export_dir = parentOf "import" csv_dir </> "export"
+-  let input = out -<.> "csv"
+-  let deps = map (source_dir </>) $ extraDeps out
+-  let matching_rules_py = base_dir </> "export" </> "matching_rules.py"
+-  need $ (source_dir </> "rules.psv"):matching_rules_py:input:deps
+-  (Stdout output) <- cmd (Cwd source_dir) Shell (makeRelative source_dir matching_rules_py) ["rules.psv", makeRelative source_dir input]
+-  writeFileChanged out output
+-
+ -- To produce <importdir>/journal/filename.journal, look for <importdir>/csv/filename.csv and
+ -- process it with <importdir>/csv2journal
+ csv2journal out = do
+@@ -221,11 +209,7 @@
+   let source_dir = parentOf "journal" journal_dir
+   let csv_dir = replaceDir "journal" "csv" journal_dir
+   let input = csv_dir </> (file -<.> "csv")
+-  let replace_rules_psv = \dep ->
+-        case dep of
+-          "rules.psv" -> input -<.> "matching_rules"
+-          otherwise -> source_dir </> dep
+-  let deps = map replace_rules_psv (extraDeps out)
++  let deps = map (source_dir </>) $ extraDeps out
+   need $ (source_dir </> "csv2journal"):(input:deps)
+   (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
+   writeFileChanged out output
+@@ -265,6 +249,14 @@
+   (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
+   writeFileChanged out output
+ 
++generate_budget_balances flags year_inputs out = do
++  let year = head $ split out
++  deps <- year_inputs year
++  need deps
++  need [ "./budget.sh" ]
++  (Stdout output) <- cmd "./budget.sh" [year]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+diff -X .gitignore -Naurb ././14-speeding-up/export/investments.sh ././15-budgeting/export/investments.sh
+--- ././14-speeding-up/export/investments.sh
++++ ././15-budgeting/export/investments.sh
+@@ -6,11 +6,8 @@
+             --investment "acct:assets:${asset} not:acct:equity" \
+             --pnl 'acct:virtual:unrealized not:acct:equity' "$@"
+ }
+-export -f report
+ 
+-parallel -k :::: <<EOF
+ echo "Pension"
+ echo
+ report "pension"
+ report "pension" -Y
+-EOF
+diff -X .gitignore -Naurb ././14-speeding-up/export/matching_rules.py ././15-budgeting/export/matching_rules.py
+--- ././14-speeding-up/export/matching_rules.py
++++ ././15-budgeting/export/matching_rules.py
+@@ -1,21 +0,0 @@
+-#!/usr/bin/env python3
+-import sys
+-import re
+-
+-def main(rules_file, csv_file):
+-    with open(rules_file, 'r') as file:
+-        rules = [
+-            (line.split('|')[0], line)
+-            for line in file.read().splitlines()
+-        ]
+-
+-    with open(csv_file, 'r') as file:
+-        contents = file.read()
+-
+-    for re_pattern, full_rule in rules:
+-        rex = re.compile(re_pattern)
+-        if rex.search(contents):
+-            print(full_rule)
+-
+-if __name__ == "__main__":
+-    main(sys.argv[1], sys.argv[2])
+diff -X .gitignore -Naurb ././14-speeding-up/export/tax_return.sh ././15-budgeting/export/tax_return.sh
+--- ././14-speeding-up/export/tax_return.sh
++++ ././15-budgeting/export/tax_return.sh
+@@ -4,17 +4,12 @@
+ 
+ dir=$(dirname $0)
+ 
+-export year year2 dir
+-
+ function gen_input(){
+     echo "include ${dir}/../${year}.journal"
+     echo "include ${dir}/${year}-closing.journal"
+     echo "include ${dir}/../${year2}.journal"
+ }
+ 
+-export -f gen_input
+-
+-parallel -k :::: <<EOF
+ echo "INCOME TOTALS"
+ echo "============="
+ 
+@@ -32,4 +27,3 @@
+     -b $year-04-06 -e $year2-04-06 # end date is not inclusive
+ echo
+ 
+-EOF
