@@ -1,7 +1,7 @@
 2016-01-01 opening balances
     assets:Lloyds:current                   £650.00 = £650.00
-    assets:Lloyds:savings                   £500.00 = £500.00
-    assets:house                           £1000.00 = £1000.00
+    assets:Lloyds:savings                      £500 = £500
+    assets:house                              £1000 = £1000
     assets:pension:aviva                    £204.41 = £204.41
     liabilities:mortgage                   £-684.52 = £-684.52
     equity:opening/closing balances
@@ -11,7 +11,7 @@
     income:employer
 
 2016-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00 = £1203.72
+    assets:Lloyds:current           £-100 = £1203.72
     liabilities:mortgage
 
 2016-03-31 2% interest for £-684.52 over 91 days
@@ -23,15 +23,15 @@
     expenses:coffee
 
 2016-04-09 (DEB) TRANSFER TO 12345678
-    assets:Lloyds:current         £-1000.00 = £200.00
+    assets:Lloyds:current            £-1000 = £200.00
     assets:Lloyds:transfers
 
 2016-04-09 (DEB) TRANSFER FROM 99966633
-    assets:Lloyds:savings          £1000.00 = £1500.00
+    assets:Lloyds:savings             £1000 = £1500.00
     assets:Lloyds:transfers
 
 2016-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £100.00
+    assets:Lloyds:current           £-100 = £100.00
     assets:pension:aviva
 
 2016-12-31 pension valuation

@@ -1,7 +1,7 @@
 2017-01-01 opening balances
     assets:Lloyds:current                 £22358.99 = £22358.99
-    assets:Lloyds:savings                  £1500.00 = £1500.00
-    assets:house                           £1000.00 = £1000.00
+    assets:Lloyds:savings                     £1500 = £1500
+    assets:house                              £1000 = £1000
     assets:pension:aviva                    £308.27 = £308.27
     liabilities:mortgage                   £-595.53 = £-595.53
     equity:opening/closing balances
@@ -19,7 +19,7 @@
     income:employer
 
 2017-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00 = £27989.89
+    assets:Lloyds:current           £-100 = £27989.89
     liabilities:mortgage
 
 2017-03-31 1.8% interest for £-595.53 over 90 days
@@ -31,7 +31,7 @@
     income:interest
 
 2017-04-05 2016/2017 Tax return, P60
-    (p60:gross pay)                £26789.00
+    (p60:gross pay)                   £26789
     (p60:tax paid)                 £-2681.27
     (p60:national insurance)       £-1184.02
 
@@ -44,7 +44,7 @@
     expenses:groceries
 
 2017-04-10 (DEB) CHECK #0001523
-    assets:Lloyds:savings         £100.00 = £1600.0
+    assets:Lloyds:savings            £100 = £1600.0
     income:tutoring
 
 2017-04-30 (BGC) EMPLOYER INC
@@ -52,7 +52,7 @@
     income:employer
 
 2017-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £29793.40
+    assets:Lloyds:current           £-100 = £29793.40
     assets:pension:aviva
 
 2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
@@ -60,7 +60,7 @@
     expenses:coffee
 
 2017-05-05 (BP) TESCO GROCERIES
-    assets:Lloyds:current         £-14.50 = £29776.47
+    assets:Lloyds:current          £-14.5 = £29776.47
     expenses:groceries
 
 2017-05-30 (BGC) EMPLOYER INC

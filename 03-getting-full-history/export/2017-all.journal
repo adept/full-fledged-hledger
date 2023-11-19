@@ -9,7 +9,7 @@
     income:employer
 
 2017-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00 = £1093.72
+    assets:Lloyds:current           £-100 = £1093.72
     expenses:unknown
 
 2017-04-01 INTEREST (NET)
@@ -25,6 +25,6 @@
     expenses:unknown
 
 2017-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £986.93
+    assets:Lloyds:current           £-100 = £986.93
     expenses:unknown
 

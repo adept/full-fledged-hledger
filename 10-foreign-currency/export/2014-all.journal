@@ -4,17 +4,17 @@
     equity:opening balances
 
 2014-01-02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)
-    assets:cash                  £-150.00
-    expenses:mortage fees           £5.00
+    assets:cash                     £-150
+    expenses:mortage fees              £5
     liabilities:mortgage
-    assets:house                 £1000.00
+    assets:house                    £1000
 
 2014-03-30 (BGC) EMPLOYER INC
     assets:Lloyds:current         £773.72 = £873.72
     income:employer
 
 2014-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00 = £773.72
+    assets:Lloyds:current           £-100 = £773.72
     liabilities:mortgage
 
 2014-03-31 2% interest for £-855.00 over 88 days
@@ -26,7 +26,7 @@
     expenses:groceries
 
 2014-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £600.00
+    assets:Lloyds:current           £-100 = £600.00
     assets:pension:aviva
 
 2014-12-31 pension valuation

@@ -11,7 +11,7 @@
     income:employer
 
 2017-03-31 (BGC) HSBC
-    assets:Lloyds:current        £-100.00 = £27989.89
+    assets:Lloyds:current           £-100 = £27989.89
     liabilities:mortgage
 
 2017-04-01 INTEREST (NET)
@@ -31,7 +31,7 @@
     income:employer
 
 2017-05-01 (BP) AVIVA
-    assets:Lloyds:current        £-100.00 = £29793.40
+    assets:Lloyds:current           £-100 = £29793.40
     assets:pension:aviva
 
 2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
@@ -39,7 +39,7 @@
     expenses:coffee
 
 2017-05-05 (BP) TESCO GROCERIES
-    assets:Lloyds:current         £-14.50 = £29776.47
+    assets:Lloyds:current          £-14.5 = £29776.47
     expenses:groceries
 
 2017-05-30 (BGC) EMPLOYER INC
