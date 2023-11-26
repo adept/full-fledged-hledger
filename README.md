@@ -39,7 +39,8 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 11. [Sorting `expenses:unknown`](https://github.com/adept/full-fledged-hledger/wiki/Sorting-unknowns)
 12. [File-specific rules](https://github.com/adept/full-fledged-hledger/wiki/File-specific-rules)
 13. [Tax returns](https://github.com/adept/full-fledged-hledger/wiki/Tax-returns)
-14. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
+14. [Speeding things up](https://github.com/adept/full-fledged-hledger/wiki/Speeding-up)
+15. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
 
