@@ -1,0 +1,5 @@
+Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
+01/05/2014,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,600.00
+07/04/2014,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,73.72,,700.00
+31/03/2014,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,773.72
+30/03/2014,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,773.72,873.72
