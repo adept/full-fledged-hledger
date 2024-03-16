@@ -40,7 +40,8 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 12. [File-specific rules](https://github.com/adept/full-fledged-hledger/wiki/File-specific-rules)
 13. [Tax returns](https://github.com/adept/full-fledged-hledger/wiki/Tax-returns)
 14. [Speeding things up](https://github.com/adept/full-fledged-hledger/wiki/Speeding-up)
-15. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
+15. [Tracking commodity lots manually](https://github.com/adept/full-fledged-hledger/wiki/Manual-lot-tracking)
+16. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
 
