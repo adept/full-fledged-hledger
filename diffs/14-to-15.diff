@@ -1,264 +1,199 @@
-diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-budgeting/2017.journal
---- ././14-speeding-up/2017.journal
-+++ ././15-budgeting/2017.journal
-@@ -2,6 +2,43 @@
- 
- include ./export/2017-opening.journal
- 
-+; budget available money
-+2017/01/01 Budget available money
-+  [budget:mortage]           £100
-+  [budget:groceries]         £300
-+  [budget:travel]           £2000
-+  [budget:emergency fund]  £19363.46
-+  [budget:pension]           £308.27
-+  [budget:available]
-+
-+2017/01/31 Budget income
-+  [budget:mortage]           £100
-+  [budget:groceries]          £30
-+  [budget:travel]            £500
-+  [budget:misc]              £100
-+  [budget:emergency fund]   £1180.30
-+  [budget:available]
-+
-+2017/02/28 Budget income
-+  [budget:mortage]           £100
-+  [budget:groceries]           £0
-+  [budget:travel]            £100
-+  [budget:misc]               £50
-+  [budget:emergency fund]   £1660.30
-+  [budget:available]
-+
-+2017/03/30 Budget income
-+  [budget:mortage]           £100
-+  [budget:groceries]          £50
-+  [budget:travel]            £100
-+  [budget:misc]               £50
-+  [budget:emergency fund]   £1610.30
-+  [budget:available]
-+
-+2017/04/30 Budget income
-+  [budget:emergency fund]   £1910.30
-+  [budget:available]
-+
- 2017/06/30 pension valuation
-   assets:pension:aviva     = £411.03
+diff -X .gitignore -Naurb ././14-speeding-up/2014.journal ././15-manual-lots/2014.journal
+--- ././14-speeding-up/2014.journal
++++ ././15-manual-lots/2014.journal
+@@ -14,5 +14,19 @@
+   assets:pension:aviva     = £102.34
    virtual:unrealized pnl
-diff -X .gitignore -Naurb ././14-speeding-up/budget.journal ././15-budgeting/budget.journal
---- ././14-speeding-up/budget.journal
-+++ ././15-budgeting/budget.journal
-@@ -0,0 +1,35 @@
-+; accounts which are included in the budget
-+; the sum of the balances is the money available to budget
-+; transfers between budgeted accounts is transparent to the budget
-+= assets:Lloyds:current
-+  [assets:Lloyds:current]       *-1
-+  [budget:available]             *1
+   
++;; Pension allowance tracking
++2014-04-05
++   (virtual:pension:allowance:2013/2014)    £4000           ; how much the allowance was
++   virtual:pension:allowance:2013/2014    = £0              ; how much of it is left
++   virtual:pension:inputs:2013/2014       £100.00           ; how much pension contributions were
++   virtual:pension:allowance:unused:2013/2014 - 2016/2017   ; remainder went to unused allowance
 +
-+= assets:pension:aviva
-+  [assets:pension:aviva]        *-1
-+  [budget:available]             *1
++;; Stock options tracking - 5 UNITS granted (to vest in two years), 0 vested
++2014/12/30 Stock options
++  virtual:stock options:granted
++  virtual:stock options:vesting:2016   5 UNITS
 +
-+= liabilities:mortgage
-+  [liabilities:mortage]         *-1
-+  [budget:available]             *1
++P 2014/12/30 UNITS 708.75 USD
 +
-+; expenses get deducted from the allocated budget
-+= expenses:coffee
-+  [budget:misc]                 *-1
-+  [budget:available]             *1
+ include ./import/lloyds/journal/99966633_20171224_2041.journal
+ include ./export/2014-mortgage-interest.journal
+diff -X .gitignore -Naurb ././14-speeding-up/2015.journal ././15-manual-lots/2015.journal
+--- ././14-speeding-up/2015.journal
++++ ././15-manual-lots/2015.journal
+@@ -4,6 +4,20 @@
+   assets:pension:aviva     = £204.41
+   virtual:unrealized pnl
+   
++;; Pension allowance tracking
++2015-04-05
++   (virtual:pension:allowance:2014/2015)  £4000             ; how much the allowance was
++   virtual:pension:allowance:2014/2015    = £0              ; how much of it is left
++   virtual:pension:inputs:2014/2015       £100.00           ; how much pension contributions were
++   virtual:pension:allowance:unused:2014/2015 - 2017/2018   ; remainder went to unused allowance
 +
-+= expenses:groceries
-+  [budget:groceries]            *-1
-+  [budget:available]             *1
++;; Stock options tracking - 10 UNITS granted (to vest in two years), 0 vested
++2015/12/30 Stock Options
++  virtual:stock options:granted
++  virtual:stock options:vesting:2017   10 UNITS
 +
-+= expenses:mortgage interest
-+  [budget:mortage]              *-1
-+  [budget:available]             *1
++P 2015/12/30 UNITS 654.77 USD
 +
-+= expenses:unknown
-+  [budget:unknown]              *-1
-+  [budget:available]             *1
+ include ./import/lloyds/journal/99966633_20171224_2042.journal
+ include ./import/lloyds/journal/12345678_20171225_0001.journal
+ include ./export/2015-mortgage-interest.journal
+diff -X .gitignore -Naurb ././14-speeding-up/2016.journal ././15-manual-lots/2016.journal
+--- ././14-speeding-up/2016.journal
++++ ././15-manual-lots/2016.journal
+@@ -4,6 +4,25 @@
+   assets:pension:aviva     = £308.27
+   virtual:unrealized pnl
+   
++;; Pension allowance tracking
++2016-04-05
++   (virtual:pension:allowance:2015/2016)  £50             ; how much the allowance was
++   virtual:pension:allowance:2015/2016    = £0            ; how much of it is left
++   virtual:pension:inputs:2015/2016       £100.00         ; how much pension contributions were
++   virtual:pension:allowance:unused:2013/2014 - 2016/2017   -£50 ; we need to use £50 of 2013/2014 allowance
++   virtual:pension:allowance:unused:2015/2016 - 2018/2019   ; remainder went to unused allowance
 +
-+= virtual:unrealized pnl
-+  [budget:pension]              *-1
-+  [budget:available]             *1
-\ No newline at end of file
-diff -X .gitignore -Naurb ././14-speeding-up/export/budget.sh ././15-budgeting/export/budget.sh
---- ././14-speeding-up/export/budget.sh
-+++ ././15-budgeting/export/budget.sh
-@@ -0,0 +1,14 @@
-+#!/bin/bash
-+year="$1"
++;; Stock options tracking - 20 UNITS granted (to vest in two years), year 2016 vested
++2016/12/30 Stock Options
++  virtual:stock options:granted
++  virtual:stock options:vesting:2018   20 UNITS
 +
-+dir=$(dirname $0)
++2016/12/30 Stock Options
++  virtual:stock options:vested
++  virtual:stock options:vesting:2016   = 0 UNITS
 +
-+function gen_input(){
-+    echo "include ${dir}/../budget.journal"
++P 2016/12/30 UNITS 851.12 USD
 +
-+    # make sure that all postings are fully expanded to avoid
-+    # "Balance assignments may not be used on accounts affected by auto posting rules"
-+    hledger print -f "${dir}/../${year}.journal" -x
-+}
-+
-+gen_input | hledger balance -f - balance -I --auto --tree -H -p monthly budget not:equity:opening
-diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-budgeting/export/export.hs
---- ././14-speeding-up/export/export.hs
-+++ ././15-budgeting/export/export.hs
-@@ -39,6 +39,7 @@
- cash_flow         y = y++"-cash-flow.txt"
- accounts          y = y++"-accounts.txt"
- unknown           y = y++"-unknown.journal"
-+budget_balances   y = y++"-budget-balances.txt"
- closing_balances  y = y++"-closing.journal"
- opening_balances  y = y++"-opening.journal"
+ include ./import/lloyds/journal/99966633_20171224_2043.journal
+ include ./import/lloyds/journal/12345678_20171225_0002.journal
+ include ./export/2016-mortgage-interest.journal
+diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-manual-lots/2017.journal
+--- ././14-speeding-up/2017.journal
++++ ././15-manual-lots/2017.journal
+@@ -11,6 +11,28 @@
+    (p60:tax paid)              -£2681.27
+    (p60:national insurance)    -£1184.02
  
-@@ -60,6 +61,7 @@
-          , [ balance_sheet        (show y) | y <- all_years ]
-          , [ cash_flow            (show y) | y <- all_years ]
++;; Pension allowance tracking
++2017-04-05
++   (virtual:pension:allowance:2016/2017)  £40             ; how much the allowance was
++   virtual:pension:allowance:2016/2017    = £0            ; how much of it is left
++   virtual:pension:inputs:2016/2017       £100.00         ; how much pension contributions were
++   virtual:pension:allowance:unused:2014/2015 - 2017/2018   -£60 ; we need to use £60 of 2014/2015 allowance
++   virtual:pension:allowance:unused:2016/2017 - 2019/2020   ; remainder went to unused allowance
++
++; Under UK rules, this allowance should expire in 2018, but I am lazy and dont want to create 2018.journal to illustrate this, so lets expire it in 2017
++2017-04-01 Expired
++   (virtual:pension:allowance:unused:2013/2014 - 2016/2017)  = £0
++
++;; Stock options tracking - 25 UNITS granted (to vest in two years), year 2017 vested
++2017/12/30 Stock Options
++  virtual:stock options:granted
++  virtual:stock options:vesting:2019   25 UNITS
++
++2017/12/30 Stock Options
++  virtual:stock options:vested
++  virtual:stock options:vesting:2017   = 0 UNITS
++
++P 2017/12/30 UNITS 901.97 USD
+ 
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
+ include ./import/lloyds/journal/12345678_20171225_0003.journal
+diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-manual-lots/export/export.hs
+--- ././14-speeding-up/export/export.hs
++++ ././15-manual-lots/export/export.hs
+@@ -49,6 +49,8 @@
+ investments              = "investments.txt"
+ mortgage_interest y = y++"-mortgage-interest.journal"
+ tax_return y = printf "%d-%d-tax.txt" (y-1) y
++pension_contributions = "pension.txt"
++stock_options = "stock-options.txt"
+ 
+ --
+ -- Defining the full set of reports and journals to be generated
+@@ -62,7 +64,7 @@
           , [ unknown              (show y) | y <- all_years ]
-+         , [ budget_balances      (show y) | y <- [current] ]
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
-          , [ investments ]
-@@ -118,8 +120,6 @@
-   let first = firstYear flags
-       current = currentYear flags
+-         , [ investments ]
++         , [ investments, pension_contributions, stock_options ]
+          , [ mortgage_interest    (show y) | y <- all_years ]
+          , [ tax_return                 y  | y <- [2017..current] ]
+          ]
+@@ -149,7 +151,11 @@
+   -- Enumerate directories with auto-generated journals
+   [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
  
--  absoluteBaseDir <- liftIO $ makeAbsolute (baseDir flags)
--      
-   if null targets then want (reports first current) else want targets
- 
-   -- Discover and cache the list of all includes for the given .journal file, recursively
-@@ -139,6 +139,8 @@
- 
-   (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
- 
-+  (budget_balances "//*") %> generate_budget_balances flags year_inputs
+-  ("//" ++ investments) %> generate_investments_report current year_inputs
++  ("//" ++ investments) %> with_all_investment_years current year_inputs "./investments.sh" ["none"]
 +
-   (closing_balances "//*") %> generate_closing_balances flags year_inputs
- 
-   (opening_balances "//*") %> generate_opening_balances flags year_inputs
-@@ -157,8 +159,6 @@
-   -- Tax year report
-   "*-tax.txt" %> generate_tax_return year_inputs
- 
--  "//import//*.matching_rules" %> generate_matching_rules absoluteBaseDir
--
- -------------------------------------
- -- Implementations of the build rules
- -------------------------------------
-@@ -202,18 +202,6 @@
-   (Stdout output) <- cmd (Cwd source_dir) Shell "./in2csv" (map (makeRelative source_dir) inputs)
-   writeFileChanged out output
- 
---- produce <importdir>/csv/filename.matching_rules out of <importdir>/csv/filename.csv and <importdir>/rules.psv
--generate_matching_rules base_dir out = do
--  let (csv_dir, file) = splitFileName out
--  let source_dir = parentOf "csv" csv_dir
--  let export_dir = parentOf "import" csv_dir </> "export"
--  let input = out -<.> "csv"
--  let deps = map (source_dir </>) $ extraDeps out
--  let matching_rules_py = base_dir </> "export" </> "matching_rules.py"
--  need $ (source_dir </> "rules.psv"):matching_rules_py:input:deps
--  (Stdout output) <- cmd (Cwd source_dir) Shell (makeRelative source_dir matching_rules_py) ["rules.psv", makeRelative source_dir input]
--  writeFileChanged out output
--
- -- To produce <importdir>/journal/filename.journal, look for <importdir>/csv/filename.csv and
- -- process it with <importdir>/csv2journal
- csv2journal out = do
-@@ -221,11 +209,7 @@
-   let source_dir = parentOf "journal" journal_dir
-   let csv_dir = replaceDir "journal" "csv" journal_dir
-   let input = csv_dir </> (file -<.> "csv")
--  let replace_rules_psv = \dep ->
--        case dep of
--          "rules.psv" -> input -<.> "matching_rules"
--          otherwise -> source_dir </> dep
--  let deps = map replace_rules_psv (extraDeps out)
-+  let deps = map (source_dir </>) $ extraDeps out
-   need $ (source_dir </> "csv2journal"):(input:deps)
-   (Stdout output) <- cmd (Cwd source_dir) Shell "./csv2journal" [makeRelative source_dir input]
-   writeFileChanged out output
-@@ -265,6 +249,14 @@
-   (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
-   writeFileChanged out output
- 
-+generate_budget_balances flags year_inputs out = do
-+  let year = head $ split out
-+  deps <- year_inputs year
-+  need deps
-+  need [ "./budget.sh" ]
-+  (Stdout output) <- cmd "./budget.sh" [year]
-+  writeFileChanged out output
++  ("//" ++ pension_contributions) %> with_all_investment_years current year_inputs "./pension.sh" ["none"]
 +
++  ("//" ++ stock_options) %> with_all_investment_years current year_inputs "./stock-options.sh" ["none"]
+ 
+   -- Mortgage interest transactions
+   mortgage_interest "//*" %> generate_mortgage_interest year_inputs
+@@ -233,11 +239,11 @@
  -------------------
  -- Helper functions
  -------------------
-diff -X .gitignore -Naurb ././14-speeding-up/export/investments.sh ././15-budgeting/export/investments.sh
---- ././14-speeding-up/export/investments.sh
-+++ ././15-budgeting/export/investments.sh
-@@ -6,11 +6,8 @@
-             --investment "acct:assets:${asset} not:acct:equity" \
-             --pnl 'acct:virtual:unrealized not:acct:equity' "$@"
- }
--export -f report
+-generate_investments_report current year_inputs out = do
++with_all_investment_years current year_inputs prog args out = do
+   deps <- mapM (year_inputs . show) (investment_years current)
+   need (concat deps)
+-  need [ "./investments.sh" ]
+-  (Stdout output) <- cmd "./investments.sh"
++  need [prog]
++  (Stdout output) <- cmd prog args
+   writeFileChanged out output
  
--parallel -k :::: <<EOF
- echo "Pension"
- echo
- report "pension"
- report "pension" -Y
--EOF
-diff -X .gitignore -Naurb ././14-speeding-up/export/matching_rules.py ././15-budgeting/export/matching_rules.py
---- ././14-speeding-up/export/matching_rules.py
-+++ ././15-budgeting/export/matching_rules.py
-@@ -1,21 +0,0 @@
--#!/usr/bin/env python3
--import sys
--import re
--
--def main(rules_file, csv_file):
--    with open(rules_file, 'r') as file:
--        rules = [
--            (line.split('|')[0], line)
--            for line in file.read().splitlines()
--        ]
--
--    with open(csv_file, 'r') as file:
--        contents = file.read()
--
--    for re_pattern, full_rule in rules:
--        rex = re.compile(re_pattern)
--        if rex.search(contents):
--            print(full_rule)
--
--if __name__ == "__main__":
--    main(sys.argv[1], sys.argv[2])
-diff -X .gitignore -Naurb ././14-speeding-up/export/tax_return.sh ././15-budgeting/export/tax_return.sh
---- ././14-speeding-up/export/tax_return.sh
-+++ ././15-budgeting/export/tax_return.sh
-@@ -4,17 +4,12 @@
- 
- dir=$(dirname $0)
- 
--export year year2 dir
--
- function gen_input(){
-     echo "include ${dir}/../${year}.journal"
-     echo "include ${dir}/${year}-closing.journal"
-     echo "include ${dir}/../${year2}.journal"
- }
- 
--export -f gen_input
--
--parallel -k :::: <<EOF
- echo "INCOME TOTALS"
- echo "============="
- 
-@@ -32,4 +27,3 @@
-     -b $year-04-06 -e $year2-04-06 # end date is not inclusive
- echo
- 
--EOF
+ generate_mortgage_interest year_inputs out = do
+diff -X .gitignore -Naurb ././14-speeding-up/export/pension.sh ././15-manual-lots/export/pension.sh
+--- ././14-speeding-up/export/pension.sh
++++ ././15-manual-lots/export/pension.sh
+@@ -0,0 +1,19 @@
++#!/bin/bash
++
++cd $(dirname $0)
++
++parallel -k :::: <<EOF
++echo "PENSION CONTRIBUTIONS"
++echo "====================="
++hledger -f ../all.journal balance "assets:pension:aviva" "virtual:pension:input" -b "2013-04-06" -p "every year" --transpose --depth 3
++echo
++
++echo "PENSION ALLOWANCE TRACKING"
++echo "=========================="
++hledger  -f ../all.journal balance virtual:pension -b '2013-04-06' -p 'every year' --no-elide --tree --cumulative -H
++echo
++
++echo "UNUSED PENSION ALLOWANCE"
++echo "========================"
++hledger  -f ../all.journal register virtual:pension:allowance:unused -b '2013-04-06' --depth 4
++EOF
+diff -X .gitignore -Naurb ././14-speeding-up/export/stock-options.sh ././15-manual-lots/export/stock-options.sh
+--- ././14-speeding-up/export/stock-options.sh
++++ ././15-manual-lots/export/stock-options.sh
+@@ -0,0 +1,15 @@
++#!/bin/bash
++
++cd $(dirname $0)
++
++parallel -k :::: <<EOF
++echo "END OF YEAR VALUATIONS"
++echo "======================"
++hledger balance 'stock options:vested' -f ../all.journal -Y -b2014 --cumulative --transpose --value=end,USD --valuechange --no-total
++echo
++
++echo "VESTING HISTORY"
++echo "==============="
++hledger balance 'stock options:vest' -f ../all.journal -Y -b2014 --cumulative
++echo
++EOF
