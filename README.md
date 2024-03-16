@@ -2,9 +2,9 @@
 
 Full-Fledged Hledger is a tutorial on how to setup up [hledger](https://github.com/simonmichael/hledger) to get:
 - ledger files split by year
-- multi-source CSV imports
-- range of auto-generated reports
-- single script to update all reports when any source file changes
+- multi-source CSV imports, with "CSV first" workflow where your CSV files treated as a source of truth
+- wide range of auto-generated reports
+- single script to update all reports when any source file changes, quickly and efficiently
 - full freedom to evolve and refactor your journals as you see fit
 
 **All new users please [READ THE WIKI](https://github.com/adept/full-fledged-hledger/wiki) -- at the very least read the 'Getting started' page to get going.**
