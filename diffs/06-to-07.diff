@@ -1,7 +1,7 @@
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2014.journal ././07-investments-easy-approach/2014.journal
 --- ././06-maintaining-lots-of-csv-rules/2014.journal
 +++ ././07-investments-easy-approach/2014.journal
-@@ -4,4 +4,8 @@
+@@ -6,4 +6,8 @@
    assets:cash              = £150.00
    equity:opening balances
  
@@ -13,7 +13,8 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2014.journal ././
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2015.journal ././07-investments-easy-approach/2015.journal
 --- ././06-maintaining-lots-of-csv-rules/2015.journal
 +++ ././07-investments-easy-approach/2015.journal
-@@ -1,3 +1,8 @@
+@@ -1,4 +1,9 @@
+ include commodities.journal
  include ./export/2015-opening.journal
 +
 +2015/12/31 pension valuation
@@ -25,7 +26,8 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2015.journal ././
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2016.journal ././07-investments-easy-approach/2016.journal
 --- ././06-maintaining-lots-of-csv-rules/2016.journal
 +++ ././07-investments-easy-approach/2016.journal
-@@ -1,3 +1,8 @@
+@@ -1,4 +1,9 @@
+ include commodities.journal
  include ./export/2016-opening.journal
 +
 +2016/12/31 pension valuation
@@ -37,8 +39,8 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2016.journal ././
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/2017.journal ././07-investments-easy-approach/2017.journal
 --- ././06-maintaining-lots-of-csv-rules/2017.journal
 +++ ././07-investments-easy-approach/2017.journal
-@@ -1,4 +1,9 @@
- ;; This journal is for the current year
+@@ -2,4 +2,9 @@
+ include commodities.journal
  
  include ./export/2017-opening.journal
 +
@@ -59,7 +61,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/README.md ././07-
 diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs ././07-investments-easy-approach/export/export.hs
 --- ././06-maintaining-lots-of-csv-rules/export/export.hs
 +++ ././07-investments-easy-approach/export/export.hs
-@@ -42,6 +42,12 @@
+@@ -43,6 +43,12 @@
  closing_balances  y = y++"-closing.journal"
  opening_balances  y = y++"-opening.journal"
  
@@ -72,7 +74,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
  --
  -- Defining the full set of reports and journals to be generated
  --
-@@ -54,6 +60,7 @@
+@@ -55,6 +61,7 @@
           , [ unknown              (show y) | y <- all_years ]
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
@@ -80,7 +82,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
           ]
    where
      all_years=[first..current]
-@@ -133,6 +140,8 @@
+@@ -143,6 +150,8 @@
    -- Enumerate directories with auto-generated journals
    [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
  
@@ -89,7 +91,7 @@ diff -X .gitignore -Naurb ././06-maintaining-lots-of-csv-rules/export/export.hs 
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -189,6 +198,16 @@
+@@ -199,6 +208,16 @@
    writeFileChanged out output
  
  -------------------

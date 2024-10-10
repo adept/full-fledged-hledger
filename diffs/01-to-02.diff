@@ -1,8 +1,9 @@
 diff -X .gitignore -Naurb ././01-getting-started/2017.journal ././02-getting-data-in/2017.journal
 --- ././01-getting-started/2017.journal
 +++ ././02-getting-data-in/2017.journal
-@@ -1 +1,8 @@
+@@ -1 +1,9 @@
  ;; This journal is for the current year
++include commodities.journal
 +
 +;; Opening balances
 +2017/01/01 opening balances
@@ -26,10 +27,15 @@ diff -X .gitignore -Naurb ././01-getting-started/README.md ././02-getting-data-i
 +    - cash flow
 +
 +    - income/expenses
+diff -X .gitignore -Naurb ././01-getting-started/commodities.journal ././02-getting-data-in/commodities.journal
+--- ././01-getting-started/commodities.journal
++++ ././02-getting-data-in/commodities.journal
+@@ -0,0 +1 @@
++commodity £1000.00
 diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting-data-in/export/export.hs
 --- ././01-getting-started/export/export.hs
 +++ ././02-getting-data-in/export/export.hs
-@@ -57,7 +57,9 @@
+@@ -58,7 +58,9 @@
  -----------------------------------------
  -- Extra dependencies of the import files
  -----------------------------------------
@@ -40,7 +46,7 @@ diff -X .gitignore -Naurb ././01-getting-started/export/export.hs ././02-getting
  
  -----------------------------------------------
  -- Extra inputs to be fed to conversion scripts
-@@ -118,10 +120,10 @@
+@@ -128,10 +130,10 @@
    (opening_balances "//*") %> generate_opening_balances flags year_inputs
  
    -- Enumerate directories with auto-generated cleaned csv files

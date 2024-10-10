@@ -1,15 +1,15 @@
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-mortgage/2014.journal
 --- ././07-investments-easy-approach/2014.journal
 +++ ././08-mortgage/2014.journal
-@@ -4,8 +4,15 @@
+@@ -6,8 +6,15 @@
    assets:cash              = £150.00
    equity:opening balances
  
 +2014/01/02 Taking out mortgage to buy a house for £1000 (£150 downpayment, £5 opening fee, included in mortgage, 2% rate)
-+  assets:cash              -£150
-+  expenses:mortage fees    £5
++  assets:cash              -£150.00
++  expenses:mortage fees    £5.00
 +  liabilities:mortgage
-+  assets:house             £1000
++  assets:house             £1000.00
 +
  2014/12/31 pension valuation
    assets:pension:aviva     = £102.34
@@ -20,7 +20,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2014.journal ././08-m
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2015.journal ././08-mortgage/2015.journal
 --- ././07-investments-easy-approach/2015.journal
 +++ ././08-mortgage/2015.journal
-@@ -6,3 +6,4 @@
+@@ -7,3 +7,4 @@
    
  include ./import/lloyds/journal/99966633_20171224_2042.journal
  include ./import/lloyds/journal/12345678_20171225_0001.journal
@@ -28,7 +28,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2015.journal ././08-m
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2016.journal ././08-mortgage/2016.journal
 --- ././07-investments-easy-approach/2016.journal
 +++ ././08-mortgage/2016.journal
-@@ -6,3 +6,4 @@
+@@ -7,3 +7,4 @@
    
  include ./import/lloyds/journal/99966633_20171224_2043.journal
  include ./import/lloyds/journal/12345678_20171225_0002.journal
@@ -36,7 +36,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/2016.journal ././08-m
 diff -X .gitignore -Naurb ././07-investments-easy-approach/2017.journal ././08-mortgage/2017.journal
 --- ././07-investments-easy-approach/2017.journal
 +++ ././08-mortgage/2017.journal
-@@ -7,3 +7,4 @@
+@@ -8,3 +8,4 @@
    virtual:unrealized pnl
    
  include ./import/lloyds/journal/99966633_20171223_1844.journal
@@ -56,7 +56,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/README.md ././08-mort
 diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././08-mortgage/export/export.hs
 --- ././07-investments-easy-approach/export/export.hs
 +++ ././08-mortgage/export/export.hs
-@@ -47,6 +47,7 @@
+@@ -48,6 +48,7 @@
  -----------------
  investment_years current = [2014..current] -- helpful if your investment period is shorter than all_years
  investments              = "investments.txt"
@@ -64,7 +64,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  
  --
  -- Defining the full set of reports and journals to be generated
-@@ -61,6 +62,7 @@
+@@ -62,6 +63,7 @@
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
           , [ investments ]
@@ -72,7 +72,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
           ]
    where
      all_years=[first..current]
-@@ -142,6 +144,9 @@
+@@ -152,6 +154,9 @@
  
    ("//" ++ investments) %> generate_investments_report current year_inputs
  
@@ -82,7 +82,7 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -207,6 +212,20 @@
+@@ -217,11 +222,25 @@
    (Stdout output) <- cmd "./investments.sh"
    writeFileChanged out output
  
@@ -103,17 +103,26 @@ diff -X .gitignore -Naurb ././07-investments-easy-approach/export/export.hs ././
  -------------------
  -- Helper functions
  -------------------
+ 
+-dyngen file = False
++dyngen file = "mortgage-interest.journal" `isSuffixOf` file
+ 
+ -- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
+ -- some of the requested includes might be generated and might not exist yet.
 diff -X .gitignore -Naurb ././07-investments-easy-approach/export/mortgage_interest.sh ././08-mortgage/export/mortgage_interest.sh
 --- ././07-investments-easy-approach/export/mortgage_interest.sh
 +++ ././08-mortgage/export/mortgage_interest.sh
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,12 @@
 +#!/bin/bash
 +set -e -o pipefail
 +[ -z "$1" ] && ( echo "usage: $0 YEAR"; exit 1; )
 +year="$1"
 +dir=$(dirname $0)
 +echo ";; This is an auto-generated file, do not edit"
-+hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -I \
++(
++    cat ../commodities.journal
++    hledger -f "${dir}/../${year}.journal" print 'not:desc:(interest for)' -I
++) \
 +    | hledger-interest -f - --source='expenses:mortgage interest' --target=liabilities:mortgage --annual=0.02 --act liabilities:mortgage -q --today -I \
 +    | hledger print -f - -p "${year}"
 diff -X .gitignore -Naurb ././07-investments-easy-approach/import/lloyds/rules.psv ././08-mortgage/import/lloyds/rules.psv

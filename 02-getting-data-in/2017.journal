@@ -1,4 +1,5 @@
 ;; This journal is for the current year
+include commodities.journal
 
 ;; Opening balances
 2017/01/01 opening balances

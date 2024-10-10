@@ -3,11 +3,7 @@
     liabilities:mortgage                £-3.80
     expenses:mortgage interest           £3.80
 
-2015-04-30 2% interest for £-674.36 over 30 days
-    liabilities:mortgage                £-1.11
-    expenses:mortgage interest           £1.11
-
-2015-12-31 1.8% interest for £-675.47 over 245 days
-    liabilities:mortgage                £-8.16
-    expenses:mortgage interest           £8.16
+2015-12-31 2% interest for £-674.36 over 275 days
+    liabilities:mortgage               £-10.16
+    expenses:mortgage interest          £10.16
 

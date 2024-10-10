@@ -1,7 +1,7 @@
 diff -X .gitignore -Naurb ././14-speeding-up/2014.journal ././15-manual-lots/2014.journal
 --- ././14-speeding-up/2014.journal
 +++ ././15-manual-lots/2014.journal
-@@ -14,5 +14,19 @@
+@@ -16,5 +16,19 @@
    assets:pension:aviva     = £102.34
    virtual:unrealized pnl
    
@@ -24,7 +24,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2014.journal ././15-manual-lots/201
 diff -X .gitignore -Naurb ././14-speeding-up/2015.journal ././15-manual-lots/2015.journal
 --- ././14-speeding-up/2015.journal
 +++ ././15-manual-lots/2015.journal
-@@ -4,6 +4,20 @@
+@@ -5,6 +5,20 @@
    assets:pension:aviva     = £204.41
    virtual:unrealized pnl
    
@@ -48,7 +48,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2015.journal ././15-manual-lots/201
 diff -X .gitignore -Naurb ././14-speeding-up/2016.journal ././15-manual-lots/2016.journal
 --- ././14-speeding-up/2016.journal
 +++ ././15-manual-lots/2016.journal
-@@ -4,6 +4,25 @@
+@@ -5,6 +5,25 @@
    assets:pension:aviva     = £308.27
    virtual:unrealized pnl
    
@@ -77,7 +77,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2016.journal ././15-manual-lots/201
 diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-manual-lots/2017.journal
 --- ././14-speeding-up/2017.journal
 +++ ././15-manual-lots/2017.journal
-@@ -11,6 +11,28 @@
+@@ -12,6 +12,28 @@
     (p60:tax paid)              -£2681.27
     (p60:national insurance)    -£1184.02
  
@@ -106,10 +106,17 @@ diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-manual-lots/201
  
  include ./import/lloyds/journal/99966633_20171223_1844.journal
  include ./import/lloyds/journal/12345678_20171225_0003.journal
+diff -X .gitignore -Naurb ././14-speeding-up/commodities.journal ././15-manual-lots/commodities.journal
+--- ././14-speeding-up/commodities.journal
++++ ././15-manual-lots/commodities.journal
+@@ -1,2 +1,3 @@
+ commodity £1000.00
+ commodity $1000.00
++commodity 1000. UNITS
 diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-manual-lots/export/export.hs
 --- ././14-speeding-up/export/export.hs
 +++ ././15-manual-lots/export/export.hs
-@@ -49,6 +49,8 @@
+@@ -50,6 +50,8 @@
  investments              = "investments.txt"
  mortgage_interest y = y++"-mortgage-interest.journal"
  tax_return y = printf "%d-%d-tax.txt" (y-1) y
@@ -118,7 +125,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-manual-lots
  
  --
  -- Defining the full set of reports and journals to be generated
-@@ -62,7 +64,7 @@
+@@ -63,7 +65,7 @@
           , [ unknown              (show y) | y <- all_years ]
           , [ opening_balances     (show y) | y <- all_years, y/=first ]
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
@@ -127,7 +134,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-manual-lots
           , [ mortgage_interest    (show y) | y <- all_years ]
           , [ tax_return                 y  | y <- [2017..current] ]
           ]
-@@ -149,7 +151,11 @@
+@@ -159,7 +161,11 @@
    -- Enumerate directories with auto-generated journals
    [ "//import/lloyds/journal/*.journal" ] |%> csv2journal
  
@@ -140,7 +147,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/export/export.hs ././15-manual-lots
  
    -- Mortgage interest transactions
    mortgage_interest "//*" %> generate_mortgage_interest year_inputs
-@@ -233,11 +239,11 @@
+@@ -243,11 +249,11 @@
  -------------------
  -- Helper functions
  -------------------

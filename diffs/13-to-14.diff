@@ -1,7 +1,7 @@
 diff -X .gitignore -Naurb ././13-tax-returns/export/export.hs ././14-speeding-up/export/export.hs
 --- ././13-tax-returns/export/export.hs
 +++ ././14-speeding-up/export/export.hs
-@@ -118,6 +118,8 @@
+@@ -119,6 +119,8 @@
    let first = firstYear flags
        current = currentYear flags
  
@@ -10,7 +10,7 @@ diff -X .gitignore -Naurb ././13-tax-returns/export/export.hs ././14-speeding-up
    if null targets then want (reports first current) else want targets
  
    -- Discover and cache the list of all includes for the given .journal file, recursively
-@@ -155,6 +157,8 @@
+@@ -165,6 +167,8 @@
    -- Tax year report
    "*-tax.txt" %> generate_tax_return year_inputs
  
@@ -19,7 +19,7 @@ diff -X .gitignore -Naurb ././13-tax-returns/export/export.hs ././14-speeding-up
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -198,6 +202,18 @@
+@@ -208,6 +212,18 @@
    (Stdout output) <- cmd (Cwd source_dir) Shell "./in2csv" (map (makeRelative source_dir) inputs)
    writeFileChanged out output
  
@@ -38,7 +38,7 @@ diff -X .gitignore -Naurb ././13-tax-returns/export/export.hs ././14-speeding-up
  -- To produce <importdir>/journal/filename.journal, look for <importdir>/csv/filename.csv and
  -- process it with <importdir>/csv2journal
  csv2journal out = do
-@@ -205,7 +221,11 @@
+@@ -215,7 +231,11 @@
    let source_dir = parentOf "journal" journal_dir
    let csv_dir = replaceDir "journal" "csv" journal_dir
    let input = csv_dir </> (file -<.> "csv")

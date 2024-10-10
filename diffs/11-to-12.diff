@@ -1,7 +1,7 @@
 diff -X .gitignore -Naurb ././11-sorting-unknowns/2017.journal ././12-file-specific-rules/2017.journal
 --- ././11-sorting-unknowns/2017.journal
 +++ ././12-file-specific-rules/2017.journal
-@@ -7,4 +7,5 @@
+@@ -8,4 +8,5 @@
    virtual:unrealized pnl
    
  include ./import/lloyds/journal/99966633_20171223_1844.journal
@@ -10,7 +10,7 @@ diff -X .gitignore -Naurb ././11-sorting-unknowns/2017.journal ././12-file-speci
 diff -X .gitignore -Naurb ././11-sorting-unknowns/export/export.hs ././12-file-specific-rules/export/export.hs
 --- ././11-sorting-unknowns/export/export.hs
 +++ ././12-file-specific-rules/export/export.hs
-@@ -71,7 +71,10 @@
+@@ -72,7 +72,10 @@
  -- Extra dependencies of the import files
  -----------------------------------------
  extraDeps file

@@ -1,4 +1,6 @@
 ;; Opening balances
+include commodities.journal
+
 2014/01/01 opening balances
   assets:Lloyds:current    = £100.00
   assets:cash              = £150.00

@@ -1,6 +1,6 @@
 2015-01-01 opening balances  ; start:2015.journal
     assets:Lloyds:current                   £600.00 = £600.00
-    assets:house                              £1000 = £1000
+    assets:house                           £1000.00 = £1000.00
     assets:pension:aviva                    £102.34 = £102.34
     liabilities:mortgage                   £-770.56 = £-770.56
     equity:opening/closing balances
@@ -29,10 +29,6 @@
     assets:Lloyds:current          £-3.72 = £750.00
     expenses:coffee
 
-2015-04-30 2% interest for £-674.36 over 30 days
-    liabilities:mortgage                £-1.11
-    expenses:mortgage interest           £1.11
-
 2015-05-01 (BP) AVIVA
     assets:Lloyds:current           £-100 = £650.00
     assets:pension:aviva
@@ -41,7 +37,7 @@
     assets:pension:aviva                   = £204.41
     virtual:unrealized pnl
 
-2015-12-31 1.8% interest for £-675.47 over 245 days
-    liabilities:mortgage                £-8.16
-    expenses:mortgage interest           £8.16
+2015-12-31 2% interest for £-674.36 over 275 days
+    liabilities:mortgage               £-10.16
+    expenses:mortgage interest          £10.16
 

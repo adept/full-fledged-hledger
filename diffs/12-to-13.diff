@@ -1,7 +1,7 @@
 diff -X .gitignore -Naurb ././12-file-specific-rules/2017.journal ././13-tax-returns/2017.journal
 --- ././12-file-specific-rules/2017.journal
 +++ ././13-tax-returns/2017.journal
-@@ -6,6 +6,12 @@
+@@ -7,6 +7,12 @@
    assets:pension:aviva     = £411.03
    virtual:unrealized pnl
    
@@ -17,7 +17,7 @@ diff -X .gitignore -Naurb ././12-file-specific-rules/2017.journal ././13-tax-ret
 diff -X .gitignore -Naurb ././12-file-specific-rules/export/export.hs ././13-tax-returns/export/export.hs
 --- ././12-file-specific-rules/export/export.hs
 +++ ././13-tax-returns/export/export.hs
-@@ -48,6 +48,7 @@
+@@ -49,6 +49,7 @@
  investment_years current = [2014..current] -- helpful if your investment period is shorter than all_years
  investments              = "investments.txt"
  mortgage_interest y = y++"-mortgage-interest.journal"
@@ -25,7 +25,7 @@ diff -X .gitignore -Naurb ././12-file-specific-rules/export/export.hs ././13-tax
  
  --
  -- Defining the full set of reports and journals to be generated
-@@ -63,6 +64,7 @@
+@@ -64,6 +65,7 @@
           , [ closing_balances     (show y) | y <- all_years, y/=current ]
           , [ investments ]
           , [ mortgage_interest    (show y) | y <- all_years ]
@@ -33,7 +33,7 @@ diff -X .gitignore -Naurb ././12-file-specific-rules/export/export.hs ././13-tax
           ]
    where
      all_years=[first..current]
-@@ -150,6 +152,9 @@
+@@ -160,6 +162,9 @@
    -- Mortgage interest transactions
    mortgage_interest "//*" %> generate_mortgage_interest year_inputs
  
@@ -43,7 +43,7 @@ diff -X .gitignore -Naurb ././12-file-specific-rules/export/export.hs ././13-tax
  -------------------------------------
  -- Implementations of the build rules
  -------------------------------------
-@@ -229,6 +234,17 @@
+@@ -239,6 +244,17 @@
      cmd "./mortgage_interest.sh" [year]
    writeFileChanged out output
  

@@ -13,8 +13,8 @@ Income Statement 2017, converted to cost
 ----------------------------++----------
  expenses:coffee            ||    £5.19 
  expenses:groceries         ||   £19.74 
- expenses:mortgage interest ||    £9.38 
+ expenses:mortgage interest ||    £9.40 
 ----------------------------++----------
-                            ||   £34.31 
+                            ||   £34.33 
 ============================++==========
- Net:                       || £1060.62 
+ Net:                       || £1060.60 

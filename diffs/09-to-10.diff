@@ -10,10 +10,16 @@ diff -X .gitignore -Naurb ././09-remortgage/README.md ././10-foreign-currency/RE
  - Compact rules file to classify expenses
  
  - Mortgage with automatic interest and capital payments tracking, with one re-mortgage
+diff -X .gitignore -Naurb ././09-remortgage/commodities.journal ././10-foreign-currency/commodities.journal
+--- ././09-remortgage/commodities.journal
++++ ././10-foreign-currency/commodities.journal
+@@ -1 +1,2 @@
+ commodity £1000.00
++commodity $1000.00
 diff -X .gitignore -Naurb ././09-remortgage/export/export.hs ././10-foreign-currency/export/export.hs
 --- ././09-remortgage/export/export.hs
 +++ ././10-foreign-currency/export/export.hs
-@@ -124,7 +124,7 @@
+@@ -134,7 +134,7 @@
  
    (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
  

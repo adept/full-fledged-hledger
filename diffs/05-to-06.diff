@@ -13,7 +13,7 @@ diff -X .gitignore -Naurb ././05-creating-csv-import-rules/README.md ././06-main
 diff -X .gitignore -Naurb ././05-creating-csv-import-rules/export/export.hs ././06-maintaining-lots-of-csv-rules/export/export.hs
 --- ././05-creating-csv-import-rules/export/export.hs
 +++ ././06-maintaining-lots-of-csv-rules/export/export.hs
-@@ -62,7 +62,7 @@
+@@ -63,7 +63,7 @@
  -- Extra dependencies of the import files
  -----------------------------------------
  extraDeps file
