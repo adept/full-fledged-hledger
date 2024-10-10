@@ -1,13 +1,27 @@
-FROM haskell:9.6.4
+FROM haskell:9.6.6 as builder
 
-ENV RESOLVER lts-22.13
+WORKDIR /usr/app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git python3 python3-venv
+
+RUN python3 -m venv /usr/app/venv
+ENV PATH="/usr/app/venv/bin:$PATH"
+
+RUN git clone https://gitlab.com/chrisberkhout/pricehist \
+    && cd pricehist \
+    && pip install --no-cache-dir .
+
+FROM haskell:9.6.6
+
+ENV RESOLVER lts-22.37
 
 COPY --from=dastapov/hledger:1.40 /usr/bin/hledger* /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 
 # Precompile all packages needed for export.hs
-RUN stack --resolver $RESOLVER --system-ghc script --package shake --package directory /tmp/export.hs -- -v \
+RUN stack --resolver $RESOLVER --system-ghc script --package shake --package directory --package process /tmp/export.hs -- -v \
     && rm -r /tmp/export.* \
     && rm -rf /root/.stack/pantry \
     && chmod -R g+wrX,o+wrX /root
@@ -18,6 +32,9 @@ RUN apt-get update \
     && cd /usr/bin/ \
     && curl -L https://github.com/lotabout/skim/releases/download/v0.8.1/skim-v0.8.1-x86_64-unknown-linux-gnu.tar.gz | tar xz \  
     && curl -L https://github.com/johnkerl/miller/releases/download/v6.13.0/miller-6.13.0-linux-386.tar.gz | tar xz
+
+COPY --from=builder /usr/app/venv /usr/app/venv
+ENV PATH="/usr/app/venv/bin:$PATH"
 
 RUN adduser --system --ingroup root hledger
 

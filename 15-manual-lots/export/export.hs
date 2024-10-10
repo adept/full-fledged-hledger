@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-22.13 script --package shake --package directory --optimize
+-- stack --resolver lts-22.37 script --package shake --package directory --package process --optimize
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Util
@@ -9,6 +9,7 @@ import Control.Monad
 import System.Console.GetOpt
 import System.IO
 import System.Directory as D
+import System.Process as P
 
 --
 -- Hardcoded defaults, overridable via commandline options:
@@ -128,6 +129,15 @@ export_all flags targets = return $ Just $ do
   year_inputs <- newCache $ \year -> do
     let file = input (baseDir flags) year
     getIncludes (baseDir flags) file -- file itself will be included here
+
+  liftIO $ (flip mapM_) [first..current] $ \year -> do
+    let file = input (baseDir flags) $ show year
+    includes <- filter dyngen <$> getIncludes (baseDir flags) file
+    (flip mapM_) includes $ \dynfile -> do
+      exists <- D.doesFileExist dynfile
+      when (not exists) $ do
+        putStrLn $ "touching missing dynamic dependency " ++ dynfile
+        callProcess "touch" [dynfile,"-r",file]
 
   (transactions "//*") %> hledger_process_year flags year_inputs ["print"]
 
@@ -274,6 +284,8 @@ generate_tax_return year_inputs out = do
 -------------------
 -- Helper functions
 -------------------
+
+dyngen file = "mortgage-interest.journal" `isSuffixOf` file
 
 -- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
 -- some of the requested includes might be generated and might not exist yet.
