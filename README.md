@@ -41,7 +41,7 @@ Feel free to ignore all the scripts at the top level of the repo - they are ther
 13. [Tax returns](https://github.com/adept/full-fledged-hledger/wiki/Tax-returns)
 14. [Speeding things up](https://github.com/adept/full-fledged-hledger/wiki/Speeding-up)
 15. [Tracking commodity lots manually](https://github.com/adept/full-fledged-hledger/wiki/Manual-lot-tracking)
-16. [Fetching prices automatically](Fetching-prices)
+16. [Fetching prices automatically](https://github.com/adept/full-fledged-hledger/wiki/Fetching-prices)
 17. [ChangeLog](https://github.com/adept/full-fledged-hledger/wiki/Changelog)
 
 # What would you find here?
