@@ -32,10 +32,10 @@ Ending balances (historical) in 2013-04-06..2018-04-05:
 
 UNUSED PENSION ALLOWANCE
 ========================
-2014-04-05                      vi:pe:al:unused           £3900.00      £3900.00
-2015-04-05                      vi:pe:al:unused           £3900.00      £7800.00
-2016-04-05                      vi:pe:al:unused            £-50.00      £7750.00
-                                vi:pe:al:unused                  0      £7750.00
-2017-04-01 Expired              (vi:pe:al:unused)        £-3850.00      £3900.00
-2017-04-05                      vi:pe:al:unused            £-60.00      £3840.00
-                                vi:pe:al:unused                  0      £3840.00
+2014-04-05                                                                     virtual:pension:allowance:unused                                         £3900.00      £3900.00
+2015-04-05                                                                     virtual:pension:allowance:unused                                         £3900.00      £7800.00
+2016-04-05                                                                     virtual:pension:allowance:unused                                          £-50.00      £7750.00
+                                                                               virtual:pension:allowance:unused                                                0      £7750.00
+2017-04-01 Expired                                                             (virtual:pension:allowance:unused)                                      £-3850.00      £3900.00
+2017-04-05                                                                     virtual:pension:allowance:unused                                          £-60.00      £3840.00
+                                                                               virtual:pension:allowance:unused                                                0      £3840.00

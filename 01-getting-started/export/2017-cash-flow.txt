@@ -5,4 +5,4 @@ Cashflow Statement ..
  Cash flows ||    
 ------------++----
 ------------++----
-            ||    
+            ||  0 

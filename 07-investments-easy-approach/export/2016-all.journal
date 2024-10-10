@@ -1,4 +1,4 @@
-2016-01-01 opening balances
+2016-01-01 opening balances  ; start:2016.journal
     assets:Lloyds:current                   £650.00 = £650.00
     assets:Lloyds:savings                      £500 = £500
     assets:cash                             £150.00 = £150.00

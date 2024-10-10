@@ -1,4 +1,4 @@
-2015-01-01 opening balances
+2015-01-01 opening balances  ; start:2015.journal
     assets:Lloyds:current                   £600.00 = £600.00
     assets:cash                             £150.00 = £150.00
     assets:pension:aviva                       £100 = £100
