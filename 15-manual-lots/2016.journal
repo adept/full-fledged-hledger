@@ -21,7 +21,7 @@ include ./export/2016-opening.journal
   virtual:stock options:vested
   virtual:stock options:vesting:2016   = 0 UNITS
 
-P 2016/12/30 UNITS 851.12 USD
+P 2016/12/30 UNITS $851.12
 
 include ./import/lloyds/journal/99966633_20171224_2043.journal
 include ./import/lloyds/journal/12345678_20171225_0002.journal

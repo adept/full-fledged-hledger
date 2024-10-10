@@ -26,7 +26,7 @@
   virtual:stock options:granted
   virtual:stock options:vesting:2016   5 UNITS
 
-P 2014/12/30 UNITS 708.75 USD
+P 2014/12/30 UNITS $708.75
 
 include ./import/lloyds/journal/99966633_20171224_2041.journal
 include ./export/2014-mortgage-interest.journal

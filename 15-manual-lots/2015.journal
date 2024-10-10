@@ -16,7 +16,7 @@ include ./export/2015-opening.journal
   virtual:stock options:granted
   virtual:stock options:vesting:2017   10 UNITS
 
-P 2015/12/30 UNITS 654.77 USD
+P 2015/12/30 UNITS $654.77
 
 include ./import/lloyds/journal/99966633_20171224_2042.journal
 include ./import/lloyds/journal/12345678_20171225_0001.journal

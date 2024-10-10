@@ -17,7 +17,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2014.journal ././15-manual-lots/201
 +  virtual:stock options:granted
 +  virtual:stock options:vesting:2016   5 UNITS
 +
-+P 2014/12/30 UNITS 708.75 USD
++P 2014/12/30 UNITS $708.75
 +
  include ./import/lloyds/journal/99966633_20171224_2041.journal
  include ./export/2014-mortgage-interest.journal
@@ -40,7 +40,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2015.journal ././15-manual-lots/201
 +  virtual:stock options:granted
 +  virtual:stock options:vesting:2017   10 UNITS
 +
-+P 2015/12/30 UNITS 654.77 USD
++P 2015/12/30 UNITS $654.77
 +
  include ./import/lloyds/journal/99966633_20171224_2042.journal
  include ./import/lloyds/journal/12345678_20171225_0001.journal
@@ -69,7 +69,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2016.journal ././15-manual-lots/201
 +  virtual:stock options:vested
 +  virtual:stock options:vesting:2016   = 0 UNITS
 +
-+P 2016/12/30 UNITS 851.12 USD
++P 2016/12/30 UNITS $851.12
 +
  include ./import/lloyds/journal/99966633_20171224_2043.journal
  include ./import/lloyds/journal/12345678_20171225_0002.journal
@@ -102,7 +102,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-manual-lots/201
 +  virtual:stock options:vested
 +  virtual:stock options:vesting:2017   = 0 UNITS
 +
-+P 2017/12/30 UNITS 901.97 USD
++P 2017/12/30 UNITS $901.97
  
  include ./import/lloyds/journal/99966633_20171223_1844.journal
  include ./import/lloyds/journal/12345678_20171225_0003.journal
@@ -189,7 +189,7 @@ diff -X .gitignore -Naurb ././14-speeding-up/export/stock-options.sh ././15-manu
 +parallel -k :::: <<EOF
 +echo "END OF YEAR VALUATIONS"
 +echo "======================"
-+hledger balance 'stock options:vested' -f ../all.journal -Y -b2014 --cumulative --transpose --value=end,USD --valuechange --no-total
++hledger balance 'stock options:vested' -f ../all.journal -Y -b2014 --cumulative --transpose --value=end,$ --valuechange --no-total
 +echo
 +
 +echo "VESTING HISTORY"

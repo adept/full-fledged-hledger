@@ -5,7 +5,7 @@ cd $(dirname $0)
 parallel -k :::: <<EOF
 echo "END OF YEAR VALUATIONS"
 echo "======================"
-hledger balance 'stock options:vested' -f ../all.journal -Y -b2014 --cumulative --transpose --value=end,USD --valuechange --no-total
+hledger balance 'stock options:vested' -f ../all.journal -Y -b2014 --cumulative --transpose --value=end,$ --valuechange --no-total
 echo
 
 echo "VESTING HISTORY"
