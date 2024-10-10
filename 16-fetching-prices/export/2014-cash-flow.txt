@@ -1,0 +1,10 @@
+Cashflow Statement 2014, converted to cost, valued at posting date
+
+                       ||     2014 
+=======================++==========
+ Cash flows            ||          
+-----------------------++----------
+ assets:Lloyds:current ||  £500.00 
+ assets:cash           || £-150.00 
+-----------------------++----------
+                       ||  £350.00 

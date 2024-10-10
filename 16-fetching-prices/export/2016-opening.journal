@@ -1,0 +1,8 @@
+2016-01-01 opening balances  ; start:2016.journal
+    assets:Lloyds:current                   £650.00 = £650.00
+    assets:Lloyds:savings                      £500 = £500
+    assets:house                           £1000.00 = £1000.00
+    assets:pension:aviva                    £204.41 = £204.41
+    liabilities:mortgage                   £-684.52 = £-684.52
+    equity:opening/closing balances
+

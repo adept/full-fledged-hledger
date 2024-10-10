@@ -1,0 +1,16 @@
+assets:Lloyds:current
+assets:Lloyds:savings
+assets:Lloyds:transfers
+assets:house
+assets:pension:aviva
+equity:opening/closing balances
+expenses:coffee
+expenses:mortgage interest
+income:employer
+liabilities:mortgage
+virtual:pension:allowance:2014/2015
+virtual:pension:allowance:unused:2014/2015 - 2017/2018
+virtual:pension:inputs:2014/2015
+virtual:stock options:granted
+virtual:stock options:vesting:2017
+virtual:unrealized pnl

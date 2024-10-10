@@ -1,0 +1,25 @@
+END OF YEAR VALUATIONS
+======================
+Cumulative period-end value changes in 2014-01-01..2017-12-31:
+
+            || virtual:stock options:vested 
+============++==============================
+ 2014-12-31 ||                            0 
+ 2015-12-31 ||                            0 
+ 2016-12-31 ||                     $4255.60 
+ 2017-12-31 ||                    $13529.55 
+
+VESTING HISTORY
+===============
+Ending balances (cumulative) in 2014-01-01..2017-12-31:
+
+                                    || 2014-12-31  2015-12-31  2016-12-31  2017-12-31 
+====================================++================================================
+ virtual:stock options:vested       ||          0           0     5 UNITS    15 UNITS 
+ virtual:stock options:vesting:2016 ||    5 UNITS     5 UNITS           0           0 
+ virtual:stock options:vesting:2017 ||          0    10 UNITS    10 UNITS           0 
+ virtual:stock options:vesting:2018 ||          0           0    20 UNITS    20 UNITS 
+ virtual:stock options:vesting:2019 ||          0           0           0    25 UNITS 
+------------------------------------++------------------------------------------------
+                                    ||    5 UNITS    15 UNITS    35 UNITS    60 UNITS 
+

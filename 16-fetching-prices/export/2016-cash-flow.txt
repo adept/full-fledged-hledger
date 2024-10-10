@@ -1,0 +1,10 @@
+Cashflow Statement 2016, converted to cost, valued at posting date
+
+                       ||      2016 
+=======================++===========
+ Cash flows            ||           
+-----------------------++-----------
+ assets:Lloyds:current || £21708.99 
+ assets:Lloyds:savings ||  £1000.00 
+-----------------------++-----------
+                       || £22708.99 

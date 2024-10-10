@@ -1,0 +1,24 @@
+include commodities.journal
+include ./export/2015-opening.journal
+
+2015/12/31 pension valuation
+  assets:pension:aviva     = £204.41
+  virtual:unrealized pnl
+
+;; Pension allowance tracking
+2015-04-05
+   (virtual:pension:allowance:2014/2015)  £4000             ; how much the allowance was
+   virtual:pension:allowance:2014/2015    = £0              ; how much of it is left
+   virtual:pension:inputs:2014/2015       £100.00           ; how much pension contributions were
+   virtual:pension:allowance:unused:2014/2015 - 2017/2018   ; remainder went to unused allowance
+
+;; Stock options tracking - 10 UNITS granted (to vest in two years), 0 vested
+2015/12/30 Stock Options
+  virtual:stock options:granted
+  virtual:stock options:vesting:2017   10 UNITS
+
+P 2015/12/30 UNITS $654.77
+
+include ./import/lloyds/journal/99966633_20171224_2042.journal
+include ./import/lloyds/journal/12345678_20171225_0001.journal
+include ./export/2015-mortgage-interest.journal

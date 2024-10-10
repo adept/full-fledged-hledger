@@ -1,0 +1,168 @@
+diff -X .gitignore -Naurb ././15-manual-lots/2016.journal ././16-fetching-prices/2016.journal
+--- ././15-manual-lots/2016.journal
++++ ././16-fetching-prices/2016.journal
+@@ -1,6 +1,8 @@
+ include commodities.journal
+ include ./export/2016-opening.journal
+ 
++include ./import/prices/2016-USD.prices
++
+ 2016/12/31 pension valuation
+   assets:pension:aviva     = £308.27
+   virtual:unrealized pnl
+diff -X .gitignore -Naurb ././15-manual-lots/2017.journal ././16-fetching-prices/2017.journal
+--- ././15-manual-lots/2017.journal
++++ ././16-fetching-prices/2017.journal
+@@ -1,6 +1,8 @@
+ ;; This journal is for the current year
+ include commodities.journal
+ 
++include ./import/prices/2017-USD.prices
++
+ include ./export/2017-opening.journal
+ 
+ 2017/06/30 pension valuation
+@@ -35,6 +37,10 @@
+ 
+ P 2017/12/30 UNITS $901.97
+ 
++2017/10/11  Vacation in Vegas
++  assets:Lloyds:current
++  expenses:casinos       $100
++
+ include ./import/lloyds/journal/99966633_20171223_1844.journal
+ include ./import/lloyds/journal/12345678_20171225_0003.journal
+ include ./export/2017-mortgage-interest.journal
+diff -X .gitignore -Naurb ././15-manual-lots/export/export.hs ././16-fetching-prices/export/export.hs
+--- ././15-manual-lots/export/export.hs
++++ ././16-fetching-prices/export/export.hs
+@@ -143,11 +143,11 @@
+ 
+   (accounts "//*") %> hledger_process_year flags year_inputs ["accounts"]
+ 
+-  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--no-elide","--cost"]
++  (income_expenses "//*") %> hledger_process_year flags year_inputs ["is","--flat","--cost","--value=then,£","--no-elide","--infer-value"]
+ 
+-  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet","--no-elide"]
++  (balance_sheet "//*") %> hledger_process_year flags year_inputs ["balancesheet","--no-elide","--cost","--value=then,£"]
+ 
+-  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)","--no-elide"]
++  (cash_flow "//*") %> hledger_process_year flags year_inputs ["cashflow","not:desc:(opening balances)","--no-elide","--cost","--value=then,£"]
+ 
+   (unknown "//*") %> hledger_process_year flags year_inputs ["print", "unknown"]
+ 
+@@ -175,6 +175,10 @@
+ 
+   "//import//*.matching_rules" %> generate_matching_rules absoluteBaseDir
+ 
++  -- Automatically-fetched prices
++  "//*-*.dates" %> generate_price_dates year_inputs
++  "//*-*.prices" %> generate_prices year_inputs
++
+ -------------------------------------
+ -- Implementations of the build rules
+ -------------------------------------
+@@ -281,11 +285,29 @@
+   (Stdout output) <- cmd "./tax_return.sh" [from_y,to_y]
+   writeFileChanged out output
+ 
++generate_price_dates year_inputs out = do
++  let [y,"-",sym,".","dates"] = split out
++  deps <- year_inputs y
++  need $ filter (not.dyngen) deps
++  need [ "./price_dates.sh" ]
++  (Stdout output) <- cmd "./price_dates.sh" [y,sym]
++  writeFileChanged out output
++
++generate_prices year_inputs out = do
++  let [y,"-",sym,".","prices"] = split out
++  let (prices_dir, _) = splitFileName out
++  let dates_file = prices_dir </> (y ++ "-" ++ sym ++ ".dates")
++  need [ dates_file ]
++  need [ "./prices.sh" ]
++  (Stdout output) <- cmd "./prices.sh" [dates_file,sym,"GBP"]
++  writeFileChanged out output
++
+ -------------------
+ -- Helper functions
+ -------------------
+ 
+-dyngen file = "mortgage-interest.journal" `isSuffixOf` file
++dyngen file =
++  "mortgage-interest.journal" `isSuffixOf` file || ".dates" `isSuffixOf` file || ".prices" `isSuffixOf` file 
+ 
+ -- To get included files, look for 'include' or '!include'. Note that we can't use "hledger files", as
+ -- some of the requested includes might be generated and might not exist yet.
+diff -X .gitignore -Naurb ././15-manual-lots/export/price_dates.sh ././16-fetching-prices/export/price_dates.sh
+--- ././15-manual-lots/export/price_dates.sh
++++ ././16-fetching-prices/export/price_dates.sh
+@@ -0,0 +1,15 @@
++#!/bin/bash
++set -e -o pipefail
++[ -z "$1" -o -z "$2" ] && ( echo "usage: $0 YEAR COMMODITY"; exit 1; )
++year="$1"
++sym="$2"
++dir=$(dirname $0)
++
++query="cur:${sym}"
++if [ "${sym}" = "USD" ] ; then
++    sym="$"
++    query="cur:\\$"
++fi
++
++hledger -f "${dir}/../${year}.journal" print "${query}" -Ocsv | sed -n -e "1p;/,\"${sym}\",/p" | csvtool namedcol date - | sed -e '/date/d' | sort -u
++
+diff -X .gitignore -Naurb ././15-manual-lots/export/prices.sh ././16-fetching-prices/export/prices.sh
+--- ././15-manual-lots/export/prices.sh
++++ ././16-fetching-prices/export/prices.sh
+@@ -0,0 +1,29 @@
++#!/bin/bash
++set -e -o pipefail
++[ -z "$1" -o -z "$2" -o -z "$3" ] && ( echo "usage: $0 DATES_FILE COMMODITY BASE"; exit 1; )
++dates=$(readlink -f "$1")
++sym="$2"
++quot="$3"
++dir=$(readlink -f $(dirname $0))
++
++extra=""
++case "${sym}" in
++    EUR|USD)
++        source="yahoo"
++        symbol="${sym}${quot}=X"
++        extra="--quantize=5"
++        sym="$" # rewrite USD to $ in the output
++        ;;
++    *)
++        echo "Define price source for ${sym} first"; exit 1 ;;
++esac
++
++first=$(head -n1 $dates)
++last=$(tail -n1 $dates)
++
++# Grab all prices between first and last date, filter just to the dates we need
++pricehist fetch ${source} "${symbol}" \
++       -s $first -e $last \
++       $extra \
++       -o ledger --fmt-time '' --fmt-base "${sym}" --fmt-quote £ --fmt-symbol left \
++  | fgrep -f $dates
+diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2016-USD.dates ././16-fetching-prices/import/prices/2016-USD.dates
+--- ././15-manual-lots/import/prices/2016-USD.dates
++++ ././16-fetching-prices/import/prices/2016-USD.dates
+@@ -0,0 +1,2 @@
++2016-04-02
++2016-04-05
+diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2016-USD.prices ././16-fetching-prices/import/prices/2016-USD.prices
+--- ././15-manual-lots/import/prices/2016-USD.prices
++++ ././16-fetching-prices/import/prices/2016-USD.prices
+@@ -0,0 +1 @@
++P 2016-04-05 $ £0.70102
+diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2017-USD.dates ././16-fetching-prices/import/prices/2017-USD.dates
+--- ././15-manual-lots/import/prices/2017-USD.dates
++++ ././16-fetching-prices/import/prices/2017-USD.dates
+@@ -0,0 +1 @@
++2017-10-11
+diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2017-USD.prices ././16-fetching-prices/import/prices/2017-USD.prices
+--- ././15-manual-lots/import/prices/2017-USD.prices
++++ ././16-fetching-prices/import/prices/2017-USD.prices
+@@ -0,0 +1 @@
++P 2017-10-11 $ £0.75694

@@ -1,0 +1,20 @@
+2015-03-30 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £753.72 = £1353.72
+    income:employer
+
+2015-03-31 (BGC) HSBC
+    assets:Lloyds:current           £-100 = £1253.72
+    liabilities:mortgage
+
+2015-04-07 (DEB) TRANSFER TO 12345678
+    assets:Lloyds:current             £-500 = £753.72
+    assets:Lloyds:transfers
+
+2015-04-08 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-3.72 = £750.00
+    expenses:coffee
+
+2015-05-01 (BP) AVIVA
+    assets:Lloyds:current           £-100 = £650.00
+    assets:pension:aviva
+
