@@ -1,7 +1,21 @@
 Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-01/05/2017,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,986.93
-07/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,1086.93
-07/04/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,5.24,,1089.69
-01/04/2017,,'12-34-56,assets:Lloyds:current,INTEREST (NET) ,,1.21,1094.93
-31/03/2017,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,1093.72
-30/03/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1093.72,1193.72
+25/05/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,903.52,4058.83
+15/05/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,3155.31
+05/05/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,64.41,,3158.07
+01/05/2017,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,3222.48
+25/04/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,800.72,3322.48
+18/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,2521.76
+07/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,2524.52
+07/04/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,92.24,,2527.28
+01/04/2017,,'12-34-56,assets:Lloyds:current,INTEREST (NET) ,,1.21,2619.52
+31/03/2017,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,2618.31
+25/03/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1093.72,2718.31
+12/03/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.16,,1624.59
+25/02/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,900.22,1626.75
+10/02/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,726.53
+05/02/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,111.32,,729.29
+25/01/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,800.11,840.61
+15/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,40.50
+10/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,43.26
+09/01/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,51.22,,46.02
+05/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,97.24

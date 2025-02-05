@@ -6,20 +6,48 @@
     liabilities:mortgage                   £-595.53 = £-595.53
     equity:opening/closing balances
 
-2017-01-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £24269.29
+2017-01-05 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £22356.23
+    expenses:coffee
+
+2017-01-09 (DEB) WAITROSE
+    assets:Lloyds:current         £-51.22 = £22305.01
+    expenses:groceries
+
+2017-01-10 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £22302.25
+    expenses:coffee
+
+2017-01-15 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £22299.49
+    expenses:coffee
+
+2017-01-25 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £800.11 = £23099.60
     income:employer
 
-2017-02-28 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £26179.59
+2017-02-05 (DEB) WAITROSE
+    assets:Lloyds:current        £-111.32 = £22988.28
+    expenses:groceries
+
+2017-02-10 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £22985.52
+    expenses:coffee
+
+2017-02-25 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £900.22 = £23885.74
     income:employer
 
-2017-03-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £28089.89
+2017-03-12 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.16 = £23883.58
+    expenses:coffee
+
+2017-03-25 (BGC) EMPLOYER INC
+    assets:Lloyds:current        £1093.72 = £24977.30
     income:employer
 
 2017-03-31 (BGC) HSBC
-    assets:Lloyds:current           £-100 = £27989.89
+    assets:Lloyds:current           £-100 = £24877.30
     liabilities:mortgage
 
 2017-03-31 1.8% interest for £-595.53 over 90 days
@@ -30,13 +58,13 @@
     (virtual:pension:allowance:unused:2013/2014 - 2016/2017)                 = £0
 
 2017-04-01 INTEREST (NET)
-    assets:Lloyds:current           £1.21 = £27991.10
+    assets:Lloyds:current           £1.21 = £24878.51
     income:interest
 
 2017-04-05 2016/2017 Tax return, P60
-    (p60:gross pay)                   £26789
-    (p60:tax paid)                 £-2681.27
-    (p60:national insurance)       £-1184.02
+    (p60:gross pay)                £24732.15
+    (p60:tax paid)                 £-2744.63
+    (p60:national insurance)       £-2000.66
 
 2017-04-05
     (virtual:pension:allowance:2016/2017)                              £40  ; how much the allowance was
@@ -45,69 +73,57 @@
     virtual:pension:allowance:unused:2014/2015 - 2017/2018            £-60  ; we need to use £60 of 2014/2015 allowance
     virtual:pension:allowance:unused:2016/2017 - 2019/2020                  ; remainder went to unused allowance
 
-2017-04-07 (BP) OASIS COFFEE
-    assets:Lloyds:current          £-2.76 = £27988.34
-    expenses:coffee
-
 2017-04-07 (DEB) WAITROSE
-    assets:Lloyds:current          £-5.24 = £27983.10
+    assets:Lloyds:current         £-92.24 = £24786.27
     expenses:groceries
+
+2017-04-07 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £24783.51
+    expenses:coffee
 
 2017-04-10 (DEB) CHECK #0001523
     assets:Lloyds:savings            £100 = £1600.0
     income:tutoring
 
-2017-04-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £29893.40
+2017-04-18 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £24780.75
+    expenses:coffee
+
+2017-04-25 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £800.72 = £25581.47
     income:employer
 
 2017-05-01 (BP) AVIVA
-    assets:Lloyds:current           £-100 = £29793.40
+    assets:Lloyds:current           £-100 = £25481.47
     assets:pension:aviva
 
 2017-05-03 (BP) COSTA COFFEE  ; Regular place was closed
-    assets:Lloyds:current          £-2.43 = £29790.97
+    assets:Lloyds:current          £-2.43 = £25479.04
     expenses:coffee
 
-2017-05-05 (BP) TESCO GROCERIES
-    assets:Lloyds:current          £-14.5 = £29776.47
+2017-05-04 (BP) TESCO GROCERIES
+    assets:Lloyds:current          £-14.5 = £25464.54
     expenses:groceries
 
-2017-05-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £31686.77
+2017-05-05 (DEB) WAITROSE
+    assets:Lloyds:current         £-64.41 = £25400.13
+    expenses:groceries
+
+2017-05-15 (BP) OASIS COFFEE
+    assets:Lloyds:current          £-2.76 = £25397.37
+    expenses:coffee
+
+2017-05-25 (BGC) EMPLOYER INC
+    assets:Lloyds:current         £903.52 = £26300.89
     income:employer
 
 2017-06-30 pension valuation
     assets:pension:aviva                   = £411.03
     virtual:unrealized pnl
 
-2017-06-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £33597.07
-    income:employer
-
-2017-07-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £35507.37
-    income:employer
-
-2017-08-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £37417.67
-    income:employer
-
-2017-09-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £39327.97
-    income:employer
-
 2017-10-11 Vacation in Vegas
     assets:Lloyds:current
     expenses:casinos                 $100
-
-2017-10-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £41238.27
-    income:employer
-
-2017-11-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.30 = £43148.57
-    income:employer
 
 2017-12-30 Stock Options
     virtual:stock options:granted
@@ -116,10 +132,6 @@
 2017-12-30 Stock Options
     virtual:stock options:vested
     virtual:stock options:vesting:2017                 = 0 UNITS
-
-2017-12-30 (BGC) EMPLOYER INC
-    assets:Lloyds:current        £1910.41 = £45058.98
-    income:employer
 
 2017-12-31 1.8% interest for £-498.17 over 275 days
     liabilities:mortgage                £-6.76

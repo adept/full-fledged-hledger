@@ -6,11 +6,11 @@ INCOME TOTALS
 
 PAYSLIPS CHECK
 ==============
-          £-22923.71  income:employer
-           £22923.71  p60
-           £26789.00    gross pay
-           £-1184.02    national insurance
-           £-2681.27    tax paid
+          £-19986.86  income:employer
+           £19986.86  p60
+           £24732.15    gross pay
+           £-2000.66    national insurance
+           £-2744.63    tax paid
 --------------------
                    0  
 

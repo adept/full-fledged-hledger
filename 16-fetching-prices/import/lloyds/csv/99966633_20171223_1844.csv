@@ -1,20 +1,23 @@
 Transaction Date,Transaction Type,Sort Code,Account Number,Transaction Description,Debit Amount,Credit Amount,Balance,
-30/01/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,24269.29
-28/02/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,26179.59
-30/03/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,28089.89
-31/03/2017,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,27989.89
-01/04/2017,,'12-34-56,assets:Lloyds:current,INTEREST (NET) ,,1.21,27991.10
-07/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,27988.34
-07/04/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,5.24,,27983.10
-30/04/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,29893.40
-01/05/2017,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,29793.40
-03/05/2017,BP,'12-34-56,assets:Lloyds:current,COSTA COFFEE,2.43,,29790.97
-05/05/2017,BP,'12-34-56,assets:Lloyds:current,TESCO GROCERIES,14.5,,29776.47
-30/05/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,31686.77
-30/06/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,33597.07
-30/07/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,35507.37
-30/08/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,37417.67
-30/09/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,39327.97
-30/10/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,41238.27
-30/11/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.30,43148.57
-30/12/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1910.41,45058.98
+25/05/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,903.52,26300.89
+15/05/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,25397.37
+05/05/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,64.41,,25400.13
+04/05/2017,BP,'12-34-56,assets:Lloyds:current,TESCO GROCERIES,14.5,,25464.54
+03/05/2017,BP,'12-34-56,assets:Lloyds:current,COSTA COFFEE,2.43,,25479.04
+01/05/2017,BP,'12-34-56,assets:Lloyds:current,AVIVA,100,,25481.47
+25/04/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,800.72,25581.47
+18/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,24780.75
+07/04/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,24783.51
+07/04/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,92.24,,24786.27
+01/04/2017,,'12-34-56,assets:Lloyds:current,INTEREST (NET) ,,1.21,24878.51
+31/03/2017,BGC,'12-34-56,assets:Lloyds:current,HSBC,100,,24877.30
+25/03/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,1093.72,24977.30
+12/03/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.16,,23883.58
+25/02/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,900.22,23885.74
+10/02/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,22985.52
+05/02/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,111.32,,22988.28
+25/01/2017,BGC,'12-34-56,assets:Lloyds:current,EMPLOYER INC,,800.11,23099.60
+15/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,22299.49
+10/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,22302.25
+09/01/2017,DEB,'12-34-56,assets:Lloyds:current,WAITROSE,51.22,,22305.01
+05/01/2017,BP,'12-34-56,assets:Lloyds:current,OASIS COFFEE ,2.76,,22356.23

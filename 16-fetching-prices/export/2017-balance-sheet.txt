@@ -4,12 +4,12 @@ Balance Sheet 2017-12-31, converted to cost, valued at posting date
 =======================++============
  Assets                ||            
 -----------------------++------------
- assets:Lloyds:current ||  £44983.29 
+ assets:Lloyds:current ||  £26225.36 
  assets:Lloyds:savings ||   £1600.00 
  assets:house          ||   £1000.00 
  assets:pension:aviva  ||    £411.03 
 -----------------------++------------
-                       ||  £47994.32 
+                       ||  £29236.39 
 =======================++============
  Liabilities           ||            
 -----------------------++------------
@@ -17,4 +17,4 @@ Balance Sheet 2017-12-31, converted to cost, valued at posting date
 -----------------------++------------
                        ||    £504.93 
 =======================++============
- Net:                  ||  £47489.39 
+ Net:                  ||  £28731.46 
