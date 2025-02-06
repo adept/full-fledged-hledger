@@ -155,7 +155,7 @@ diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2016-USD.prices ././1
 --- ././15-manual-lots/import/prices/2016-USD.prices
 +++ ././16-fetching-prices/import/prices/2016-USD.prices
 @@ -0,0 +1 @@
-+P 2016-04-05 $ £0.70102
++P 2016-04-05 $ £0.70640
 diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2017-USD.dates ././16-fetching-prices/import/prices/2017-USD.dates
 --- ././15-manual-lots/import/prices/2017-USD.dates
 +++ ././16-fetching-prices/import/prices/2017-USD.dates
@@ -165,4 +165,4 @@ diff -X .gitignore -Naurb ././15-manual-lots/import/prices/2017-USD.prices ././1
 --- ././15-manual-lots/import/prices/2017-USD.prices
 +++ ././16-fetching-prices/import/prices/2017-USD.prices
 @@ -0,0 +1 @@
-+P 2017-10-11 $ £0.75694
++P 2017-10-11 $ £0.75530

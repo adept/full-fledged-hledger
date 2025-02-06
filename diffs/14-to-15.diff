@@ -78,8 +78,8 @@ diff -X .gitignore -Naurb ././14-speeding-up/2017.journal ././15-manual-lots/201
 --- ././14-speeding-up/2017.journal
 +++ ././15-manual-lots/2017.journal
 @@ -12,6 +12,28 @@
-    (p60:tax paid)              -£2681.27
-    (p60:national insurance)    -£1184.02
+    (p60:tax paid)              -£2744.63
+    (p60:national insurance)    -£2000.66
  
 +;; Pension allowance tracking
 +2017-04-05

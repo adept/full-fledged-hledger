@@ -1,8 +1,38 @@
 diff -X .gitignore -Naurb ././00-empty/2017.journal ././01-getting-started/2017.journal
 --- ././00-empty/2017.journal
 +++ ././01-getting-started/2017.journal
-@@ -0,0 +1 @@
+@@ -0,0 +1,31 @@
 +;; This journal is for the current year
++
++;; Opening balances
++2017/01/01 opening balances
++  assets:Lloyds:current    = £100.00
++  equity:opening balances
++
++2017-01-31  End-of-month balance
++  assets:Lloyds:current  =   £840.61
++  income:employer        £-800.11 
++  expenses:unknown
++
++2017-02-28  End-of-month balance
++  assets:Lloyds:current  =  £1626.75
++  income:employer        £-900.22
++  expenses:unknown
++
++2017-03-31  End-of-month balance
++  assets:Lloyds:current  =  £2618.31
++  income:employer        £-1093.72 
++  expenses:unknown
++
++2017-04-30  End-of-month balance
++  assets:Lloyds:current  =  £3322.48
++  income:employer        £-800.72 
++  expenses:unknown
++
++2017-05-31  End-of-month balance
++  assets:Lloyds:current  =  £4058.83
++  income:employer        £-903.52 
++  expenses:unknown
 diff -X .gitignore -Naurb ././00-empty/README.md ././01-getting-started/README.md
 --- ././00-empty/README.md
 +++ ././01-getting-started/README.md
