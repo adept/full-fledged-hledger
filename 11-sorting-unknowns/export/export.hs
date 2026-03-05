@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-22.37 script --package shake --package directory --package process --optimize
+-- stack --resolver lts-24.33 script --package shake --package directory --package process --optimize
 import Development.Shake
 import Development.Shake.FilePath
 import Development.Shake.Util
