@@ -75,7 +75,7 @@ So, decently large. It takes about a minute to regenerate all journal files and 
 
 Did I mention that you should go and [read the wiki](https://github.com/adept/full-fledged-hledger/wiki)?
 
-# Awk, and Shake, and csvtools, and shell scripts, ...?!
+# Shake, and csvtools, and shell scripts, ... ?! I don't want to install all these dependencies!
 
 There is [docker image](https://hub.docker.com/r/dastapov/full-fledged-hledger) that includes all the dependencies and tools. Just clone this repo, run `./docker.sh`, and you should be all set.
 
