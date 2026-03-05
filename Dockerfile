@@ -1,4 +1,4 @@
-FROM haskell:9.6.6 as builder
+FROM haskell:9.10.3-bookworm as builder
 
 WORKDIR /usr/app
 
@@ -12,29 +12,31 @@ RUN git clone https://gitlab.com/chrisberkhout/pricehist \
     && cd pricehist \
     && pip install --no-cache-dir .
 
-FROM haskell:9.6.6
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/skim-rs/skim/releases/download/v3.6.2/skim-installer.sh | sh
+RUN curl -L https://github.com/johnkerl/miller/releases/download/v6.17.0/miller-6.17.0-linux-386.tar.gz | tar xz --strip-components=1
 
-ENV RESOLVER lts-22.37
+FROM haskell:9.10.3-slim-bookworm
 
-COPY --from=dastapov/hledger:1.40 /usr/bin/hledger* /usr/bin/
+ENV RESOLVER lts-24.33
+
+COPY --from=dastapov/hledger:1.51.2 /usr/bin/hledger* /usr/bin/
+COPY --from=builder /usr/app/venv /usr/app/venv
+COPY --from=builder /root/.cargo/bin/sk /usr/app/mlr /usr/bin/
 
 COPY ./01-getting-started/export/export.hs /tmp
 
 # Precompile all packages needed for export.hs
-RUN stack --resolver $RESOLVER --system-ghc script --package shake --package directory --package process /tmp/export.hs -- -v \
+RUN hledger --version && mlr --version && sk --version \
+    && stack --resolver $RESOLVER --system-ghc script --package shake --package directory --package process /tmp/export.hs -- -v \
     && rm -r /tmp/export.* \
     && rm -rf /root/.stack/pantry \
     && chmod -R g+wrX,o+wrX /root
 
 RUN apt-get update \
     && apt-get install --yes patchutils gawk csvtool fzf ripgrep parallel python3 \
-    && rm -rf /var/lib/apt/lists \
-    && cd /usr/bin/ \
-    && curl -L https://github.com/lotabout/skim/releases/download/v0.8.1/skim-v0.8.1-x86_64-unknown-linux-gnu.tar.gz | tar xz \  
-    && curl -L https://github.com/johnkerl/miller/releases/download/v6.13.0/miller-6.13.0-linux-386.tar.gz | tar xz
+    && rm -rf /var/lib/apt/lists
 
-COPY --from=builder /usr/app/venv /usr/app/venv
-ENV PATH="/usr/app/venv/bin:$PATH"
+ENV PATH="/usr/app/venv/bin::$PATH"
 
 RUN adduser --system --ingroup root hledger
 
