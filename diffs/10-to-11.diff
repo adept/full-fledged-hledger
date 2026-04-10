@@ -73,7 +73,7 @@ diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unkn
 +    regexp=$(sk --header="Fine-tune regexp. Searching in ${dir}/*.rules and ${dir}/csv" \
 +                --cmd-query="${description}" --print-cmd --ansi -i \
 +                --bind 'ctrl-d:delete-char' \
-+                -c "rg -i --color=always --line-number \"{}\" $(ls ${dir}/*.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
++                -c "rg -i --color=always --line-number {q} $(ls ${dir}/*.rules | paste -s -d' ') ${dir}/rules.psv ${dir}/csv" | head -n1)
 +
 +    # Now lets choose account
 +    account=$(cat /tmp/accounts.txt | sort -u | sk --header="Choose account")
@@ -84,7 +84,7 @@ diff -X .gitignore -Naurb ././10-foreign-currency/resolve.sh ././11-sorting-unkn
 +    # or just entered. When entered comment is a substring match of one of the existing comments,
 +    # you can prepend your comment with ":" to prevent the match from being selected
 +    comment=$((sk --header="Enter comment (prepend : to inhibit selection)" --print-cmd --ansi -i \
-+                  -c "rg --color=always --line-number \"{}\" /tmp/comments.txt" || true) | tail -n1 | sed -e 's/^[0-9]*://')
++                  -c "rg --color=always --line-number {q} /tmp/comments.txt" || true) | tail -n1 | sed -e 's/^[0-9]*://')
 +    
 +    echo "${regexp}|${account}|${comment}" >> "${dir}/rules.psv"
 +done
