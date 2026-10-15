@@ -33,7 +33,7 @@ RUN hledger --version && mlr --version && sk --version \
     && chmod -R g+wrX,o+wrX /root
 
 RUN apt-get update \
-    && apt-get install --yes patchutils gawk csvtool fzf ripgrep parallel python3 \
+    && apt-get install --yes less patchutils gawk csvtool fzf ripgrep parallel python3 \
     && rm -rf /var/lib/apt/lists
 
 ENV PATH="/usr/app/venv/bin::$PATH"
